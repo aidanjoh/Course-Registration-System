@@ -24,7 +24,7 @@ public class StudentRecordView extends JFrame
 	//For the input panel
 	private JLabel fileName = new JLabel("Enter the file name:");
 	
-	private JTextField inputtedFile = new JTextField();
+	private JTextArea inputtedFile = new JTextArea();
 	
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("OK");
@@ -33,21 +33,32 @@ public class StudentRecordView extends JFrame
 	//For the 
 	public StudentRecordView()
 	{
-		super("Student Records");
+		super("Main window");
 		
-		JPanel studentRecordPanel = new JPanel();
+		JPanel mainText = new JPanel();
+		JPanel buttonPanel = new JPanel();
+		JScrollPane textArea = new JScrollPane();
 		
-		setSize(400, 400);
+		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		studentRecordPanel.add(title);
-		studentRecordPanel.add(insertButton);
-		studentRecordPanel.add(findButton);
-		studentRecordPanel.add(browseButton);
-		studentRecordPanel.add(createTreeButton);
-		studentRecordPanel.add(studentRecords);
+		mainText.setLocation(0, 0);
+		mainText.add(title);
 		
-		add(studentRecordPanel);
+		buttonPanel.setSize(600, 50);
+		buttonPanel.setLocation(0, 0);
+		buttonPanel.add(insertButton);
+		buttonPanel.add(findButton);
+		buttonPanel.add(browseButton);
+		buttonPanel.add(createTreeButton);
+		
+		textArea.setSize(600, 300);
+		textArea.setLocation(0, 50);
+		textArea.add(studentRecords);
+		
+		add(textArea);
+		add(mainText);
+		add(buttonPanel);
 	}
 	
 	/**
@@ -82,7 +93,7 @@ public class StudentRecordView extends JFrame
 	 * @param textField
 	 * @return
 	 */
-	public String getTextFromTextBox(JTextField textField)
+	public String getTextFromTextBox(JTextArea textField)
 	{
 		return textField.getText();
 	}
