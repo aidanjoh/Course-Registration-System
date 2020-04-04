@@ -35,12 +35,17 @@ public class StudentRecordModel {
 	}
 	
 	
-	public Data findStudentRecordFromID(int idNumber) {
-		return null;
+	public Data findStudentRecordFromID(String idNumber) {
+		Node searchedNode;
+		searchedNode = binarySearchTree.find(binarySearchTree.root, idNumber); //Starts the search at the root Node
+		if(searchedNode == null)
+			return null;
+		else
+			return searchedNode.data;
 	}
 	
-	public void insertStudent(Data newStudent) {
-		
+	public void insertStudent(String id, String faculty, String major, String year) {
+		binarySearchTree.insert(id, faculty, major, year);
 	}
 	
 	//just using the main to test 
