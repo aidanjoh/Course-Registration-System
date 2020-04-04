@@ -24,12 +24,18 @@ public class StudentRecordModel {
 		}
 	}
 	
+	public String toStringStudentRecords() {
+		
+		return null;
+	}
+	
 	public BinSearchTree getBinarySearchTree()
 	{
 		return binarySearchTree;
 	}
 	
-	public Data findRecordFromID(int idNumber) {
+	
+	public Data findStudentRecordFromID(int idNumber) {
 		return null;
 	}
 	
