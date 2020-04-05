@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * 
@@ -22,6 +23,7 @@ public class StudentRecordController
 		studentRecordView.addBrowseButtonListener(new addBrowseButtonListener());
 		studentRecordView.addFindButtonListener(new addFindButtonListener());
 		studentRecordView.addInsertButtonListener(new addInsertButtonListener());
+		studentRecordView.addInsertButtonFromAddNodeListener(new addInsertButtonFromAddNodeListener());
 	}
 	
 	/**
@@ -54,9 +56,12 @@ public class StudentRecordController
 				fileName = studentRecordView.getFileName();
 				studentRecordModel.createTreeFromFile(fileName);
 			}
-			catch(Exception error)
+			catch(IOException error)
 			{
-				studentRecordView.displayMessage("Error!");
+				studentRecordView.displayMessage("Inputted file name was not correct.");
+			}
+			catch(NullPointerException error)
+			{
 			}
 		}
 		
@@ -71,9 +76,13 @@ public class StudentRecordController
 			{
 				studentRecordView.setStudentRecords(studentRecordModel.toStringStudentRecords());
 			}
-			catch(Exception error)
+			catch(NullPointerException error)
 			{
-				studentRecordView.displayMessage("Error!");
+				studentRecordView.displayMessage("There is nothing to Browse!");
+			}
+			catch(IOException error)
+			{
+				studentRecordView.displayMessage("Input/Output Error!");
 			}
 		}
 	}
@@ -101,6 +110,10 @@ public class StudentRecordController
 					studentRecordView.displayMessage(studentInfo);
 				}
 			}
+			catch(NullPointerException error)
+			{
+				
+			}
 			catch(Exception error)
 			{
 				studentRecordView.displayMessage("Error!");
@@ -122,6 +135,28 @@ public class StudentRecordController
 			catch(Exception error)
 			{
 				studentRecordView.displayMessage("Error!");
+			}
+		}
+	}
+	
+	public class addInsertButtonFromAddNodeListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Data studentInfo;
+			try
+			{
+				String id = studentRecordView.id.getText().toString();
+				String faculty = studentRecordView.fac.getText().toString();
+				String major = studentRecordView.major.getText().toString();
+				String year = studentRecordView.year.getText().toString();
+				studentInfo = new Data(id, faculty, major, year);
+				studentRecordModel.insertStudent(studentInfo);
+			}
+			catch(Exception error)
+			{
+				studentRecordView.displayMessage("In error!");
 			}
 		}
 	}

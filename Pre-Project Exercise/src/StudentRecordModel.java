@@ -4,16 +4,18 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-public class StudentRecordModel {
-	
+public class StudentRecordModel 
+{
 	private BinSearchTree binarySearchTree;
 
-	public void createTreeFromFile(String fileName) throws IOException{
+	public void createTreeFromFile(String fileName) throws IOException
+	{
 		
 		binarySearchTree = new BinSearchTree();
 		FileReader fr = new FileReader(fileName);
 		BufferedReader br = new BufferedReader(fr);
 		String line = "";
+		
 		while((line = br.readLine()) != null) 
 		{
 			String[] words = line.split("\\s+"); //words has a format [, 64115, EN, ENCH, 2]
@@ -27,8 +29,8 @@ public class StudentRecordModel {
 	}
 	
 	//makes a big ass string of all the records in order from the binary search tree
-	public String toStringStudentRecords() throws IOException {
-		
+	public String toStringStudentRecords() throws IOException 
+	{
 		StringWriter bigString = new StringWriter();
 		PrintWriter p = new PrintWriter(bigString);
 		binarySearchTree.print_tree(binarySearchTree.root, p);
@@ -42,7 +44,8 @@ public class StudentRecordModel {
 	}
 	
 	
-	public Data findStudentRecordFromID(String idNumber) {
+	public Data findStudentRecordFromID(String idNumber)
+	{
 		Node searchedNode;
 		searchedNode = binarySearchTree.find(binarySearchTree.root, idNumber); //Starts the search at the root Node
 		if(searchedNode == null)
@@ -51,7 +54,8 @@ public class StudentRecordModel {
 			return searchedNode.data;
 	}
 	
-	public void insertStudent(String id, String faculty, String major, String year) {
-		binarySearchTree.insert(id, faculty, major, year);
+	public void insertStudent(Data studentInfo) 
+	{
+		binarySearchTree.insert(studentInfo.id, studentInfo.faculty, studentInfo.major, studentInfo.year);
 	}
 }

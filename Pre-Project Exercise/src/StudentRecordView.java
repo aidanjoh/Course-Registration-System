@@ -3,6 +3,8 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
+ * The Class StudentRecordView is an implementation of the view for an application to maintain student records following MVC architecture
+ * design. 
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
@@ -11,74 +13,30 @@ import javax.swing.*;
  */
 public class StudentRecordView extends JFrame
 {
-	//For the main panel
-	private JLabel title = new JLabel("An Application to Maintain Student Records");
-	
-	private JButton insertButton = new JButton("Insert");
-	private JButton findButton = new JButton("Find");
-	private JButton browseButton = new JButton("Browse");
-	private JButton createTreeButton = new JButton("Create Tree from File");
-	
-	private JTextArea studentRecords = new JTextArea();
-	
-	//For the input panel
-	private JLabel fileName = new JLabel("Enter the file name:");
+		//For the main panel (North)
+		private JLabel title = new JLabel("An Application to Maintain Student Records");
+			
+		//For the Student Records panel (Center)
+		private JTextArea studentRecords = new JTextArea();
+		
+		//For the input panel (South)
+		private JButton insertButton = new JButton("Insert");
+		private JButton findButton = new JButton("Find");
+		private JButton browseButton = new JButton("Browse");
+		private JButton createTreeButton = new JButton("Create Tree from File");
+		
+		//When inserting the file name
+		private JLabel fileName = new JLabel("Enter the file name:");
 
-	private JLabel studentID = new JLabel("Please enter the student's ID");
-	
-	private JLabel ID = new JLabel("Enter the Student's ID");
-	
-	private JLabel faculty = new JLabel("Enter Faculty");
-	
-	private JLabel major = new JLabel("Enter Student's Major");
-	
-	private JLabel year = new JLabel("Enter year");
-	
-	/**
-	 * 
-	 */
-	public StudentRecordView()
-	{
-		super("Main window");
+		//When searching for a node by Student ID
+		private JLabel studentID = new JLabel("Please enter the student's ID");
 		
-		JPanel mainText = new JPanel();
-		JPanel buttonPanel = new JPanel();
-		JScrollPane textArea = new JScrollPane(studentRecords);
+		//For Insert Node Function
+		JButton insert2Button = new JButton("Insert");
+		JButton returnButton = new JButton("Return to Main Window");	
 		
-		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		mainText.setLocation(0, 0);
-		mainText.setSize(600, 50);
-		mainText.add(title);
-		
-		buttonPanel.setSize(600, 50);
-		buttonPanel.setLocation(0, 350);
-		buttonPanel.add(insertButton);
-		buttonPanel.add(findButton);
-		buttonPanel.add(browseButton);
-		buttonPanel.add(createTreeButton);
-		
-		textArea.setSize(600, 250);
-		textArea.setLocation(0, 50);
-		
-		add("North", mainText);
-		add("South", buttonPanel);
-		add("Center", textArea);
-	}
-	
-	/**
-	 * 
-	 * @param records
-	 */
-	public void setStudentRecords(String records)
-	{
-		studentRecords.setText(records);
-	}
-	
-	public String getStudentInformation()
-	{
-		JPanel newNode = new JPanel(new GridLayout(0, 1, 2, 2));
+		//Entering Information Panel For New Node
+		JPanel newNode = new JPanel(new GridLayout(2, 2));
 		
 		JLabel enterId = new JLabel("Enter the Student's ID");
 		JTextField id = new JTextField();
@@ -91,9 +49,74 @@ public class StudentRecordView extends JFrame
 		
 		JLabel enterYear = new JLabel("Enter Student's year");
 		JTextField year = new JTextField();
+	
+	
+	
+	/**
+	 * Constructing a StudentRecordView object that creates the main window GUI for the maintaining student record application.
+	 * This main window has a label in the north panel, a textArea in the center panel and a 4 buttons representing insert, find,
+	 * browse and create tree from panel on the south panel.
+	 */
+	public StudentRecordView()
+	{
+		super("Main window");
 		
-		JButton insert2Button = new JButton("Insert");
-		JButton returnButton = new JButton("Return to Main Window");
+		//Making the JTextArea non-editable
+		studentRecords.setEditable(false);
+		
+		//Creating three different panels for the main frame
+		JPanel mainText = new JPanel();
+		JPanel buttonPanel = new JPanel();
+		JScrollPane textArea = new JScrollPane(studentRecords);
+		
+		//Setting the size of the frame
+		setSize(600, 400);
+		
+		//If the frame closes the system exits on close
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		mainText.add(title);
+		
+		//Adding the buttons to the button Panel
+		buttonPanel.add(insertButton);
+		buttonPanel.add(findButton);
+		buttonPanel.add(browseButton);
+		buttonPanel.add(createTreeButton);
+		
+		//Setting the size of the textArea
+		textArea.setSize(600, 250);
+		
+		//Adding the title into the north panel
+		add("North", mainText);
+		
+		//Adding the buttons into the south panel
+		add("South", buttonPanel);
+		
+		//Adding the textArea into the center panel
+		add("Center", textArea);
+	}
+	
+	/**
+	 * Sets the student records JTextArea to display a String message.
+	 * 
+	 * @param records the String to be displayed in the JTextArea.
+	 */
+	public void setStudentRecords(String records)
+	{
+		studentRecords.setText(records);
+	}
+	
+	public String getStudentInformation()
+	{
+		//Title Panel
+		JPanel title = new JPanel();		
+		JLabel titleLabel = new JLabel("Insert a New Node");
+		title.add(titleLabel);
+				
+		//Button Panel
+		JPanel buttons = new JPanel();
+		buttons.add(insert2Button);
+		buttons.add(returnButton);
 		
 		newNode.add(enterId);
 		newNode.add(id);
@@ -103,32 +126,42 @@ public class StudentRecordView extends JFrame
 		newNode.add(major);
 		newNode.add(enterYear);
 		newNode.add(year);
-		newNode.add(insert2Button);
-		newNode.add(returnButton);
 		
 		JFrame frame = new JFrame();
-		frame.add(newNode);
+		frame.setSize(600, 200);
+		
+		frame.add("North",title);
+		frame.add("Center",newNode);
+		frame.add("South",buttons);
+	
+		
 		frame.setVisible(true);
 		return "hello";
 	}
 	
 	/**
+	 * Gets the inputed file name from user input.
 	 * 
-	 * @return
+	 * @returns the String representing the file name.
 	 */
 	public String getFileName()
 	{
-		return JOptionPane.showInputDialog(fileName);
+		return JOptionPane.showInputDialog(this, fileName);
 	}
 	
-	
+	/**
+	 * Gets the student's ID from user input.
+	 * 
+	 * @returns the String representing the student's ID.
+	 */
 	public String getStudentID()
 	{
 		return JOptionPane.showInputDialog(studentID);
 	}
 	/**
+	 * Displays a message.
 	 * 
-	 * @param message
+	 * @param message the string message to be displayed.
 	 */
 	public void displayMessage(String message)
 	{
@@ -173,4 +206,8 @@ public class StudentRecordView extends JFrame
 		createTreeButton.addActionListener(listenForCreateTreeButton);
 	}
 	
+	public void addInsertButtonFromAddNodeListener(ActionListener listenForInsertAddNodeButton)
+	{
+		insert2Button.addActionListener(listenForInsertAddNodeButton);
+	}
 }
