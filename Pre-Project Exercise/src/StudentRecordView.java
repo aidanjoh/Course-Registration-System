@@ -1,5 +1,4 @@
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 /**
@@ -19,12 +18,12 @@ public class StudentRecordView extends JFrame
 	private JButton browseButton = new JButton("Browse");
 	private JButton createTreeButton = new JButton("Create Tree from File");
 	
-	private JTextField studentRecords = new JTextField();
+	private JTextArea studentRecords = new JTextArea();
 	
 	//For the input panel
 	private JLabel fileName = new JLabel("Enter the file name:");
 	
-	private JTextArea inputtedFile = new JTextArea();
+	private JTextField inputtedFile = new JTextField();
 	
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("OK");
@@ -43,22 +42,23 @@ public class StudentRecordView extends JFrame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		mainText.setLocation(0, 0);
+		mainText.setSize(600, 50);
 		mainText.add(title);
 		
 		buttonPanel.setSize(600, 50);
-		buttonPanel.setLocation(0, 0);
+		buttonPanel.setLocation(0, 350);
 		buttonPanel.add(insertButton);
 		buttonPanel.add(findButton);
 		buttonPanel.add(browseButton);
 		buttonPanel.add(createTreeButton);
 		
-		textArea.setSize(600, 300);
+		textArea.setSize(600, 250);
 		textArea.setLocation(0, 50);
 		textArea.add(studentRecords);
 		
-		add(textArea);
-		add(mainText);
-		add(buttonPanel);
+		add("Center", textArea);
+		add("North", mainText);
+		add("South", buttonPanel);
 	}
 	
 	/**
@@ -76,6 +76,7 @@ public class StudentRecordView extends JFrame
 	 */
 	public String getFileName()
 	{
+		JOptionPane.showInputDialog(fileName);
 		return getTextFromTextBox(inputtedFile);
 	}
 	
@@ -93,7 +94,7 @@ public class StudentRecordView extends JFrame
 	 * @param textField
 	 * @return
 	 */
-	public String getTextFromTextBox(JTextArea textField)
+	public String getTextFromTextBox(JTextField textField)
 	{
 		return textField.getText();
 	}
