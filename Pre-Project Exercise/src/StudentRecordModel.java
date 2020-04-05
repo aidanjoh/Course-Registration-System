@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class StudentRecordModel {
 	
@@ -24,9 +26,14 @@ public class StudentRecordModel {
 		}
 	}
 	
-	public String toStringStudentRecords() {
+	//makes a big ass string of all the records in order from the binary search tree
+	public String toStringStudentRecords() throws IOException {
 		
-		return null;
+		StringWriter bigString = new StringWriter();
+		PrintWriter p = new PrintWriter(bigString);
+		binarySearchTree.print_tree(binarySearchTree.root, p);
+		String s = bigString.toString();
+		return s;
 	}
 	
 	public BinSearchTree getBinarySearchTree()
@@ -46,11 +53,5 @@ public class StudentRecordModel {
 	
 	public void insertStudent(String id, String faculty, String major, String year) {
 		binarySearchTree.insert(id, faculty, major, year);
-	}
-	
-	//just using the main to test 
-	public static void main(String[] args) throws IOException {
-		StudentRecordModel model = new StudentRecordModel();
-		model.createTreeFromFile("input.txt");
 	}
 }
