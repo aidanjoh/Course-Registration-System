@@ -52,7 +52,7 @@ public class StudentRecordController
 				
 				studentRecordModel.createTreeFromFile(fileName);
 				
-				studentRecordView.setStudentRecords(studentRecordModel.toString()); //Will need to fix this
+				studentRecordView.setStudentRecords("Hello");
 			}
 			catch(Exception error)
 			{

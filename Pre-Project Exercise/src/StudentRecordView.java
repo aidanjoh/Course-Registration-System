@@ -23,8 +23,6 @@ public class StudentRecordView extends JFrame
 	//For the input panel
 	private JLabel fileName = new JLabel("Enter the file name:");
 	
-	private JTextField inputtedFile = new JTextField();
-	
 	private JButton cancelButton = new JButton("Cancel");
 	private JButton okButton = new JButton("OK");
 	
@@ -56,9 +54,9 @@ public class StudentRecordView extends JFrame
 		textArea.setLocation(0, 50);
 		textArea.add(studentRecords);
 		
-		add("Center", textArea);
 		add("North", mainText);
 		add("South", buttonPanel);
+		add("Center", textArea);
 	}
 	
 	/**
@@ -67,7 +65,7 @@ public class StudentRecordView extends JFrame
 	 */
 	public void setStudentRecords(String records)
 	{
-		studentRecords.setText(records);
+		studentRecords.append(records);
 	}
 	
 	/**
@@ -76,8 +74,7 @@ public class StudentRecordView extends JFrame
 	 */
 	public String getFileName()
 	{
-		JOptionPane.showInputDialog(fileName);
-		return getTextFromTextBox(inputtedFile);
+		return JOptionPane.showInputDialog(fileName);
 	}
 	
 	/**
@@ -87,16 +84,6 @@ public class StudentRecordView extends JFrame
 	public void displayErrorMessage(String errorMessage)
 	{
 		JOptionPane.showMessageDialog(this, errorMessage);
-	}
-	
-	/**
-	 * 
-	 * @param textField
-	 * @return
-	 */
-	public String getTextFromTextBox(JTextField textField)
-	{
-		return textField.getText();
 	}
 	
 	/**
