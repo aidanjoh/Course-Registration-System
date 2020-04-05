@@ -69,7 +69,7 @@ public class StudentRecordController
 			String output = "";
 			try
 			{
-				studentRecordView.setStudentRecords(output);
+				studentRecordView.setStudentRecords("hi\n gxng gxng/n my name is\n hello\n bike gxng");
 			}
 			catch(Exception error)
 			{
@@ -83,12 +83,12 @@ public class StudentRecordController
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			int studentID = 0;
+			String studentID = "";
 			try
 			{
 				studentID = studentRecordView.getStudentID();
 				
-				//studentRecordModel.findStudentRecordFromID(studentID);
+				studentRecordModel.findStudentRecordFromID(studentID);
 			}
 			catch(Exception error)
 			{

@@ -34,7 +34,7 @@ public class StudentRecordView extends JFrame
 		
 		JPanel mainText = new JPanel();
 		JPanel buttonPanel = new JPanel();
-		JScrollPane textArea = new JScrollPane();
+		JScrollPane textArea = new JScrollPane(studentRecords);
 		
 		setSize(600, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +52,6 @@ public class StudentRecordView extends JFrame
 		
 		textArea.setSize(600, 250);
 		textArea.setLocation(0, 50);
-		textArea.add(studentRecords);
 		
 		add("North", mainText);
 		add("South", buttonPanel);
@@ -78,10 +77,9 @@ public class StudentRecordView extends JFrame
 	}
 	
 	
-	public int getStudentID()
+	public String getStudentID()
 	{
-		String stringStudentID = JOptionPane.showInputDialog(studentID);
-		return Integer.parseInt(stringStudentID);
+		return JOptionPane.showInputDialog(studentID);
 	}
 	/**
 	 * 
