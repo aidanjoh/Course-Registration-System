@@ -69,7 +69,7 @@ public class StudentRecordController
 			String output = "";
 			try
 			{
-				studentRecordView.setStudentRecords("hi\n gxng gxng/n my name is\n hello\n bike gxng");
+				studentRecordView.setStudentRecords(studentRecordModel.toStringStudentRecords());
 			}
 			catch(Exception error)
 			{
