@@ -22,12 +22,10 @@ public class StudentRecordView extends JFrame
 	
 	//For the input panel
 	private JLabel fileName = new JLabel("Enter the file name:");
-	
-	private JButton cancelButton = new JButton("Cancel");
-	private JButton okButton = new JButton("OK");
-	
-	
-	//For the 
+
+	/**
+	 * 
+	 */
 	public StudentRecordView()
 	{
 		super("Main window");
