@@ -1,3 +1,4 @@
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
@@ -77,7 +78,7 @@ public class StudentRecordView extends JFrame
 	
 	public String getStudentInformation()
 	{
-		JPanel newNode = new JPanel();
+		JPanel newNode = new JPanel(new GridLayout(0, 1, 2, 2));
 		
 		JLabel enterId = new JLabel("Enter the Student's ID");
 		JTextField id = new JTextField();
@@ -91,6 +92,9 @@ public class StudentRecordView extends JFrame
 		JLabel enterYear = new JLabel("Enter Student's year");
 		JTextField year = new JTextField();
 		
+		JButton insert2Button = new JButton("Insert");
+		JButton returnButton = new JButton("Return to Main Window");
+		
 		newNode.add(enterId);
 		newNode.add(id);
 		newNode.add(enterFac);
@@ -99,8 +103,12 @@ public class StudentRecordView extends JFrame
 		newNode.add(major);
 		newNode.add(enterYear);
 		newNode.add(year);
-		JOptionPane.showMessageDialog(this, newNode, "Insert a New Node", JOptionPane.QUESTION_MESSAGE);
+		newNode.add(insert2Button);
+		newNode.add(returnButton);
 		
+		JFrame frame = new JFrame();
+		frame.add(newNode);
+		frame.setVisible(true);
 		return "hello";
 	}
 	
