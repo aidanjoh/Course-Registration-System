@@ -21,6 +21,7 @@ public class StudentRecordController
 		studentRecordView.addCreateTreeButtonListener(new addCreateTreeButtonListener());
 		studentRecordView.addBrowseButtonListener(new addBrowseButtonListener());
 		studentRecordView.addFindButtonListener(new addFindButtonListener());
+		studentRecordView.addInsertButtonListener(new addInsertButtonListener());
 	}
 	
 	/**
@@ -55,7 +56,7 @@ public class StudentRecordController
 			}
 			catch(Exception error)
 			{
-				studentRecordView.displayErrorMessage("Error!");
+				studentRecordView.displayMessage("Error!");
 			}
 		}
 		
@@ -66,14 +67,13 @@ public class StudentRecordController
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			String output = "";
 			try
 			{
 				studentRecordView.setStudentRecords(studentRecordModel.toStringStudentRecords());
 			}
 			catch(Exception error)
 			{
-				studentRecordView.displayErrorMessage("Error!");
+				studentRecordView.displayMessage("Error!");
 			}
 		}
 	}
@@ -88,11 +88,40 @@ public class StudentRecordController
 			{
 				studentID = studentRecordView.getStudentID();
 				
-				studentRecordModel.findStudentRecordFromID(studentID);
+			
+				Data dataFound = studentRecordModel.findStudentRecordFromID(studentID);
+				if(dataFound == null)
+				{
+					studentRecordView.displayMessage("The target was not Found!");
+				}
+				else
+				{
+					String studentInfo = "id: " + dataFound.id + " faculty: " + dataFound.faculty;
+					studentInfo +=  " major: " + dataFound.major + " year: " + dataFound.year;
+					studentRecordView.displayMessage(studentInfo);
+				}
 			}
 			catch(Exception error)
 			{
-				studentRecordView.displayErrorMessage("Error!");
+				studentRecordView.displayMessage("Error!");
+			}
+		}
+	}
+	
+	public class addInsertButtonListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			String studentInfo = "";
+			try
+			{
+				studentInfo = studentRecordView.getStudentInformation();
+				
+			}
+			catch(Exception error)
+			{
+				studentRecordView.displayMessage("Error!");
 			}
 		}
 	}

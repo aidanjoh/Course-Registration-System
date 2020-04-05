@@ -25,6 +25,14 @@ public class StudentRecordView extends JFrame
 
 	private JLabel studentID = new JLabel("Please enter the student's ID");
 	
+	private JLabel ID = new JLabel("Enter the Student's ID");
+	
+	private JLabel faculty = new JLabel("Enter Faculty");
+	
+	private JLabel major = new JLabel("Enter Student's Major");
+	
+	private JLabel year = new JLabel("Enter year");
+	
 	/**
 	 * 
 	 */
@@ -67,6 +75,35 @@ public class StudentRecordView extends JFrame
 		studentRecords.setText(records);
 	}
 	
+	public String getStudentInformation()
+	{
+		JPanel newNode = new JPanel();
+		
+		JLabel enterId = new JLabel("Enter the Student's ID");
+		JTextField id = new JTextField();
+		
+		JLabel enterFac = new JLabel("Enter faculty");
+		JTextField fac = new JTextField();
+		
+		JLabel enterMajor = new JLabel("Enter Student's Major");
+		JTextField major = new JTextField();
+		
+		JLabel enterYear = new JLabel("Enter Student's year");
+		JTextField year = new JTextField();
+		
+		newNode.add(enterId);
+		newNode.add(id);
+		newNode.add(enterFac);
+		newNode.add(fac);
+		newNode.add(enterMajor);
+		newNode.add(major);
+		newNode.add(enterYear);
+		newNode.add(year);
+		JOptionPane.showMessageDialog(this, newNode, "Insert a New Node", JOptionPane.QUESTION_MESSAGE);
+		
+		return "hello";
+	}
+	
 	/**
 	 * 
 	 * @return
@@ -83,11 +120,11 @@ public class StudentRecordView extends JFrame
 	}
 	/**
 	 * 
-	 * @param errorMessage
+	 * @param message
 	 */
-	public void displayErrorMessage(String errorMessage)
+	public void displayMessage(String message)
 	{
-		JOptionPane.showMessageDialog(this, errorMessage);
+		JOptionPane.showMessageDialog(this, message);
 	}
 	
 	
