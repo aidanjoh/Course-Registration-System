@@ -18,7 +18,9 @@ public class StudentRecordController
 		setStudentRecordView(view);
 		setStudentRecordModel(model);
 		
-		studentRecordView.addCreateTreeButtonListener(new addListener());
+		studentRecordView.addCreateTreeButtonListener(new addCreateTreeButtonListener());
+		studentRecordView.addBrowseButtonListener(new addBrowseButtonListener());
+		studentRecordView.addFindButtonListener(new addFindButtonListener());
 	}
 	
 	/**
@@ -39,7 +41,7 @@ public class StudentRecordController
 		this.studentRecordView = studentRecordView;
 	}
 
-	public class addListener implements ActionListener
+	public class addCreateTreeButtonListener implements ActionListener
 	{
 
 		@Override
@@ -49,10 +51,7 @@ public class StudentRecordController
 			try
 			{
 				fileName = studentRecordView.getFileName();
-				
 				studentRecordModel.createTreeFromFile(fileName);
-				
-				studentRecordView.setStudentRecords("Hello");
 			}
 			catch(Exception error)
 			{
@@ -60,5 +59,41 @@ public class StudentRecordController
 			}
 		}
 		
+	}
+	
+	public class addBrowseButtonListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			String output = "";
+			try
+			{
+				studentRecordView.setStudentRecords(output);
+			}
+			catch(Exception error)
+			{
+				studentRecordView.displayErrorMessage("Error!");
+			}
+		}
+	}
+	
+	public class addFindButtonListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			int studentID = 0;
+			try
+			{
+				studentID = studentRecordView.getStudentID();
+				
+				//studentRecordModel.findStudentRecordFromID(studentID);
+			}
+			catch(Exception error)
+			{
+				studentRecordView.displayErrorMessage("Error!");
+			}
+		}
 	}
 }

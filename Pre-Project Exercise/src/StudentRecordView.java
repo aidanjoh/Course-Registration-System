@@ -23,6 +23,8 @@ public class StudentRecordView extends JFrame
 	//For the input panel
 	private JLabel fileName = new JLabel("Enter the file name:");
 
+	private JLabel studentID = new JLabel("Please enter the student's ID");
+	
 	/**
 	 * 
 	 */
@@ -63,7 +65,7 @@ public class StudentRecordView extends JFrame
 	 */
 	public void setStudentRecords(String records)
 	{
-		studentRecords.append(records);
+		studentRecords.setText(records);
 	}
 	
 	/**
@@ -75,6 +77,12 @@ public class StudentRecordView extends JFrame
 		return JOptionPane.showInputDialog(fileName);
 	}
 	
+	
+	public int getStudentID()
+	{
+		String stringStudentID = JOptionPane.showInputDialog(studentID);
+		return Integer.parseInt(stringStudentID);
+	}
 	/**
 	 * 
 	 * @param errorMessage
@@ -84,18 +92,8 @@ public class StudentRecordView extends JFrame
 		JOptionPane.showMessageDialog(this, errorMessage);
 	}
 	
-	/**
-	 * 
-	 * @param textField
-	 * @return
-	 */
-	public int getIntFromTextBox(JTextField textField)
-	{
-		return Integer.parseInt(textField.getText());
-	}
 	
 	//Button Listener Functions
-	
 	/**
 	 * 
 	 * @param listenForInsertButton
