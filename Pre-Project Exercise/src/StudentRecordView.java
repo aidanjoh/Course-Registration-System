@@ -13,44 +13,17 @@ import javax.swing.*;
  */
 public class StudentRecordView extends JFrame
 {
-		//For the main panel (North)
-		private JLabel title = new JLabel("An Application to Maintain Student Records");
-			
-		//For the Student Records panel (Center)
-		private JTextArea studentRecords = new JTextArea();
+	//For the main panel (North)
+	private JLabel title = new JLabel("An Application to Maintain Student Records");
 		
-		//For the input panel (South)
-		private JButton insertButton = new JButton("Insert");
-		private JButton findButton = new JButton("Find");
-		private JButton browseButton = new JButton("Browse");
-		private JButton createTreeButton = new JButton("Create Tree from File");
-		
-		//When inserting the file name
-		private JLabel fileName = new JLabel("Enter the file name:");
-
-		//When searching for a node by Student ID
-		private JLabel studentID = new JLabel("Please enter the student's ID");
-		
-		//For Insert Node Function
-		JButton insert2Button = new JButton("Insert");
-		JButton returnButton = new JButton("Return to Main Window");	
-		
-		//Entering Information Panel For New Node
-		JPanel newNode = new JPanel(new GridLayout(2, 2));
-		
-		JLabel insertTitle = new JLabel("Insert a New Node");
-		
-		JLabel enterId = new JLabel("Enter the Student's ID");
-		JTextField id = new JTextField();
-		
-		JLabel enterFac = new JLabel("Enter faculty");
-		JTextField fac = new JTextField();
-		
-		JLabel enterMajor = new JLabel("Enter Student's Major");
-		JTextField major = new JTextField();
-		
-		JLabel enterYear = new JLabel("Enter Student's year");
-		JTextField year = new JTextField();
+	//For the Student Records panel (Center)
+	private JTextArea studentRecords = new JTextArea();
+	
+	//For the input panel (South)
+	private JButton insertButton = new JButton("Insert");
+	private JButton findButton = new JButton("Find");
+	private JButton browseButton = new JButton("Browse");
+	private JButton createTreeButton = new JButton("Create Tree from File");
 		
 	/**
 	 * Constructing a StudentRecordView object that creates the main window GUI for the maintaining student record application.
@@ -106,9 +79,27 @@ public class StudentRecordView extends JFrame
 		studentRecords.setText(records);
 	}
 	
+	/**
+	 * Uses a Option Panel to get user input for a new student.
+	 * 
+	 * @return The data of the student
+	 */
 	public Data getStudentInformation()
 	{		
-		newNode.add("North", insertTitle);
+		//Entering Information Panel For New Node
+		JPanel newNode = new JPanel(new GridLayout(2, 2));
+				
+		JLabel enterId = new JLabel("Enter the Student's ID");
+		JTextField id = new JTextField();
+		
+		JLabel enterFac = new JLabel("Enter faculty");
+		JTextField fac = new JTextField();
+		
+		JLabel enterMajor = new JLabel("Enter Student's Major");
+		JTextField major = new JTextField();
+		
+		JLabel enterYear = new JLabel("Enter Student's year");
+		JTextField year = new JTextField();
 		
 		newNode.add(enterId);
 		newNode.add(id);
@@ -119,12 +110,10 @@ public class StudentRecordView extends JFrame
 		newNode.add(enterYear);
 		newNode.add(year);
 		
-		
-		
 		UIManager.put("OptionPane.okButtonText", "Insert");
 		UIManager.put("OptionPane.cancelButtonText", "Return to Main Window");
 
-		int result = JOptionPane.showConfirmDialog(null, newNode, "", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, newNode, "Insert a New Node", JOptionPane.OK_CANCEL_OPTION);
 		    if (result == JOptionPane.OK_OPTION) {
 		    	String insertedId = id.getText();
 		    	String insertedFaculty = fac.getText();
@@ -143,6 +132,10 @@ public class StudentRecordView extends JFrame
 	 */
 	public String getFileName()
 	{
+		//When inserting the file name
+		JLabel fileName = new JLabel("Enter the file name:");
+		UIManager.put("OptionPane.okButtonText", "OK");
+		UIManager.put("OptionPane.cancelButtonText", "Cancel");
 		return JOptionPane.showInputDialog(this, fileName);
 	}
 	
@@ -153,8 +146,12 @@ public class StudentRecordView extends JFrame
 	 */
 	public String getStudentID()
 	{
+		JLabel studentID = new JLabel("Please enter the student's ID");			
+		UIManager.put("OptionPane.okButtonText", "OK");
+		UIManager.put("OptionPane.cancelButtonText", "Cancel");
 		return JOptionPane.showInputDialog(studentID);
 	}
+	
 	/**
 	 * Displays a message.
 	 * 
@@ -162,12 +159,16 @@ public class StudentRecordView extends JFrame
 	 */
 	public void displayMessage(String message)
 	{
+		UIManager.put("OptionPane.okButtonText", "OK");
+		UIManager.put("OptionPane.cancelButtonText", "Cancel");
 		JOptionPane.showMessageDialog(this, message);
 	}
 	
+	//----------------Button Listener Functions--------------------------//
 	
-	//Button Listener Functions
+	
 	/**
+	 * Adds the action listener for the insert button
 	 * 
 	 * @param listenForInsertButton
 	 */
@@ -177,6 +178,7 @@ public class StudentRecordView extends JFrame
 	}
 	
 	/**
+	 * Adds the action listener for the browse button
 	 * 
 	 * @param listenForBrowseButton
 	 */
@@ -186,6 +188,7 @@ public class StudentRecordView extends JFrame
 	}
 	
 	/**
+	 * Adds the action listener for the find button
 	 * 
 	 * @param listenForFindButton
 	 */
@@ -195,16 +198,12 @@ public class StudentRecordView extends JFrame
 	}
 	
 	/**
+	 * Adds the action listener for the create tree button
 	 * 
 	 * @param listenForCreateTreeButton
 	 */
 	public void addCreateTreeButtonListener(ActionListener listenForCreateTreeButton)
 	{
 		createTreeButton.addActionListener(listenForCreateTreeButton);
-	}
-	
-	public void addInsertButtonFromAddNodeListener(ActionListener listenForInsertAddNodeButton)
-	{
-		insert2Button.addActionListener(listenForInsertAddNodeButton);
 	}
 }

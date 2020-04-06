@@ -138,7 +138,7 @@ class BinSearchTree {
 		String s = cur.data.id+"        "+cur.data.faculty+"     "+
                                  cur.data.major+ "       "+cur.data.year;
 		out.println(s);
-		System.out.println(s);
+		//System.out.println(s);
 		if (cur.right!=null)
 			print_tree(cur.right,out);
 	} 

@@ -4,14 +4,36 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/**
+ * The Class StudentRecordModel is an implementation of the model for an application to maintain student records following MVC architecture
+ * design. 
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ * @version 1.0
+ * @since April 4, 2020
+ */
 public class StudentRecordModel 
 {
+	/**
+	 * The binary search tree that is created
+	 */
 	private BinSearchTree binarySearchTree;
-
+	
+	/**
+	 * Constructor for the StudentRecordModel class
+	 */
+	public StudentRecordModel() {
+		binarySearchTree = new BinSearchTree();
+	}
+	
+	/**
+	 * Creates a binary search tree from a text file
+	 * 
+	 * @param fileName
+	 * @throws IOException
+	 */
 	public void createTreeFromFile(String fileName) throws IOException
 	{
-		
-		binarySearchTree = new BinSearchTree();
 		FileReader fr = new FileReader(fileName);
 		BufferedReader br = new BufferedReader(fr);
 		String line = "";
@@ -27,7 +49,12 @@ public class StudentRecordModel
 		}
 	}
 	
-	//makes a big ass string of all the records in order from the binary search tree
+	/**
+	 * Returns a string containing the entire binary search tree. 
+	 * 
+	 * @return String containing the binary search tree.
+	 * @throws IOException
+	 */
 	public String toStringStudentRecords() throws IOException 
 	{
 		StringWriter bigString = new StringWriter();
@@ -37,12 +64,23 @@ public class StudentRecordModel
 		return s;
 	}
 	
+	/**
+	 * Returns the binary search tree.
+	 * 
+	 * @return The binary search tree
+	 */
 	public BinSearchTree getBinarySearchTree()
 	{
 		return binarySearchTree;
 	}
 	
 	
+	/**
+	 * Takes an Id number and searches the binary search 
+	 * 
+	 * @param idNumber The ID number that is searched for.
+	 * @return All the information of the student
+	 */
 	public Data findStudentRecordFromID(String idNumber)
 	{
 		Node searchedNode;
@@ -53,6 +91,11 @@ public class StudentRecordModel
 			return searchedNode.data;
 	}
 	
+	/**
+	 * Inserts a student into the binary search tree
+	 * 
+	 * @param studentInfo
+	 */
 	public void insertStudent(Data studentInfo) 
 	{
 		binarySearchTree.insert(studentInfo.id, studentInfo.faculty, studentInfo.major, studentInfo.year);

@@ -4,16 +4,30 @@ import java.io.IOException;
 
 /**
  * 
+ * Controller class for the Student Records Application.
+ * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
  * @since April 2, 2020
  * 
  */
 public class StudentRecordController 
-{
+{	
+	/**
+	 * The GUI application of the Student Records
+	 */
 	private StudentRecordView studentRecordView;
+	/**
+	 * The model application of the Student Records
+	 */
 	private StudentRecordModel studentRecordModel;
 	
+	/**
+	 * Constructs a StudentRecordController.
+	 * 
+	 * @param view
+	 * @param model
+	 */
 	public StudentRecordController(StudentRecordView view, StudentRecordModel model)
 	{
 		setStudentRecordView(view);
@@ -24,8 +38,9 @@ public class StudentRecordController
 		studentRecordView.addFindButtonListener(new addFindButtonListener());
 		studentRecordView.addInsertButtonListener(new addInsertButtonListener());
 	}
-	
+
 	/**
+	 * Sets studentRecordModel
 	 * 
 	 * @param studentRecordModel
 	 */
@@ -35,6 +50,7 @@ public class StudentRecordController
 	}
 
 	/**
+	 * Sets studentRecordView
 	 * 
 	 * @param studentRecordView
 	 */
@@ -43,9 +59,17 @@ public class StudentRecordController
 		this.studentRecordView = studentRecordView;
 	}
 
+	/**
+	 * Inner Class for Create Tree Button Listener
+	 * 
+	 * @author Aidan Johnson and Michele Piperni
+	 */
 	public class addCreateTreeButtonListener implements ActionListener
 	{
-
+		
+		/**
+		 * Performs the action of calling the create tree from file method in StudentRecordModel
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
@@ -66,8 +90,16 @@ public class StudentRecordController
 		
 	}
 	
+	/**
+	 * Inner Class for Browse Button Listener
+	 * 
+	 * @author Aidan Johnson and Michele Piperni
+	 */
 	public class addBrowseButtonListener implements ActionListener
 	{
+		/**
+		 * Performs the action of calling the to String method in StudentRecordModel and setting the textArea in studentRecordView
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
@@ -86,8 +118,16 @@ public class StudentRecordController
 		}
 	}
 	
+	/**
+	 * Inner Class for Find Button Listener
+	 * 
+	 * @author Aidan Johnson and Michele Piperni
+	 */
 	public class addFindButtonListener implements ActionListener
 	{
+		/**
+		 * Performs the action of searching for a student in StudentRecordModel and returning the student to be diplayed in the view.
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
@@ -120,8 +160,16 @@ public class StudentRecordController
 		}
 	}
 	
+	/**
+	 * Inner Class for Insert Button Listener
+	 * 
+	 * @author Aidan Johnson and Michele Piperni
+	 */
 	public class addInsertButtonListener implements ActionListener
 	{
+		/**
+		 * Performs the action of inserting a new student in the binary search tree after getting user input
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
