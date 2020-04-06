@@ -49,9 +49,7 @@ public class StudentRecordView extends JFrame
 		
 		JLabel enterYear = new JLabel("Enter Student's year");
 		JTextField year = new JTextField();
-	
-	
-	
+		
 	/**
 	 * Constructing a StudentRecordView object that creates the main window GUI for the maintaining student record application.
 	 * This main window has a label in the north panel, a textArea in the center panel and a 4 buttons representing insert, find,
@@ -106,18 +104,8 @@ public class StudentRecordView extends JFrame
 		studentRecords.setText(records);
 	}
 	
-	public String getStudentInformation()
-	{
-		//Title Panel
-		JPanel title = new JPanel();		
-		JLabel titleLabel = new JLabel("Insert a New Node");
-		title.add(titleLabel);
-				
-		//Button Panel
-		JPanel buttons = new JPanel();
-		buttons.add(insert2Button);
-		buttons.add(returnButton);
-		
+	public Data getStudentInformation()
+	{		
 		newNode.add(enterId);
 		newNode.add(id);
 		newNode.add(enterFac);
@@ -127,16 +115,19 @@ public class StudentRecordView extends JFrame
 		newNode.add(enterYear);
 		newNode.add(year);
 		
-		JFrame frame = new JFrame();
-		frame.setSize(600, 200);
-		
-		frame.add("North",title);
-		frame.add("Center",newNode);
-		frame.add("South",buttons);
-	
-		
-		frame.setVisible(true);
-		return "hello";
+		UIManager.put("OptionPane.okButtonText", "Insert");
+		UIManager.put("OptionPane.cancelButtonText", "Return to Main Window");
+
+		int result = JOptionPane.showConfirmDialog(null, newNode, "", JOptionPane.OK_CANCEL_OPTION);
+		    if (result == JOptionPane.OK_OPTION) {
+		    	String insertedId = id.getText();
+		    	String insertedFaculty = fac.getText();
+		    	String insertedMajor = major.getText();
+		    	String insertedYear = year.getText();
+		    	return new Data(insertedId, insertedFaculty,insertedMajor,insertedYear);
+		    }
+		    
+		return null;
 	}
 	
 	/**

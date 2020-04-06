@@ -24,7 +24,6 @@ public class StudentRecordModel
 			String major = words[3];
 			String year = words[4];
 			binarySearchTree.insert(id, faculty, major, year);
-			System.out.println(id + " " + faculty + " " + major + " " + year); //Just printing to the ouput for now
 		}
 	}
 	

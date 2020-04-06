@@ -23,7 +23,6 @@ public class StudentRecordController
 		studentRecordView.addBrowseButtonListener(new addBrowseButtonListener());
 		studentRecordView.addFindButtonListener(new addFindButtonListener());
 		studentRecordView.addInsertButtonListener(new addInsertButtonListener());
-		studentRecordView.addInsertButtonFromAddNodeListener(new addInsertButtonFromAddNodeListener());
 	}
 	
 	/**
@@ -126,37 +125,19 @@ public class StudentRecordController
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			String studentInfo = "";
+			Data studentInfo;
 			try
 			{
 				studentInfo = studentRecordView.getStudentInformation();
+				if(studentInfo != null) {
+					studentRecordModel.insertStudent(studentInfo);
+					studentRecordView.setStudentRecords(studentRecordModel.toStringStudentRecords()); //updates the browse automatically
+				}
 				
 			}
 			catch(Exception error)
 			{
 				studentRecordView.displayMessage("Error!");
-			}
-		}
-	}
-	
-	public class addInsertButtonFromAddNodeListener implements ActionListener
-	{
-		@Override
-		public void actionPerformed(ActionEvent e) 
-		{
-			Data studentInfo;
-			try
-			{
-				String id = studentRecordView.id.getText().toString();
-				String faculty = studentRecordView.fac.getText().toString();
-				String major = studentRecordView.major.getText().toString();
-				String year = studentRecordView.year.getText().toString();
-				studentInfo = new Data(id, faculty, major, year);
-				studentRecordModel.insertStudent(studentInfo);
-			}
-			catch(Exception error)
-			{
-				studentRecordView.displayMessage("In error!");
 			}
 		}
 	}
