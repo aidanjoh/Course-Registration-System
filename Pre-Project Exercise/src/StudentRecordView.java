@@ -38,6 +38,8 @@ public class StudentRecordView extends JFrame
 		//Entering Information Panel For New Node
 		JPanel newNode = new JPanel(new GridLayout(2, 2));
 		
+		JLabel insertTitle = new JLabel("Insert a New Node");
+		
 		JLabel enterId = new JLabel("Enter the Student's ID");
 		JTextField id = new JTextField();
 		
@@ -106,6 +108,8 @@ public class StudentRecordView extends JFrame
 	
 	public Data getStudentInformation()
 	{		
+		newNode.add("North", insertTitle);
+		
 		newNode.add(enterId);
 		newNode.add(id);
 		newNode.add(enterFac);
@@ -114,6 +118,8 @@ public class StudentRecordView extends JFrame
 		newNode.add(major);
 		newNode.add(enterYear);
 		newNode.add(year);
+		
+		
 		
 		UIManager.put("OptionPane.okButtonText", "Insert");
 		UIManager.put("OptionPane.cancelButtonText", "Return to Main Window");
