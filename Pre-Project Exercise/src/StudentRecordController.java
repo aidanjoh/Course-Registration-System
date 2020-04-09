@@ -8,7 +8,7 @@ import java.io.IOException;
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
- * @since April 2, 2020
+ * @since April 4, 2020
  * 
  */
 public class StudentRecordController 
@@ -40,7 +40,7 @@ public class StudentRecordController
 	}
 
 	/**
-	 * Sets studentRecordModel
+	 * Sets studentRecordModel.
 	 * 
 	 * @param studentRecordModel
 	 */
@@ -50,7 +50,7 @@ public class StudentRecordController
 	}
 
 	/**
-	 * Sets studentRecordView
+	 * Sets studentRecordView.
 	 * 
 	 * @param studentRecordView
 	 */
@@ -60,7 +60,7 @@ public class StudentRecordController
 	}
 
 	/**
-	 * Inner Class for Create Tree Button Listener
+	 * Inner Class for Create Tree Button Listener.
 	 * 
 	 * @author Aidan Johnson and Michele Piperni
 	 */
@@ -68,7 +68,7 @@ public class StudentRecordController
 	{
 		
 		/**
-		 * Performs the action of calling the create tree from file method in StudentRecordModel
+		 * Performs the action of calling the create tree from file method in StudentRecordModel.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) 
@@ -91,7 +91,7 @@ public class StudentRecordController
 	}
 	
 	/**
-	 * Inner Class for Browse Button Listener
+	 * Inner Class for Browse Button Listener.
 	 * 
 	 * @author Aidan Johnson and Michele Piperni
 	 */
@@ -119,7 +119,7 @@ public class StudentRecordController
 	}
 	
 	/**
-	 * Inner Class for Find Button Listener
+	 * Inner Class for Find Button Listener.
 	 * 
 	 * @author Aidan Johnson and Michele Piperni
 	 */
@@ -131,11 +131,16 @@ public class StudentRecordController
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			String studentID = "";
+			String studentID;
 			try
 			{
 				studentID = studentRecordView.getStudentID();
 				
+				//if cancel is pressed just return to the main panel
+				if(studentID == null)
+				{
+					return;
+				}
 			
 				Data dataFound = studentRecordModel.findStudentRecordFromID(studentID);
 				if(dataFound == null)
@@ -161,7 +166,7 @@ public class StudentRecordController
 	}
 	
 	/**
-	 * Inner Class for Insert Button Listener
+	 * Inner Class for Insert Button Listener.
 	 * 
 	 * @author Aidan Johnson and Michele Piperni
 	 */

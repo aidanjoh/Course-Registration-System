@@ -15,19 +15,20 @@ import java.io.StringWriter;
 public class StudentRecordModel 
 {
 	/**
-	 * The binary search tree that is created
+	 * The binary search tree that is created.
 	 */
 	private BinSearchTree binarySearchTree;
 	
 	/**
-	 * Constructor for the StudentRecordModel class
+	 * Constructor for the StudentRecordModel class.
 	 */
-	public StudentRecordModel() {
+	public StudentRecordModel() 
+	{
 		binarySearchTree = new BinSearchTree();
 	}
 	
 	/**
-	 * Creates a binary search tree from a text file
+	 * Creates a binary search tree from a text file.
 	 * 
 	 * @param fileName
 	 * @throws IOException
@@ -35,8 +36,13 @@ public class StudentRecordModel
 	public void createTreeFromFile(String fileName) throws IOException
 	{
 		FileReader fr = new FileReader(fileName);
+		
+		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(fr);
 		String line = "";
+		
+		//Creates a new binary search tree every time a new file is read
+		binarySearchTree = new BinSearchTree();
 		
 		while((line = br.readLine()) != null) 
 		{

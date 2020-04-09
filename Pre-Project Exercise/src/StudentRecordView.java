@@ -13,16 +13,45 @@ import javax.swing.*;
  */
 public class StudentRecordView extends JFrame
 {
+	/**
+	 * The serialVersionUID set to the default value of 1L.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//For the main panel (North)
+	
+	/**
+	 * The title represented as a JLabel for the main panel of the GUI.
+	 */
 	private JLabel title = new JLabel("An Application to Maintain Student Records");
 		
 	//For the Student Records panel (Center)
+	
+	/**
+	 * The studentRecords is a JTextArea that will hold the data of the student records from the inputted text file.
+	 */
 	private JTextArea studentRecords = new JTextArea();
 	
 	//For the input panel (South)
+	
+	/**
+	 * The insert button for the main panel of the GUI.
+	 */
 	private JButton insertButton = new JButton("Insert");
+	
+	/**
+	 * The find button for the main panel of the GUI.
+	 */
 	private JButton findButton = new JButton("Find");
+	
+	/**
+	 * The browse button for the main panel of the GUI.
+	 */
 	private JButton browseButton = new JButton("Browse");
+	
+	/**
+	 * The create tree button for the main panel of the GUI.
+	 */
 	private JButton createTreeButton = new JButton("Create Tree from File");
 		
 	/**

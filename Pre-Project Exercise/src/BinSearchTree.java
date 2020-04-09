@@ -1,14 +1,14 @@
 import java.io.*;
-import javax.swing.JOptionPane;
+
 /**
  * The following class called BinSearchTree creates an empty 
  * tree, and allows the user of the class to insert new nodes into the tree.  
  */
-
- 
-
 class BinSearchTree {
 	
+	/**
+	 * The root of the binary search tree (1st node).
+	 */
 	Node root;
 	
 	/*  the following constructor creates an empty tree. */
@@ -44,33 +44,32 @@ class BinSearchTree {
 				cur.right=node;
 			else if (cur.data.id.compareTo(node.data.id)>0)
 				cur.left=node;
-			// if data already exists, send an error message to the user.
 			else { 
-				JOptionPane.showMessageDialog(null, "\nCannot insert: data already" +
-																			" exists: \n" + id, " Warning",JOptionPane.PLAIN_MESSAGE);
 				node = null;
 			}  
 		}
 	}
 	
 	/** 
-	 * Returns true if tree is empty 
+	 * Returns true if the tree is empty.
 	 */
-	
-	public boolean empty() {
+	public boolean empty() 
+	{
 		return (root == null);
 	}
 	
 	/** 
-	 * removes all nodes 
+	 * Removes all the nodes.
 	 */
 	
-	public void destroy() {
-//		splice();
+	public void destroy() 
+	{
+		//splice();
 		root = null;
 	}
 	
-	public void splice() {
+	public void splice() 
+	{
 		if(!empty()){
 			
 			if (root.left!=null){
@@ -127,7 +126,7 @@ class BinSearchTree {
 	}
     
 	/**
-	 * Function that recursively display the data. 
+	 * Function that recursively displays the data. 
 	 * @param cur - current node
 	 * @param out - the output stream to print the node information
 	 * @throws IOException
@@ -135,8 +134,8 @@ class BinSearchTree {
 	public void print_tree(Node cur, PrintWriter out) throws IOException {
 		if (cur.left!=null)
 			print_tree(cur.left,out);
-		String s = cur.data.id+"        "+cur.data.faculty+"     "+
-                                 cur.data.major+ "       "+cur.data.year;
+		String s = cur.data.id + "\t"+cur.data.faculty+ "\t"+
+                                 cur.data.major+ "\t"+cur.data.year;
 		out.println(s);
 		//System.out.println(s);
 		if (cur.right!=null)

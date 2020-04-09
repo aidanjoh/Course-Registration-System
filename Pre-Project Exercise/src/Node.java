@@ -1,13 +1,23 @@
 
 /**
- * A node with data and two references to the next-left and next-right node
+ * A node with data and two references to the next-left and next-right node.
  */
-class Node {
-	
-	Data data;
-	Node left, right;
+class Node 
+{
 	/**
-	 * 
+	 * The data Data object represents the data in the node.
+	 */
+	Data data;
+	
+	/**
+	 * The left and right node object.
+	 */
+	Node left, right;
+	
+	/**
+	 * Constructs a node object by assigning a string representing the id, faculty, major and year to a data object and
+	 * making the next left and right node null.
+	 *
 	 * @param id student id
 	 * @param faculty faculty code
 	 * @param major student's major
@@ -20,7 +30,11 @@ class Node {
         right = null;
 	}
 	
-	public String toString() {
+	/**
+	 * Creates a String representing the information in the node object.
+	 */
+	public String toString() 
+	{
 		return data.toString();
 	}
 }

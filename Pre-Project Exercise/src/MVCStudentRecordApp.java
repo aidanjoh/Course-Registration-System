@@ -19,6 +19,7 @@ public class MVCStudentRecordApp
 		StudentRecordModel model = new StudentRecordModel();
 		StudentRecordView view = new StudentRecordView();
 		
+		@SuppressWarnings("unused")
 		StudentRecordController controller = new StudentRecordController(view, model);
 		view.setVisible(true);
 	}
