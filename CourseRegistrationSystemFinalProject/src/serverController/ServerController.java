@@ -66,8 +66,8 @@ public class ServerController
 	public void communicateWithClient()
 	{
 		String input = null;
-		
 		boolean running = true;
+		
 		while(running)
 		{
 			try
@@ -83,6 +83,7 @@ public class ServerController
 					{
 						case 1:
 							System.out.println("Searching the Catalogue for a Course.");
+							socketOutput.println("");
 							break;
 						case 2:
 							System.out.println("Adding a course to your course list!");
@@ -98,6 +99,7 @@ public class ServerController
 							break;
 						case 6:
 							System.out.println("\nExiting Program, see you later!");
+							socketOutput.println("QUIT");
 							return;
 					}
 				}
@@ -136,7 +138,7 @@ public class ServerController
 	 */
 	public static void main(String[] args) 
 	{
-		ServerController server = new ServerController(9000);
+		ServerController server = new ServerController(8099);
 		server.communicateWithClient();
 	}
 }

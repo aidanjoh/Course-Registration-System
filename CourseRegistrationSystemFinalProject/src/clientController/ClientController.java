@@ -44,7 +44,7 @@ public class ClientController
 	 */
 	public ClientController(String serverName, int portNumber, GUIController userInterface)
 	{
-		courseRegGUI = userInterface;
+		this.courseRegGUI = userInterface;
 		
 		try
 		{
@@ -64,14 +64,44 @@ public class ClientController
 	 */
 	public void communicateWithServer()
 	{
+		String line = "1 Dave";
+		String response = "";
+		
+		boolean running = true;
+		
+		while(running) 
+		{
+			try 
+			{
+				if(!line.equals("QUIT") || !response.contentEquals("QUIT"))
+				{
+					System.out.println(line);
+					socketOutput.println(line);
+					response = socketInput.readLine();
+					System.out.println(response);
+				}
+				else
+				{
+					running = false;
+				}
+				
+				line = "6 " + line;
+				
+			} 
+			catch (Exception error)
+			{
+				System.out.println("Sending error: " + error.getMessage());
+				break;
+			}
+		}
 		
 		try
 		{
 			socketInput.close();
 			socketOutput.close();
 			communicationSocket.close();
-		} 
-		catch (IOException error) 
+		}
+		catch(IOException error)
 		{
 			System.out.println("Closing error: " + error.getMessage());
 		}
@@ -87,7 +117,7 @@ public class ClientController
 	{
 		GUIController courseRegMainGUI = new GUIController();
 		
-		ClientController client = new ClientController("local host", 9000, courseRegMainGUI);
+		ClientController client = new ClientController("localhost", 8099, courseRegMainGUI);
 		client.communicateWithServer();
 	}
 }
