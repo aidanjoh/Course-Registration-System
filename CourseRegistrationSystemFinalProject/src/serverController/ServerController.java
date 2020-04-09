@@ -77,7 +77,7 @@ public class ServerController
 				{
 					String[] infoSent = input.split(" ");
 					int methodToRun = Integer.parseInt(infoSent[0]);
-					//int id = Integer.parseInt(infoSent[2]);
+					//int id = Integer.parseInt(infoSent[1]);
 					
 					switch(methodToRun)
 					{
