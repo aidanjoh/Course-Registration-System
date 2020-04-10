@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-
 public class StartUpMenuGUI extends JFrame{
 
 	private JLabel title = new JLabel("Welcome to the Course Registration Systems");
@@ -48,10 +47,8 @@ public class StartUpMenuGUI extends JFrame{
 	}
 	
 	private void setFrameSizeAndLayout(){
-		//Setting the size of the frame
-		setSize(600, 400);
+		this.setSize(600, 400);
 		
-		//Set the frame layout to box layout
 		BoxLayout boxLayout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
 	    this.setLayout(boxLayout);
 	}
@@ -67,7 +64,6 @@ public class StartUpMenuGUI extends JFrame{
 	private void makeButtonPanel() {
 		radioButtonsPanel.setLayout(new BoxLayout(radioButtonsPanel, BoxLayout.Y_AXIS)); //Set the Panel layout to box layout
 		
-		//Adding the buttons to the panel
 		radioButtonsPanel.add(existingStudent);
 		radioButtonsPanel.add(Box.createRigidArea(new Dimension(0, 3)));
 		radioButtonsPanel.add(admin);
