@@ -2,6 +2,7 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -53,9 +54,9 @@ public class StudentMenuGUI extends JFrame{
 		buttonsPanel.setLayout(new GridLayout(2, 3, 10, 10)); //the second two arguments are the horizontal and vertical gaps
 		
 		//wraps the text
-		searchCatalogueButton.setText("<html><center>"+"Search the Catalogue"+"<br>"+"of Courses"+"</center></html>");
+		searchCatalogueButton.setText("<html><center>"+"Search the Course"+"<br>"+"Catalogue"+"</center></html>");
 		viewCatalogueButton.setText("<html><center>"+"View Courses in"+"<br>"+"the Catalogue"+"</center></html>");
-
+		
 		buttonsPanel.add(searchCatalogueButton);
 		buttonsPanel.add(addCourseButton);
 		buttonsPanel.add(removeCourseButton);

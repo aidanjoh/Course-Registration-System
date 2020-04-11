@@ -116,6 +116,11 @@ public class StartUpMenuGUI extends JFrame{
 		this.add(Box.createRigidArea(new Dimension(0, 30)));
 		this.add(loginButton);
 	}
+	
+	public int getUCID() {
+		//ucid.
+		return 0;
+	}
 
 	//This is just to test right now
 	public static void main(String[] args)
