@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -12,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -30,7 +32,7 @@ public class StartUpMenuGUI extends JFrame{
 	private JLabel ucid = new JLabel("UCID");
 	private JLabel password = new JLabel("Password");
 	private JTextField ucidResponse = new JTextField();
-	private JTextField passwordResponse = new JTextField();
+	private JPasswordField  passwordResponse = new JPasswordField();
 	private JButton loginButton = new JButton("Login");
 	
 	public StartUpMenuGUI()
@@ -118,8 +120,21 @@ public class StartUpMenuGUI extends JFrame{
 	}
 	
 	public int getUCID() {
-		//ucid.
-		return 0;
+		String stringUCID = ucidResponse.getText();
+		return Integer.parseInt(stringUCID);
+	}
+	
+	//----------------Button Listener Functions--------------------------//
+	
+	
+	/**
+	 * Adds the action listener for the Login button
+	 * 
+	 * @param listenForInsertButton
+	 */
+	public void addLoginButtonListener(ActionListener listenForLoginButton)
+	{
+		loginButton.addActionListener(listenForLoginButton);
 	}
 
 	//This is just to test right now

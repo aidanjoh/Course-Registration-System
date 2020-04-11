@@ -117,7 +117,7 @@ public class ClientController
 	{
 		GUIController courseRegMainGUI = new GUIController();
 		
-		ClientController client = new ClientController("localhost", 8099, courseRegMainGUI);
-		client.communicateWithServer();
+		//ClientController client = new ClientController("localhost", 8099, courseRegMainGUI);
+		//client.communicateWithServer();
 	}
 }

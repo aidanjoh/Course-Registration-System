@@ -2,7 +2,6 @@ package clientController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 import clientView.*;
 
@@ -12,28 +11,25 @@ public class GUIController {
 	private StartUpMenuGUI startUpView;
 	private StudentMenuGUI studentView;
 	
-	public class addCreateTreeButtonListener implements ActionListener
+	private int studentUCID; //this is so the client knows which student it is
+	
+	public GUIController() {
+		startUpView = new StartUpMenuGUI();
+		startUpView.setVisible(true);
+		startUpView.addLoginButtonListener(new addLoginButtonListener());
+	}
+	
+	public class addLoginButtonListener implements ActionListener
 	{
-		
-		/**
-		 * Performs the action of calling the create tree from file method in StudentRecordModel.
-		 */
-		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-			String fileName = "";
-			try
-			{
-		
-			}
-			catch(IOException error)
-			{
-				
-			}
-			catch(NullPointerException error)
-			{
-				
-			}
+			studentUCID = startUpView.getUCID();
+			startUpView.setVisible(false);
+			
+			studentView = new StudentMenuGUI();
+			studentView.setVisible(true);
+			
+			System.out.println(studentUCID);
 		}
 		
 	}
