@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
-
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -109,9 +109,93 @@ public class StudentMenuGUI extends JFrame
 		quitButton.setBackground(lightBlue);
 	}
 	
-	public static void main(String[] args) 
+	//---------------- Getters for buttons --------------------------//
+
+	
+	public JButton getSearchCatalogueButton() {
+		return searchCatalogueButton;
+	}
+
+
+	public JButton getAddCourseButton() {
+		return addCourseButton;
+	}
+
+
+	public JButton getRemoveCourseButton() {
+		return removeCourseButton;
+	}
+
+
+	public JButton getViewCatalogueButton() {
+		return viewCatalogueButton;
+	}
+
+	
+
+	public JButton getViewMyCoursesButton() {
+		return viewMyCoursesButton;
+	}
+
+
+	public JButton getQuitButton() {
+		return quitButton;
+	}
+	
+	//----------------Button Listener Functions--------------------------//
+	
+	
+	/**
+	 * 
+	 * @param listenForSearchCatalogueButton
+	 */
+	public void addSearchCatalogueButtonListener(ActionListener listenForSearchCatalogueButton)
 	{
-		StudentMenuGUI view = new StudentMenuGUI();
-		view.setVisible(true);
+		searchCatalogueButton.addActionListener(listenForSearchCatalogueButton);
+	}
+	
+	/**
+	 * 
+	 * @param listenForAddCourseButton
+	 */
+	public void addAddCourseButtonListener(ActionListener listenForAddCourseButton)
+	{
+		addCourseButton.addActionListener(listenForAddCourseButton);
+	}
+	
+	/**
+	 * 
+	 * @param listenForRemoveCourseButton
+	 */
+	public void addRemoveCourseButtonListener(ActionListener listenForRemoveCourseButton)
+	{
+		removeCourseButton.addActionListener(listenForRemoveCourseButton);
+	}
+	
+	/**
+	 * 
+	 * @param listenForViewCatalogueButton
+	 */
+	public void addViewCatalogueButtonListener(ActionListener listenForViewCatalogueButton)
+	{
+		viewCatalogueButton.addActionListener(listenForViewCatalogueButton);
+	}
+	
+	/**
+	 * 
+	 * @param listenForViewMyCoursesButton
+	 */
+	public void addViewMyCoursesButtonListener(ActionListener listenForViewMyCoursesButton)
+	{
+		viewMyCoursesButton.addActionListener(listenForViewMyCoursesButton);
+	}
+	
+	/**
+	 * 
+	 * @param listenForQuitButton
+	 */
+	public void addQuitButtonListener(ActionListener listenForQuitButton)
+	{
+		quitButton.addActionListener(listenForQuitButton);
 	}
 }

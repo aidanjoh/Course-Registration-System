@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 public class StartUpMenuGUI extends JFrame{
 
-	private JLabel title = new JLabel("Welcome to the Course Registration Systems");
+	private JLabel title = new JLabel("Welcome to the Course Registration System");
 	
 	private JLabel radioButtonTitle = new JLabel("Login as:");
 	
@@ -119,6 +119,10 @@ public class StartUpMenuGUI extends JFrame{
 		this.add(loginButton);
 	}
 	
+	public JButton getLoginButton() {
+		return loginButton;
+	}
+	
 	public int getUCID() {
 		String stringUCID = ucidResponse.getText();
 		return Integer.parseInt(stringUCID);
@@ -130,17 +134,11 @@ public class StartUpMenuGUI extends JFrame{
 	/**
 	 * Adds the action listener for the Login button
 	 * 
-	 * @param listenForInsertButton
+	 * @param listenForLoginButton
 	 */
 	public void addLoginButtonListener(ActionListener listenForLoginButton)
 	{
 		loginButton.addActionListener(listenForLoginButton);
 	}
 
-	//This is just to test right now
-	public static void main(String[] args)
-	{
-		StartUpMenuGUI view = new StartUpMenuGUI();
-		view.setVisible(true);
-	}
 }

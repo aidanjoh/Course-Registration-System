@@ -16,21 +16,61 @@ public class GUIController {
 	public GUIController() {
 		startUpView = new StartUpMenuGUI();
 		startUpView.setVisible(true);
-		startUpView.addLoginButtonListener(new addLoginButtonListener());
+		
+		studentView = new StudentMenuGUI();
+		studentView.setVisible(false);
+		
+		startUpView.addLoginButtonListener(new addButtonListener());
+		
+		
+		studentView.addSearchCatalogueButtonListener(new addButtonListener());
+		studentView.addAddCourseButtonListener(new addButtonListener());
+		studentView.addRemoveCourseButtonListener(new addButtonListener());
+		studentView.addViewCatalogueButtonListener(new addButtonListener());
+		studentView.addViewMyCoursesButtonListener(new addButtonListener());
+		studentView.addQuitButtonListener(new addButtonListener());
 	}
 	
-	public class addLoginButtonListener implements ActionListener
+	public class addButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e) 
 		{
-			studentUCID = startUpView.getUCID();
-			startUpView.setVisible(false);
+			if(e.getSource() == startUpView.getLoginButton()) 
+			{
+				studentUCID = startUpView.getUCID();
+				
+				startUpView.setVisible(false);
+				studentView.setVisible(true);
+				
+				System.out.println(studentUCID);
+			}
+			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
+			{
+				System.out.println("SearchCatalogue");
+			}
+			else if(e.getSource() == studentView.getAddCourseButton()) 
+			{
+				System.out.println("Add Course");
+			}
+			else if(e.getSource() == studentView.getRemoveCourseButton()) 
+			{
+				System.out.println("Remove Course");
+			}
+			else if(e.getSource() == studentView.getViewCatalogueButton()) 
+			{
+				System.out.println("View Catalogue");
+			}
+			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
+			{
+				System.out.println("View My Course");
+			}
+			else if(e.getSource() == studentView.getQuitButton()) 
+			{
+				System.out.println("Quit");
+			}
 			
-			studentView = new StudentMenuGUI();
-			studentView.setVisible(true);
-			
-			System.out.println(studentUCID);
 		}
 		
 	}
+
 }
