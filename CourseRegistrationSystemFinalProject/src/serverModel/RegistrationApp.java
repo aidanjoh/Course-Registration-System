@@ -13,7 +13,7 @@ public class RegistrationApp
 	
 	private DBManager dbManager;
 	
-	RegistrationApp()
+	public RegistrationApp()
 	{
 		courseCatalogue = new CourseCatalogue();
 		dbManager = new DBManager();
@@ -21,19 +21,19 @@ public class RegistrationApp
 		userInput = new Scanner(System.in);
 	}
 
-	public void searchCatalogueCourses() 
+	public void searchCatalogueCourses(String courseName, int courseNum) 
 	{
-		System.out.println("Please enter the course name:");
-		String courseName = userInput.nextLine();
+		//System.out.println("Please enter the course name:");
+		//String courseName = userInput.nextLine();
 		
-		System.out.println("Please enter the course number:");
-		while(!userInput.hasNextInt())
-		{
-			System.out.println("Sorry the input was not a number! Please try again!");
-			userInput.next();
-		}
-		int courseNum = userInput.nextInt();
-		userInput.nextLine();
+		//System.out.println("Please enter the course number:");
+		//while(!userInput.hasNextInt())
+		//{
+			//System.out.println("Sorry the input was not a number! Please try again!");
+			//userInput.next();
+		//}
+		//int courseNum = userInput.nextInt();
+		//userInput.nextLine();
 		
 		System.out.println(courseCatalogue.searchCat(courseName, courseNum));
 	}

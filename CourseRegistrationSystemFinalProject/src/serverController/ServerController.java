@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import serverModel.RegistrationApp;
+
 /**
  * The Class ServerController is the implementation of a server for a course Registration client-server application.
  * 
@@ -38,13 +40,21 @@ public class ServerController
 	private BufferedReader socketInput;
 	
 	/**
+	 * The serverModel
+	 */
+	private RegistrationApp regApp;
+	
+	/**
 	 * Constructs a ServerController object by assigning a port number to the server socket.
 	 * 
 	 * @param portNumber the port number of the Server.
 	 */
-	public ServerController(int portNumber)
+	public ServerController(int portNumber, RegistrationApp regApp)
 	{
 		System.out.println("Server is now running!");
+		
+		this.regApp = regApp;
+		
 		try
 		{
 			serverSocket = new ServerSocket(portNumber);
@@ -77,25 +87,37 @@ public class ServerController
 				{
 					String[] infoSent = input.split(" ");
 					int methodToRun = Integer.parseInt(infoSent[0]);
-					//int id = Integer.parseInt(infoSent[1]);
+					int id = Integer.parseInt(infoSent[1]);
 					
 					switch(methodToRun)
 					{
 						case 1:
 							System.out.println("Searching the Catalogue for a Course.");
+							
+							String courseName = infoSent[2];
+							int courseNumber = Integer.parseInt(infoSent[3]);
+							regApp.searchCatalogueCourses(courseName, courseNumber);
 							socketOutput.println("");
 							break;
 						case 2:
 							System.out.println("Adding a course to your course list!");
+							regApp.addCourse();
+							socketOutput.println("");
 							break;
 						case 3:
 							System.out.println("Removing a course from your course list!");
+							regApp.removeCourse();
+							socketOutput.println("");
 							break;
 						case 4:
 							System.out.println("Viewing all courses in the course Catalogue!");
+							regApp.viewAllCoursesInCatalogue();
+							socketOutput.println("");
 							break;
 						case 5:
 							System.out.println("Viewing all of your courses in your course list!");
+							regApp.viewAllStudentsCourses();
+							socketOutput.println("");
 							break;
 						case 6:
 							System.out.println("\nExiting Program, see you later!");
@@ -138,7 +160,8 @@ public class ServerController
 	 */
 	public static void main(String[] args) 
 	{
-		ServerController server = new ServerController(8099);
+		RegistrationApp regApp = new RegistrationApp();
+		ServerController server = new ServerController(8099, regApp);
 		server.communicateWithClient();
 	}
 }
