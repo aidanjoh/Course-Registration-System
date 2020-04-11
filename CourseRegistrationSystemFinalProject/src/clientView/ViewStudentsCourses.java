@@ -63,11 +63,13 @@ public class ViewStudentsCourses extends JDialog
 		studentCourses.setSize(600, 250);
 		studentCourses.setLocation(0, 50);
 		
+		Color lightBlue = new Color(51,194,255);
+		
 		returnButton = new JButton("Return to Main Menu");
 		returnButton.setSize(200, 50);
 		returnButton.setLocation(185, 300);
 		returnButton.setForeground(Color.black);
-		returnButton.setBackground(Color.LIGHT_GRAY);
+		returnButton.setBackground(lightBlue);
 		returnButton.setFont(new Font("Helvetica", Font.BOLD, 20));
 		buttonPanel.add(returnButton);
 		
