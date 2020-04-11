@@ -77,8 +77,6 @@ public class StartUpMenuGUI extends JFrame{
 	}
 	
 	private void setButtonColors() {
-	    //Setting the button color
-	    Color lightRed = new Color(255,51,51);
 		Color lightBlue = new Color(51,194,255);
 	    existingStudent.setBackground(lightBlue);
 	    admin.setBackground(lightBlue);
@@ -119,6 +117,7 @@ public class StartUpMenuGUI extends JFrame{
 		this.add(loginButton);
 	}
 
+	//This is just to test right now
 	public static void main(String[] args)
 	{
 		StartUpMenuGUI view = new StartUpMenuGUI();
