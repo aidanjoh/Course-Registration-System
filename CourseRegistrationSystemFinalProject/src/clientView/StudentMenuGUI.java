@@ -2,12 +2,10 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 
-import javax.swing.Box;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -34,7 +32,6 @@ public class StudentMenuGUI extends JFrame
 	
 	public StudentMenuGUI()
 	{
-		
 		super("Course Registration Start Menu");
 		
 		this.setFrameSizeAndLayout();
