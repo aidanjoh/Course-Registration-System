@@ -2,20 +2,27 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class StudentMenuGUI extends JFrame{
+public class StudentMenuGUI extends JFrame
+{
 
 	private JLabel title = new JLabel("Student Menu");
 	
-	private JLabel optionsTitle = new JLabel("Please select one of the following options");
+	private JLabel optionsTitle = new JLabel("Please Select One of the Following Options");
+	
+	private JLabel blankSpace1 = new JLabel(" ");
+	private JLabel blankSpace2 = new JLabel(" ");
 	
 	private JPanel buttonsPanel = new JPanel();
 	private JButton searchCatalogueButton = new JButton();
@@ -25,7 +32,8 @@ public class StudentMenuGUI extends JFrame{
 	private JButton viewMyCoursesButton = new JButton("View my Courses");
 	private JButton quitButton = new JButton("Quit");
 	
-	public StudentMenuGUI() {
+	public StudentMenuGUI()
+	{
 		
 		super("Course Registration Start Menu");
 		
@@ -37,21 +45,26 @@ public class StudentMenuGUI extends JFrame{
 		this.addToFrame();
 	}
 	
-	private void addToFrame() {
+	private void addToFrame() 
+	{
 		this.add(title);
+		this.add(blankSpace1);
 		this.add(optionsTitle);
+		this.add(blankSpace2);
 		this.add(buttonsPanel);
 	}
 
-	private void setFrameSizeAndLayout(){
+	private void setFrameSizeAndLayout()
+	{
 		this.setSize(600, 400);
 		
 		BoxLayout boxLayout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
 	    this.setLayout(boxLayout);
 	}
 	
-	private void makeButtonPanel() {
-		buttonsPanel.setLayout(new GridLayout(2, 3, 10, 10)); //the second two arguments are the horizontal and vertical gaps
+	private void makeButtonPanel() 
+	{
+		buttonsPanel.setLayout(new GridLayout(2, 3, 40, 30)); //the second two arguments are the horizontal and vertical gaps
 		
 		//wraps the text
 		searchCatalogueButton.setText("<html><center>"+"Search the Course"+"<br>"+"Catalogue"+"</center></html>");
@@ -65,13 +78,17 @@ public class StudentMenuGUI extends JFrame{
 		buttonsPanel.add(quitButton);
 	}
 	
-	private void setAlignments() {
+	private void setAlignments() 
+	{
 	    title.setAlignmentX( Component.CENTER_ALIGNMENT );
 	    optionsTitle.setAlignmentX( Component.CENTER_ALIGNMENT );
 	}
 	
-	private void setFontOptions() {
+	private void setFontOptions() 
+	{
 		title.setFont(new Font("Dialog", Font.BOLD, 24)); 
+		blankSpace1.setFont(new Font("Dialog", Font.BOLD, 10));
+		blankSpace2.setFont(new Font("Dialog", Font.BOLD, 20));
 		optionsTitle.setForeground(Color.darkGray);
 		optionsTitle.setFont(new Font("Dialog", Font.BOLD, 20));
 		
@@ -83,8 +100,10 @@ public class StudentMenuGUI extends JFrame{
 		quitButton.setFont(new Font("Dialog", Font.PLAIN, 16));
 	}
 	
-	private void setButtonColors() {
+	private void setButtonColors() 
+	{
 		Color lightBlue = new Color(51,194,255);
+		
 		searchCatalogueButton.setBackground(lightBlue);
 		addCourseButton.setBackground(lightBlue);
 		removeCourseButton.setBackground(lightBlue);
@@ -93,7 +112,8 @@ public class StudentMenuGUI extends JFrame{
 		quitButton.setBackground(lightBlue);
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		StudentMenuGUI view = new StudentMenuGUI();
 		view.setVisible(true);
 	}
