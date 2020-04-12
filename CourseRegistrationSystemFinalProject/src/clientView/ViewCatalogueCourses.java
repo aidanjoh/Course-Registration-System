@@ -80,6 +80,10 @@ public class ViewCatalogueCourses extends JDialog
 		this.add("North", titlePanel);
 	}
 	
+	public JButton getReturnButton() {
+		return returnButton;
+	}
+	
 	/**
 	 * Adds the action listener for the return to main menu button.
 	 * 

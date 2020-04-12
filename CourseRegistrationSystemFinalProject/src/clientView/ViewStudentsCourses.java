@@ -37,7 +37,7 @@ public class ViewStudentsCourses extends JDialog
 	/**
 	 * 
 	 */
-	public ViewStudentsCourses(StartUpMenuGUI mainFrame)
+	public ViewStudentsCourses(StudentMenuGUI mainFrame)
 	{
 		super(mainFrame, "Student's Courses", ModalityType.DOCUMENT_MODAL);
 		this.setSize(400, 400);
@@ -78,6 +78,10 @@ public class ViewStudentsCourses extends JDialog
 		this.add("North", titlePanel);
 	}
 	
+	public JButton getReturnButton() {
+		return returnButton;
+	}
+	
 	/**
 	 * Adds the action listener for the return to main menu button.
 	 * 
@@ -86,13 +90,5 @@ public class ViewStudentsCourses extends JDialog
 	public void addReturnButtonListener(ActionListener listenForReturnButton)
 	{
 		returnButton.addActionListener(listenForReturnButton);
-	}
-	
-	public static void main(String[] args)
-	{
-		StartUpMenuGUI mainFrame = new StartUpMenuGUI();
-		ViewStudentsCourses view = new ViewStudentsCourses(mainFrame);
-		mainFrame.setVisible(true);
-		view.setVisible(true);
-	}
+	}	
 }

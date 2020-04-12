@@ -32,13 +32,20 @@ public class ClientController
 	private Socket communicationSocket;
 	
 	/**
+	 * The object GUIController courseRegGUI is the graphical user interface for the course registration object.
+	 */
+	private GUIController courseRegGUI;
+	
+	/**
 	 * Constructs a ClientController object as well instantiates the socket object for communication.
 	 * 
 	 * @param serverName the name of the server.
 	 * @param portNumber the port number that the server is using for its communication.
 	 */
-	public ClientController(String serverName, int portNumber)
+	public ClientController(String serverName, int portNumber, GUIController userInterface)
 	{
+		this.courseRegGUI = userInterface;
+		
 		try
 		{
 			communicationSocket = new Socket(serverName, portNumber);
@@ -55,23 +62,39 @@ public class ClientController
 	 * 
 	 * Reads words inputed by the user and communicates them to the server.
 	 */
-	public void communicateWithServer(String message)
+	public void communicateWithServer()
 	{
+		String line = "1 Dave";
 		String response = "";
-
-		try 
+		
+		boolean running = true;
+		
+		while(running) 
 		{
-			System.out.println(message);
-			socketOutput.println(message);
-			response = socketInput.readLine();
-			System.out.println(response);
-		} 
-		catch (IOException error) 
-		{
-			System.out.println("Sending error: " + error.getMessage());
-			error.printStackTrace();
+			try 
+			{
+				if(!line.equals("QUIT") || !response.contentEquals("QUIT"))
+				{
+					System.out.println(line);
+					socketOutput.println(line);
+					response = socketInput.readLine();
+					System.out.println(response);
+				}
+				else
+				{
+					running = false;
+				}
+				
+				line = "6 " + line;
+				
+			} 
+			catch (Exception error)
+			{
+				System.out.println("Sending error: " + error.getMessage());
+				break;
+			}
 		}
-
+		
 		try
 		{
 			socketInput.close();
@@ -92,7 +115,9 @@ public class ClientController
 	 */
 	public static void main(String[] args) 
 	{
-		ClientController client = new ClientController("localhost", 8099);
+		GUIController courseRegMainGUI = new GUIController();
 		
+		//ClientController client = new ClientController("localhost", 8099, courseRegMainGUI);
+		//client.communicateWithServer();
 	}
 }

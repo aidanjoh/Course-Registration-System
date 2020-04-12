@@ -10,6 +10,8 @@ public class GUIController {
 
 	private StartUpMenuGUI startUpView;
 	private StudentMenuGUI studentView;
+	private ViewCatalogueCourses viewCatalogue;
+	private ViewStudentsCourses viewStudentsCourses;
 	
 	private int studentUCID; //this is so the client knows which student it is
 	
@@ -20,6 +22,12 @@ public class GUIController {
 		studentView = new StudentMenuGUI();
 		studentView.setVisible(false);
 		
+		viewCatalogue = new ViewCatalogueCourses(studentView);
+		viewCatalogue.setVisible(false);
+		
+		viewStudentsCourses = new ViewStudentsCourses(studentView);
+		viewStudentsCourses.setVisible(false);
+		
 		startUpView.addLoginButtonListener(new addButtonListener());
 		
 		
@@ -29,6 +37,9 @@ public class GUIController {
 		studentView.addViewCatalogueButtonListener(new addButtonListener());
 		studentView.addViewMyCoursesButtonListener(new addButtonListener());
 		studentView.addQuitButtonListener(new addButtonListener());
+		
+		viewCatalogue.addReturnButtonListener(new addButtonListener());
+		viewStudentsCourses.addReturnButtonListener(new addButtonListener());
 	}
 	
 	public class addButtonListener implements ActionListener
@@ -46,35 +57,45 @@ public class GUIController {
 			}
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{
-				String courseNameAndNum = studentView.getCourseNameAndNumber();
+				String courseNameAndNum = studentView.getCourseNameAndNumberForSearchCatalogue();
 				System.out.println("Search Catalogue");
 				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getAddCourseButton()) 
 			{
-				String courseNameAndNum = studentView.getCourseNameAndNumber();
+				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
 				System.out.println("Add Course");
 				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getRemoveCourseButton()) 
 			{
-				String courseNameAndNum = studentView.getCourseNameAndNumber();
+				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
 				System.out.println("Remove Course");
 				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
 				System.out.println("View Catalogue");
-				ViewCatalogueCourses viewCatalogue = new ViewCatalogueCourses(studentView);
 				viewCatalogue.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
 			{
-				System.out.println("View My Course");
+				System.out.println("View My Courses");
+				viewStudentsCourses.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getQuitButton()) 
 			{
 				System.out.println("Quit");
+			}
+			else if(e.getSource() == viewCatalogue.getReturnButton()) 
+			{
+				System.out.println("Closed Catalogue");
+				viewCatalogue.dispose();
+			}
+			else if(e.getSource() == viewStudentsCourses.getReturnButton()) 
+			{
+				System.out.println("Closed Student Menu");
+				viewStudentsCourses.dispose();
 			}
 			
 		}

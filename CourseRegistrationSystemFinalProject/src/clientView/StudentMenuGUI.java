@@ -2,10 +2,12 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,16 +23,13 @@ public class StudentMenuGUI extends JFrame
 	private JLabel title = new JLabel("Student Menu");
 	
 	private JLabel optionsTitle = new JLabel("Please Select One of the Following Options");
-	
-	private JLabel blankSpace1 = new JLabel(" ");
-	private JLabel blankSpace2 = new JLabel(" ");
-	
+		
 	private JPanel buttonsPanel = new JPanel();
 	private JButton searchCatalogueButton = new JButton();
 	private JButton addCourseButton = new JButton("Add a Course");
-	private JButton removeCourseButton = new JButton("Remove a Course");
+	private JButton removeCourseButton = new JButton();
 	private JButton viewCatalogueButton = new JButton();
-	private JButton viewMyCoursesButton = new JButton("View my Courses");
+	private JButton viewMyCoursesButton = new JButton();
 	private JButton quitButton = new JButton("Quit");
 	
 	public StudentMenuGUI()
@@ -45,15 +44,6 @@ public class StudentMenuGUI extends JFrame
 		this.addToFrame();
 	}
 	
-	private void addToFrame() 
-	{
-		this.add(title);
-		this.add(blankSpace1);
-		this.add(optionsTitle);
-		this.add(blankSpace2);
-		this.add(buttonsPanel);
-	}
-
 	private void setFrameSizeAndLayout()
 	{
 		this.setSize(600, 400);
@@ -64,18 +54,29 @@ public class StudentMenuGUI extends JFrame
 	
 	private void makeButtonPanel() 
 	{
-		buttonsPanel.setLayout(new GridLayout(2, 3, 40, 30)); //the second two arguments are the horizontal and vertical gaps
+		buttonsPanel.setLayout(new GridLayout(2, 5, 10, 20)); //the second two arguments are the horizontal and vertical gaps
 		
 		//wraps the text
 		searchCatalogueButton.setText("<html><center>"+"Search the Course"+"<br>"+"Catalogue"+"</center></html>");
 		viewCatalogueButton.setText("<html><center>"+"View Courses in"+"<br>"+"the Catalogue"+"</center></html>");
+		removeCourseButton.setText("<html><center>"+"Remove a"+"<br>"+"Course"+"</center></html>");
+		viewMyCoursesButton.setText("<html><center>"+"View my"+"<br>"+"Courses"+"</center></html>");
 		
+		JLabel whiteSpace = new JLabel("  ");
+		JLabel whiteSpace1 = new JLabel("  ");
+		JLabel whiteSpace2 = new JLabel("  ");
+		JLabel whiteSpace3 = new JLabel("  ");
+		
+		buttonsPanel.add(whiteSpace);
 		buttonsPanel.add(searchCatalogueButton);
 		buttonsPanel.add(addCourseButton);
 		buttonsPanel.add(removeCourseButton);
+		buttonsPanel.add(whiteSpace1);
+		buttonsPanel.add(whiteSpace2);
 		buttonsPanel.add(viewCatalogueButton);
 		buttonsPanel.add(viewMyCoursesButton);
 		buttonsPanel.add(quitButton);
+		buttonsPanel.add(whiteSpace3);
 	}
 	
 	private void setAlignments() 
@@ -87,17 +88,15 @@ public class StudentMenuGUI extends JFrame
 	private void setFontOptions() 
 	{
 		title.setFont(new Font("Dialog", Font.BOLD, 24)); 
-		blankSpace1.setFont(new Font("Dialog", Font.BOLD, 10));
-		blankSpace2.setFont(new Font("Dialog", Font.BOLD, 20));
 		optionsTitle.setForeground(Color.darkGray);
 		optionsTitle.setFont(new Font("Dialog", Font.BOLD, 20));
 		
-		searchCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		addCourseButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		removeCourseButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		viewCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		viewMyCoursesButton.setFont(new Font("Dialog", Font.PLAIN, 16));
-		quitButton.setFont(new Font("Dialog", Font.PLAIN, 16));
+		searchCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		addCourseButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		removeCourseButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		viewCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		viewMyCoursesButton.setFont(new Font("Dialog", Font.PLAIN, 12));
+		quitButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 	}
 	
 	private void setButtonColors() 
@@ -110,6 +109,16 @@ public class StudentMenuGUI extends JFrame
 		viewCatalogueButton.setBackground(lightBlue);
 		viewMyCoursesButton.setBackground(lightBlue);
 		quitButton.setBackground(lightBlue);
+	}
+	
+	private void addToFrame() 
+	{
+		this.add(title);
+		this.add(Box.createRigidArea(new Dimension(0, 15)));
+		this.add(optionsTitle);
+		this.add(Box.createRigidArea(new Dimension(0, 10)));
+		this.add(buttonsPanel);
+		this.add(Box.createRigidArea(new Dimension(0, 30)));
 	}
 	
 	//---------------- Getters for buttons --------------------------//
@@ -202,7 +211,7 @@ public class StudentMenuGUI extends JFrame
 		quitButton.addActionListener(listenForQuitButton);
 	}
 	
-	public String getCourseNameAndNumber()
+	public String getCourseNameAndNumberForSearchCatalogue()
 	{		
 		//Entering Information Panel For New Node
 		JPanel searchCourse = new JPanel(new GridLayout(2, 2));
@@ -223,6 +232,39 @@ public class StudentMenuGUI extends JFrame
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
 		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum;
+		    	return fullCourseString;
+		    }
+		    
+		return null;
+	}
+	
+	public String getCourseNameAndNumberForAddAndRemoveCourse()
+	{		
+		//Entering Information Panel For New Node
+		JPanel searchCourse = new JPanel(new GridLayout(2, 2));
+				
+		JLabel enterCourseName = new JLabel("Enter the Course Name");
+		JTextField courseNameResponse = new JTextField();
+	
+		JLabel enterCourseNum = new JLabel("Enter the Course Number");
+		JTextField courseNumResponse = new JTextField();
+		
+		JLabel enterSectionNum = new JLabel("Enter the Section Number");
+		JTextField sectionNumResponse = new JTextField();
+		
+		searchCourse.add(enterCourseName);
+		searchCourse.add(courseNameResponse);
+		searchCourse.add(enterCourseNum);
+		searchCourse.add(courseNumResponse);
+		searchCourse.add(enterSectionNum);
+		searchCourse.add(sectionNumResponse);
+
+		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION);
+		    if (result == JOptionPane.OK_OPTION) {
+		    	String insertedCourseName = courseNameResponse.getText();
+		    	String insertedCourseNum = courseNumResponse.getText();
+		    	String insertedSectionNum = sectionNumResponse.getText();
+		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum + " " + insertedSectionNum;
 		    	return fullCourseString;
 		    }
 		    
