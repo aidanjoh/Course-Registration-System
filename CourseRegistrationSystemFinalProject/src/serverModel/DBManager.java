@@ -1,4 +1,6 @@
 package serverModel;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 
 //This class is simulating a database for our program
@@ -16,28 +18,73 @@ public class DBManager
 
 	public ArrayList<Course> readCoursesFromDB() 
 	{
-		courseList.add(new Course ("ENGG", 233));
-		courseList.add(new Course ("ENSF", 409));
-		courseList.add(new Course ("PHYS", 259));
-		courseList.add(new Course ("ENCM", 511));
-		courseList.add(new Course ("ENCM", 467));
-		courseList.add(new Course ("ENEL", 400));
-		courseList.add(new Course ("ENGG", 225));
+		return readCoursesFromFile();
+	}
+	
+	public ArrayList<Course> readCoursesFromFile()
+	{
+		try 
+		{
+			//Note: courses.txt needs to be in the project folder
+			FileReader fileRead = new FileReader("courses.txt");
+			BufferedReader bufferRead = new BufferedReader(fileRead);
+			
+			String line = "";
+			while((line = bufferRead.readLine()) != null)
+			{
+				String[] temp = line.split(" ");
+				courseList.add(new Course(temp[0], Integer.parseInt(temp[1])));
+			}
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.getMessage());
+		}
 		return courseList;
+	}
+	
+	public ArrayList<Student> readStudentsFromFile()
+	{
+		try 
+		{
+			//Note: students.txt needs to be in the project folder
+			FileReader fileRead = new FileReader("students.txt");
+			BufferedReader bufferRead = new BufferedReader(fileRead);
+			
+			String line = "";
+			while((line = bufferRead.readLine()) != null)
+			{
+				String[] temp = line.split(" ");
+				studentList.add(new Student(temp[0], Integer.parseInt(temp[1])));
+			}
+		}
+		catch(Exception e)
+		{
+			System.err.println(e.getMessage());
+		}
+		return studentList;
 	}
 	
 	public ArrayList<Student> readStudentsFromDB()
 	{
-		studentList.add(new Student("Katie", 1));
-		studentList.add(new Student("Eric", 2));
-		studentList.add(new Student("Mike", 3));
-		studentList.add(new Student("George", 4));
-		studentList.add(new Student("Alex", 5));
-		studentList.add(new Student("James", 6));
-		studentList.add(new Student("Barney", 7));
-		studentList.add(new Student("Steven", 8));
-		studentList.add(new Student("Kyle", 9));
-		return studentList;
+		return readStudentsFromFile();
+	}
+	
+	public static void main (String Args[])
+	{
+		DBManager DB = new DBManager();
+		ArrayList<Course> courseList = DB.readCoursesFromDB();
+		ArrayList<Student> studentList = DB.readStudentsFromDB();
+		
+		for(Course course : courseList)
+		{
+			System.out.println(course.toString());
+		}
+		
+		for(Student student : studentList)
+		{
+			System.out.println(student.toString());
+		}
 	}
 
 }
