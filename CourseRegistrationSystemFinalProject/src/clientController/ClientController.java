@@ -32,20 +32,13 @@ public class ClientController
 	private Socket communicationSocket;
 	
 	/**
-	 * The object GUIController courseRegGUI is the graphical user interface for the course registration object.
-	 */
-	private GUIController courseRegGUI;
-	
-	/**
 	 * Constructs a ClientController object as well instantiates the socket object for communication.
 	 * 
 	 * @param serverName the name of the server.
 	 * @param portNumber the port number that the server is using for its communication.
 	 */
-	public ClientController(String serverName, int portNumber, GUIController userInterface)
+	public ClientController(String serverName, int portNumber)
 	{
-		this.courseRegGUI = userInterface;
-		
 		try
 		{
 			communicationSocket = new Socket(serverName, portNumber);
@@ -62,7 +55,7 @@ public class ClientController
 	 * 
 	 * Reads words inputed by the user and communicates them to the server.
 	 */
-	public void communicateWithServer(String messageToBeSent)
+	public String communicateWithServer(String messageToBeSent)
 	{
 		//String line = "1 Dave";
 		String response = "";
@@ -90,6 +83,8 @@ public class ClientController
 		{
 			System.out.println("Closing error: " + error.getMessage());
 		}
+		
+		return response;
 	}
 	
 	/**
@@ -100,9 +95,7 @@ public class ClientController
 	 */
 	public static void main(String[] args) 
 	{
-		GUIController courseRegMainGUI = new GUIController();
-		
-		//ClientController client = new ClientController("localhost", 8099, courseRegMainGUI);
-		//client.communicateWithServer();
+		ClientController client = new ClientController("localhost", 8099);
+		GUIController courseRegMainGUI = new GUIController(client);
 	}
 }

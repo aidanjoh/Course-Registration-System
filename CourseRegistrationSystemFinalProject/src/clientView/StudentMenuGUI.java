@@ -26,7 +26,7 @@ public class StudentMenuGUI extends JFrame
 		
 	private JPanel buttonsPanel = new JPanel();
 	private JButton searchCatalogueButton = new JButton();
-	private JButton addCourseButton = new JButton("Add a Course");
+	private JButton addCourseButton = new JButton();
 	private JButton removeCourseButton = new JButton();
 	private JButton viewCatalogueButton = new JButton();
 	private JButton viewMyCoursesButton = new JButton();
@@ -57,6 +57,7 @@ public class StudentMenuGUI extends JFrame
 		buttonsPanel.setLayout(new GridLayout(2, 5, 10, 20)); //the second two arguments are the horizontal and vertical gaps
 		
 		//wraps the text
+		addCourseButton.setText("<html><center>"+"Add a"+"<br>"+"Course"+"</center></html>");
 		searchCatalogueButton.setText("<html><center>"+"Search the Course"+"<br>"+"Catalogue"+"</center></html>");
 		viewCatalogueButton.setText("<html><center>"+"View Courses in"+"<br>"+"the Catalogue"+"</center></html>");
 		removeCourseButton.setText("<html><center>"+"Remove a"+"<br>"+"Course"+"</center></html>");
@@ -228,7 +229,8 @@ public class StudentMenuGUI extends JFrame
 		searchCourse.add(courseNumResponse);
 
 		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION);
-		    if (result == JOptionPane.OK_OPTION) {
+		    if (result == JOptionPane.OK_OPTION) 
+		    {
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
 		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum;

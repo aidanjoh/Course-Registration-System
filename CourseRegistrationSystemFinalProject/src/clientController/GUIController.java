@@ -18,13 +18,20 @@ public class GUIController
 	private ViewCatalogueCourses viewCatalogue;
 	private ViewStudentsCourses viewStudentsCourses;
 	
+	/**
+	 * 
+	 */
+	private ClientController client;
+	
 	private int studentUCID; //this is so the client knows which student it is
 	
 	/**
 	 * 
 	 */
-	public GUIController() 
+	public GUIController(ClientController client) 
 	{
+		this.client = client;
+		
 		startUpView = new StartUpMenuGUI();
 		startUpView.setVisible(true);
 		
@@ -67,8 +74,13 @@ public class GUIController
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForSearchCatalogue();
-				System.out.println("Search Catalogue");
 				System.out.println(courseNameAndNum);
+				String messageToBeSent = "1 " + studentUCID + " " + courseNameAndNum;
+				System.out.println(messageToBeSent);
+				
+				String messageRecieved = client.communicateWithServer(messageToBeSent);
+				System.out.println(messageRecieved);
+		
 			}
 			else if(e.getSource() == studentView.getAddCourseButton()) 
 			{

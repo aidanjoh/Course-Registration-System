@@ -100,7 +100,7 @@ public class ServerController
 							courseName = infoSent[2];
 							courseNumber = Integer.parseInt(infoSent[3]);
 							regApp.searchCatalogueCourses(courseName, courseNumber);
-							socketOutput.println("");
+							socketOutput.println("Course was Found");
 							break;
 						case 2:
 							System.out.println("Adding a course to your course list!");
