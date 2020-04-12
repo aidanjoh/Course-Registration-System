@@ -132,11 +132,6 @@ public class ServerController
 							return;
 					}
 				}
-				else
-				{
-					System.out.println("Server is shutting down!");
-					break;
-				}
 			}
 			catch(IOException error)
 			{

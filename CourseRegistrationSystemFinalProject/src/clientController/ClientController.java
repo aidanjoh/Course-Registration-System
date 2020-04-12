@@ -73,16 +73,16 @@ public class ClientController
 				
 		}
 		
-		try
-		{
-			socketInput.close();
-			socketOutput.close();
-			communicationSocket.close();
-		}
-		catch(IOException error)
-		{
-			System.out.println("Closing error: " + error.getMessage());
-		}
+//		try
+//		{
+//			socketInput.close();
+//			socketOutput.close();
+//			communicationSocket.close();
+//		}
+//		catch(IOException error)
+//		{
+//			System.out.println("Closing error: " + error.getMessage());
+//		}
 		
 		return response;
 	}
