@@ -38,9 +38,9 @@ public class RegistrationApp
 		System.out.println(courseCatalogue.searchCat(courseName, courseNum));
 	}
 
-	public void addCourse() 
+	public void addCourse(int studentID, String courseName, int courseNum, int sectionNumber) 
 	{
-		Student student = searchForStudent();
+		Student student = searchForStudent(studentID);
 		if(student == null)
 		{
 			System.out.println("A student with that ID could not be found.");
@@ -53,17 +53,17 @@ public class RegistrationApp
 			return;
 		}
 		
-		System.out.println("Please enter the course name:");
-		String courseName = userInput.nextLine();
+		//System.out.println("Please enter the course name:");
+		//String courseName = userInput.nextLine();
 		
-		System.out.println("Please enter the course number:");
-		while(!userInput.hasNextInt())
-		{
-			System.out.println("Sorry the input was not a number! Please try again!");
-			userInput.next();
-		}
-		int courseNum = userInput.nextInt();
-		userInput.nextLine();
+		//System.out.println("Please enter the course number:");
+		//while(!userInput.hasNextInt())
+		//{
+			//System.out.println("Sorry the input was not a number! Please try again!");
+			//userInput.next();
+		//}
+		//int courseNum = userInput.nextInt();
+		//userInput.nextLine();
 		
 		Course course = courseCatalogue.searchCat(courseName, courseNum);
 		if(course == null)
@@ -81,14 +81,14 @@ public class RegistrationApp
 			}
 		}
 		
-		System.out.println("Please enter the section number:");
-		while(!userInput.hasNextInt())
-		{
-			System.out.println("Sorry the input was not a number! Please try again!");
-			userInput.next();
-		}
-		int sectionNumber = userInput.nextInt();
-		userInput.nextLine();
+		//System.out.println("Please enter the section number:");
+		//while(!userInput.hasNextInt())
+		//{
+			//System.out.println("Sorry the input was not a number! Please try again!");
+			//userInput.next();
+		//}
+		//int sectionNumber = userInput.nextInt();
+		//userInput.nextLine();
 		Registration regManager = new Registration();
 		
 		if(course.getCourseOfferingAt(sectionNumber-1) == null)
@@ -103,19 +103,19 @@ public class RegistrationApp
 		}
 	}
 	
-	public Student searchForStudent()
+	public Student searchForStudent(int studentID)
 	{
-		System.out.println("Please enter the student's ID number:");
-		while(!userInput.hasNextInt())
-		{
-			System.out.println("Sorry the input was not a number! Please try again!");
-			userInput.next();
-		}
-		int idNumber = userInput.nextInt();
-		userInput.nextLine();
+		//System.out.println("Please enter the student's ID number:");
+		//while(!userInput.hasNextInt())
+		//{
+			//System.out.println("Sorry the input was not a number! Please try again!");
+			//userInput.next();
+		//}
+		//int idNumber = userInput.nextInt();
+		//userInput.nextLine();
 		for(Student student : studentList)
 		{
-			if(student.getStudentId() == idNumber)
+			if(student.getStudentId() == studentID)
 			{
 				return student;
 			}
@@ -123,9 +123,9 @@ public class RegistrationApp
 		return null;
 	}
 
-	public void removeCourse() 
+	public void removeCourse(int studentID) 
 	{
-		Student student = searchForStudent();
+		Student student = searchForStudent(studentID);
 		if(student == null)
 		{
 			System.out.println("A student with that ID could not be found.");
@@ -157,9 +157,9 @@ public class RegistrationApp
 		System.out.println(courseCatalogue.toString());
 	}
 
-	public void viewAllStudentsCourses() 
+	public void viewAllStudentsCourses(int studentID) 
 	{
-		Student student = searchForStudent();
+		Student student = searchForStudent(studentID);
 		if(student == null)
 		{
 			System.out.println("A student with that ID could not be found.");

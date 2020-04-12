@@ -64,7 +64,7 @@ public class ClientController
 	 */
 	public void communicateWithServer()
 	{
-		String line = "1 Dave";
+		String line = "2 2 ENCM 511 1";
 		String response = "";
 		
 		boolean running = true;
@@ -73,7 +73,8 @@ public class ClientController
 		{
 			try 
 			{
-				if(!line.equals("QUIT") || !response.contentEquals("QUIT"))
+				System.out.println(response);
+				if(!line.equals("QUIT") || !response.equalsIgnoreCase("quit"))
 				{
 					System.out.println(line);
 					socketOutput.println(line);
@@ -82,15 +83,17 @@ public class ClientController
 				}
 				else
 				{
+					System.out.println("here");
 					running = false;
 				}
 				
 				line = "6 " + line;
 				
 			} 
-			catch (Exception error)
+			catch (IOException error)
 			{
 				System.out.println("Sending error: " + error.getMessage());
+				error.printStackTrace();
 				break;
 			}
 		}

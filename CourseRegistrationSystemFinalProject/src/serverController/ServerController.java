@@ -87,41 +87,48 @@ public class ServerController
 				{
 					String[] infoSent = input.split(" ");
 					int methodToRun = Integer.parseInt(infoSent[0]);
-					int id = Integer.parseInt(infoSent[1]);
+					
+					int studentID;
+					String courseName;
+					int courseNumber;
+					int sectionNumber;
 					
 					switch(methodToRun)
 					{
 						case 1:
 							System.out.println("Searching the Catalogue for a Course.");
-							
-							String courseName = infoSent[2];
-							int courseNumber = Integer.parseInt(infoSent[3]);
+							courseName = infoSent[2];
+							courseNumber = Integer.parseInt(infoSent[3]);
 							regApp.searchCatalogueCourses(courseName, courseNumber);
 							socketOutput.println("");
 							break;
 						case 2:
 							System.out.println("Adding a course to your course list!");
-							regApp.addCourse();
+							studentID = Integer.parseInt(infoSent[1]);
+							courseName = infoSent[2];
+							courseNumber = Integer.parseInt(infoSent[3]);
+							sectionNumber = Integer.parseInt(infoSent[4]);
+							regApp.addCourse(studentID, courseName, courseNumber, sectionNumber);
 							socketOutput.println("");
 							break;
 						case 3:
 							System.out.println("Removing a course from your course list!");
-							regApp.removeCourse();
+							//regApp.removeCourse();
 							socketOutput.println("");
 							break;
 						case 4:
 							System.out.println("Viewing all courses in the course Catalogue!");
-							regApp.viewAllCoursesInCatalogue();
+							//regApp.viewAllCoursesInCatalogue();
 							socketOutput.println("");
 							break;
 						case 5:
 							System.out.println("Viewing all of your courses in your course list!");
-							regApp.viewAllStudentsCourses();
+							//regApp.viewAllStudentsCourses();
 							socketOutput.println("");
 							break;
 						case 6:
 							System.out.println("\nExiting Program, see you later!");
-							socketOutput.println("QUIT");
+							socketOutput.println("quit");
 							return;
 					}
 				}

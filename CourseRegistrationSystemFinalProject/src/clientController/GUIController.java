@@ -33,7 +33,7 @@ public class GUIController {
 	
 	public class addButtonListener implements ActionListener
 	{
-		public void actionPerformed(ActionEvent e) 
+		public void actionPerformed(ActionEvent e)
 		{
 			if(e.getSource() == startUpView.getLoginButton()) 
 			{
