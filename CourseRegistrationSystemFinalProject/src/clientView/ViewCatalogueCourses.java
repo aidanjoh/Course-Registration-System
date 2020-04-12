@@ -38,7 +38,7 @@ public class ViewCatalogueCourses extends JDialog
 	/**
 	 * 
 	 */
-	public ViewCatalogueCourses(StartUpMenuGUI mainFrame)
+	public ViewCatalogueCourses(StudentMenuGUI mainFrame)
 	{
 		super(mainFrame, "Course Catalogue", ModalityType.DOCUMENT_MODAL);
 		
@@ -89,12 +89,5 @@ public class ViewCatalogueCourses extends JDialog
 	{
 		returnButton.addActionListener(listenForReturnButton);
 	}
-	
-	public static void main(String[] args)
-	{
-		StartUpMenuGUI mainFrame = new StartUpMenuGUI();
-		ViewCatalogueCourses view = new ViewCatalogueCourses(mainFrame);
-		mainFrame.setVisible(true);
-		view.setVisible(true);
-	}
+
 }

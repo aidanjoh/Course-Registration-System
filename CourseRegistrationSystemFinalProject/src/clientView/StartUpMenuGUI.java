@@ -50,7 +50,6 @@ public class StartUpMenuGUI extends JFrame{
 	
 	private void setFrameSizeAndLayout(){
 		this.setSize(600, 400);
-		
 		BoxLayout boxLayout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
 	    this.setLayout(boxLayout);
 	}

@@ -46,19 +46,27 @@ public class GUIController {
 			}
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{
-				System.out.println("SearchCatalogue");
+				String courseNameAndNum = studentView.getCourseNameAndNumber();
+				System.out.println("Search Catalogue");
+				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getAddCourseButton()) 
 			{
+				String courseNameAndNum = studentView.getCourseNameAndNumber();
 				System.out.println("Add Course");
+				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getRemoveCourseButton()) 
 			{
+				String courseNameAndNum = studentView.getCourseNameAndNumber();
 				System.out.println("Remove Course");
+				System.out.println(courseNameAndNum);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
 				System.out.println("View Catalogue");
+				ViewCatalogueCourses viewCatalogue = new ViewCatalogueCourses(studentView);
+				viewCatalogue.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
 			{

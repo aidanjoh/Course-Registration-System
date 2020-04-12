@@ -10,7 +10,10 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
 
 public class StudentMenuGUI extends JFrame
 {
@@ -197,5 +200,32 @@ public class StudentMenuGUI extends JFrame
 	public void addQuitButtonListener(ActionListener listenForQuitButton)
 	{
 		quitButton.addActionListener(listenForQuitButton);
+	}
+	
+	public String getCourseNameAndNumber()
+	{		
+		//Entering Information Panel For New Node
+		JPanel searchCourse = new JPanel(new GridLayout(2, 2));
+				
+		JLabel enterCourseName = new JLabel("Enter the Course Name");
+		JTextField courseNameResponse = new JTextField();
+	
+		JLabel enterCourseNum = new JLabel("Enter the Course Number");
+		JTextField courseNumResponse = new JTextField();
+		
+		searchCourse.add(enterCourseName);
+		searchCourse.add(courseNameResponse);
+		searchCourse.add(enterCourseNum);
+		searchCourse.add(courseNumResponse);
+
+		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION);
+		    if (result == JOptionPane.OK_OPTION) {
+		    	String insertedCourseName = courseNameResponse.getText();
+		    	String insertedCourseNum = courseNumResponse.getText();
+		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum;
+		    	return fullCourseString;
+		    }
+		    
+		return null;
 	}
 }
