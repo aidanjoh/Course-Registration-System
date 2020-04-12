@@ -5,8 +5,13 @@ import java.awt.event.ActionListener;
 
 import clientView.*;
 
-
-public class GUIController {
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
+public class GUIController 
+{
 
 	private StartUpMenuGUI startUpView;
 	private StudentMenuGUI studentView;
@@ -15,7 +20,11 @@ public class GUIController {
 	
 	private int studentUCID; //this is so the client knows which student it is
 	
-	public GUIController() {
+	/**
+	 * 
+	 */
+	public GUIController() 
+	{
 		startUpView = new StartUpMenuGUI();
 		startUpView.setVisible(true);
 		

@@ -62,37 +62,22 @@ public class ClientController
 	 * 
 	 * Reads words inputed by the user and communicates them to the server.
 	 */
-	public void communicateWithServer()
+	public void communicateWithServer(String messageToBeSent)
 	{
-		String line = "1 Dave";
+		//String line = "1 Dave";
 		String response = "";
-		
-		boolean running = true;
-		
-		while(running) 
+
+		try 
 		{
-			try 
-			{
-				if(!line.equals("QUIT") || !response.contentEquals("QUIT"))
-				{
-					System.out.println(line);
-					socketOutput.println(line);
-					response = socketInput.readLine();
-					System.out.println(response);
-				}
-				else
-				{
-					running = false;
-				}
+			System.out.println(messageToBeSent);
+			socketOutput.println(messageToBeSent);
+			response = socketInput.readLine();
+			System.out.println(response);
+		} 
+		catch (Exception error)
+		{
+			System.out.println("Sending error: " + error.getMessage());
 				
-				line = "6 " + line;
-				
-			} 
-			catch (Exception error)
-			{
-				System.out.println("Sending error: " + error.getMessage());
-				break;
-			}
 		}
 		
 		try
