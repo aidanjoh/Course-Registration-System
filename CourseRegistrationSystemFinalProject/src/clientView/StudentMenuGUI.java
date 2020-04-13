@@ -243,7 +243,7 @@ public class StudentMenuGUI extends JFrame
 	public String getCourseNameAndNumberForAddAndRemoveCourse()
 	{		
 		//Entering Information Panel For New Node
-		JPanel searchCourse = new JPanel(new GridLayout(2, 2));
+		JPanel searchCourse = new JPanel(new GridLayout(3, 2));
 				
 		JLabel enterCourseName = new JLabel("Enter the Course Name");
 		JTextField courseNameResponse = new JTextField();

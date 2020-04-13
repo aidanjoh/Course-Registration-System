@@ -66,6 +66,11 @@ public class GUIController
 			{
 				studentUCID = startUpView.getUCID();
 				
+				//This is for the error checking set up for the login
+				if(studentUCID == 0) {
+					return;
+				}
+				
 				startUpView.setVisible(false);
 				studentView.setVisible(true);
 				

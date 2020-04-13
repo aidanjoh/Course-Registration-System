@@ -12,6 +12,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -25,10 +26,9 @@ public class StartUpMenuGUI extends JFrame{
 	
 	private JPanel radioButtonsPanel = new JPanel();
 	private ButtonGroup loginChoies = new ButtonGroup();
-	private JRadioButton existingStudent = new JRadioButton("Existing Student ");
+	private JRadioButton existingStudent = new JRadioButton("Student                  ");
 	private JRadioButton admin = new JRadioButton("Admin                    ");
-	private JRadioButton newStudent = new JRadioButton("New Student        ");
-	
+
 	private JLabel ucid = new JLabel("UCID");
 	private JLabel password = new JLabel("Password");
 	private JTextField ucidResponse = new JTextField();
@@ -69,19 +69,16 @@ public class StartUpMenuGUI extends JFrame{
 		radioButtonsPanel.add(Box.createRigidArea(new Dimension(0, 3)));
 		radioButtonsPanel.add(admin);
 		radioButtonsPanel.add(Box.createRigidArea(new Dimension(0, 3)));
-		radioButtonsPanel.add(newStudent);
 		
 		//This adds all the radio buttons to the same group so that only one can be selected at once
 		loginChoies.add(existingStudent);
 		loginChoies.add(admin);
-		loginChoies.add(newStudent);
 	}
 	
 	private void setButtonColors() {
 		Color lightBlue = new Color(51,194,255);
 	    existingStudent.setBackground(lightBlue);
 	    admin.setBackground(lightBlue);
-	    newStudent.setBackground(lightBlue);
 	    loginButton.setBackground(lightBlue);
 	}
 	
@@ -123,8 +120,31 @@ public class StartUpMenuGUI extends JFrame{
 	}
 	
 	public int getUCID() {
+	
 		String stringUCID = ucidResponse.getText();
-		return Integer.parseInt(stringUCID);
+		int ucidParsed = 0;
+		
+		//This checks if its blank
+		if(stringUCID.contentEquals("")) {
+			return 0;
+		}
+		
+		//This checks to make sure its an integer
+		try {
+			ucidParsed = Integer.parseInt(stringUCID);
+		}catch(NumberFormatException e) {
+			
+			JPanel numberError = new JPanel(); 
+			
+			JOptionPane.showMessageDialog(numberError,
+				    "Please enter a valid UCID",
+				    "Error Message",
+				    JOptionPane.ERROR_MESSAGE);
+			
+			return 0;
+		}
+		
+		return ucidParsed;
 	}
 	
 	//----------------Button Listener Functions--------------------------//
