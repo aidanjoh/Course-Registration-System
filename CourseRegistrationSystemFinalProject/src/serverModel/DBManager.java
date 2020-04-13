@@ -3,7 +3,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
-//This class is simulating a database for our program
+/**
+ * This class is simulating a database for our program
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class DBManager 
 {
 	

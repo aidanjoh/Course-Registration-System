@@ -18,6 +18,11 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class StartUpMenuGUI extends JFrame{
 
 	private JLabel title = new JLabel("Welcome to the Course Registration System");

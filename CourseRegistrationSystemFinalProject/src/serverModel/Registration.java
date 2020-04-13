@@ -1,5 +1,10 @@
 package serverModel;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class Registration 
 {
 	private Student theStudent;
@@ -15,7 +20,7 @@ public class Registration
 	
 	private void addRegistration() 
 	{
-		System.out.printf("Course was succesfully added for the student: %s.\n", theStudent.getStudentName());
+		//System.out.printf("Course was succesfully added for the student: %s.\n", theStudent.getStudentName());
 		theStudent.addRegistration(this);
 		theOffering.addRegistration(this);
 	}
@@ -59,11 +64,11 @@ public class Registration
 	@Override
 	public String toString () 
 	{
-		String st = "\n";
-		st += "Student Name: " + getTheStudent() + "\n";
-		st += "The Offering: " + getTheOffering () + "\n";
+		String st = "\0";
+		st += "Student Name: " + getTheStudent() + "\0";
+		st += "The Offering: " + getTheOffering () + "\0";
 		st += "Grade: " + getGrade();
-		st += "\n-----------\n";
+		st += "\0-----------\0";
 		return st;
 	}
 }

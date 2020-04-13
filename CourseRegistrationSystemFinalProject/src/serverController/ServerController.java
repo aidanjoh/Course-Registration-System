@@ -122,7 +122,6 @@ public class ServerController
 							socketOutput.println(messageToBeSent);
 							break;
 						case 5:
-							System.out.println("Viewing all of your courses in your course list!");
 							studentID = Integer.parseInt(infoSent[1]);
 							messageToBeSent = regApp.viewAllStudentsCourses(studentID);
 							socketOutput.println(messageToBeSent);

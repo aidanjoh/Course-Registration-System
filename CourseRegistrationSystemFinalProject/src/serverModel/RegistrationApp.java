@@ -2,6 +2,11 @@ package serverModel;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class RegistrationApp 
 {
 	private CourseCatalogue courseCatalogue;
@@ -111,12 +116,11 @@ public class RegistrationApp
 		
 		if(course == null)
 		{
-			stringToBeSent = "The student is not enrolled in this course.";
+			stringToBeSent = "The course does not exist.";
 			return stringToBeSent;
 		}
 		
-		student.removeRegistration(course);
-		stringToBeSent = "The course was successfully removed!";
+		stringToBeSent = student.removeRegistration(course);
 		return stringToBeSent;
 	}
 

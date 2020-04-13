@@ -61,7 +61,6 @@ public class ClientController
 
 		try 
 		{
-			System.out.println(messageToBeSent);
 			socketOutput.println(messageToBeSent);
 			response = socketInput.readLine();
 			if(response.contains("\0"))

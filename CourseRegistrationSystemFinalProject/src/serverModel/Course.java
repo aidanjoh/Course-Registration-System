@@ -2,6 +2,11 @@ package serverModel;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class Course 
 {
 

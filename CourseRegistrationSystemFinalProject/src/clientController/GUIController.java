@@ -8,7 +8,7 @@ import clientView.*;
 /**
  * 
  * @author Aidan Johnson and Michele Piperni
- *
+ * @version 1.0
  */
 public class GUIController 
 {
@@ -115,14 +115,12 @@ public class GUIController
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showRemoveCourseOptionPane(messageRecieved);
-				//System.out.println(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
 				String messageToBeSent = "4 " + studentUCID;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				System.out.println(messageRecieved);
 				
 				//Set the Text Area
 				viewCatalogue.setStudentRecords(messageRecieved);
@@ -134,8 +132,6 @@ public class GUIController
 				String messageToBeSent = "5 " + studentUCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				
-				System.out.println(messageRecieved);
-				
 				//Set the Text Area
 				viewStudentsCourses.setStudentRecords(messageRecieved);
 				
@@ -145,23 +141,16 @@ public class GUIController
 			{
 				String messageToBeSent = "6 " + studentUCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				
-				System.out.println(messageRecieved);
 				System.exit(1);
 			}
 			else if(e.getSource() == viewCatalogue.getReturnButton()) 
 			{
-				System.out.println("Closed Catalogue");
 				viewCatalogue.dispose();
 			}
 			else if(e.getSource() == viewStudentsCourses.getReturnButton()) 
 			{
-				System.out.println("Closed Student Menu");
 				viewStudentsCourses.dispose();
 			}
-			
 		}
-		
 	}
-
 }

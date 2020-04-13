@@ -1,6 +1,11 @@
 package serverModel;
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class CourseOffering 
 {
 	
@@ -64,12 +69,12 @@ public class CourseOffering
 		offeringRegList.add(registration);
 		if(offeringRegList.size() > 7)
 		{
-			System.out.printf("There are %d students registered in the course so it can run!\n", offeringRegList.size());
+			//System.out.printf("There are %d students registered in the course so it can run!\n", offeringRegList.size());
 			theCourse.setValid(true);
 		}
 		else
 		{
-			System.out.printf("There needs to be %d more students registered in this course for it to run!\n" , (8-offeringRegList.size()));
+			//System.out.printf("There needs to be %d more students registered in this course for it to run!\n" , (8-offeringRegList.size()));
 			theCourse.setValid(false);
 		}
 	}
@@ -79,12 +84,12 @@ public class CourseOffering
 		offeringRegList.remove(registration);
 		if(offeringRegList.size() > 7)
 		{
-			System.out.printf("There are still %d students registered in this course so it can run!\n", offeringRegList.size());
+			//System.out.printf("There are still %d students registered in this course so it can run!\n", offeringRegList.size());
 			theCourse.setValid(true);
 		}
 		else
 		{
-			System.out.printf("There needs to be %d more students registered in this course for it to run!\n" , (8-offeringRegList.size()));
+			//System.out.printf("There needs to be %d more students registered in this course for it to run!\n" , (8-offeringRegList.size()));
 			theCourse.setValid(false);
 		}
 	}

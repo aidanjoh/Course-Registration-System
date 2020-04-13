@@ -2,6 +2,11 @@ package serverModel;
 
 import java.util.ArrayList;
 
+/**
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ *
+ */
 public class Student 
 {
 	
@@ -50,7 +55,7 @@ public class Student
 		studentRegList.add(registration);
 	}
 	
-	public void removeRegistration(Course course)
+	public String removeRegistration(Course course)
 	{
 		for (Registration registration : studentRegList)
 		{
@@ -58,11 +63,12 @@ public class Student
 			{
 				registration.removeRegistration();
 				studentRegList.remove(registration);
-				//System.out.printf("\n%s was removed.\n", course.getCourseName() + " " + course.getCourseNum());
-				return;
+				String messageToBeSent;
+				messageToBeSent = course.getCourseName() + " " + course.getCourseNum() + " was removed.\0";
+				return messageToBeSent;
 			}
 		}
-		//System.out.printf("\n%s is not enrolled in %s\n", studentName , course.getCourseName() + " " + course.getCourseNum());
+		return "\0" + studentName +" is not enrolled in " + course.getCourseName() + " " + course.getCourseNum() + "\0";
 	}
 	
 	public String printTheStudentsCourses()
