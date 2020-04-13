@@ -129,6 +129,19 @@ public class ServerController
 						case 6:
 							System.out.println("\nExiting Program, see you later!");
 							socketOutput.println("quit");
+							
+							//Properly closing all of the sockets.
+							try
+							{
+								socketInput.close();
+								socketOutput.close();
+								serverSocket.close();
+								communicationSocket.close();
+							}
+							catch(IOException error)
+							{
+								System.err.println("Closing error: " + error.getMessage());
+							}
 							return;
 					}
 				}
@@ -137,19 +150,6 @@ public class ServerController
 			{
 				System.err.println("Sending error: " + error.getMessage());
 			}
-		}
-		
-		//Properly closing all of the sockets.
-		try
-		{
-			socketInput.close();
-			socketOutput.close();
-			serverSocket.close();
-			communicationSocket.close();
-		}
-		catch(IOException error)
-		{
-			System.err.println("Closing error: " + error.getMessage());
 		}
 	}
 	
