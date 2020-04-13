@@ -65,6 +65,7 @@ public class ClientController
 			System.out.println(messageToBeSent);
 			socketOutput.println(messageToBeSent);
 			response = socketInput.readLine();
+			response.replaceAll("\0", "\n");
 			System.out.println(response);
 		} 
 		catch (Exception error)
