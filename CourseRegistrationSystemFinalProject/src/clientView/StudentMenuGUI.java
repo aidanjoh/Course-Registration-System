@@ -238,6 +238,18 @@ public class StudentMenuGUI extends JFrame
 		    {
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
+		    	
+		    	//Making sure all the fields are filled out before returning
+		    	if(insertedCourseName.equals("") || insertedCourseNum.equals("")) {
+		    		JPanel emptyStringError = new JPanel(); 
+					
+					JOptionPane.showMessageDialog(emptyStringError,
+						    "Please fill out all fields",
+						    "Error Message",
+						    JOptionPane.ERROR_MESSAGE);
+					return getCourseNameAndNumberForSearchCatalogue();
+		    	}
+		    	
 		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum;
 		    	return fullCourseString;
 		    }
@@ -247,7 +259,7 @@ public class StudentMenuGUI extends JFrame
 	
 	public void showSearchedCatalogue(String returnedCourses) {
 
-		JTextArea listOfCourseSections = new JTextArea(25, 40);
+		JTextArea listOfCourseSections = new JTextArea(10, 20);
 		listOfCourseSections.setText(returnedCourses);
 		listOfCourseSections.setEditable(false);
 		//listOfCourseSections.setBackground(Color.LIGHT_GRAY);
@@ -280,18 +292,28 @@ public class StudentMenuGUI extends JFrame
 		searchCourse.add(courseNumResponse);
 		searchCourse.add(enterSectionNum);
 		searchCourse.add(sectionNumResponse);
-
-
 		
 		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		    if (result == JOptionPane.OK_OPTION) {
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
 		    	String insertedSectionNum = sectionNumResponse.getText();
+		    	
+		    	//Making sure all the fields are filled out before returning
+		    	if(insertedCourseName.equals("") || insertedCourseNum.equals("") || insertedSectionNum.equals("")) {
+		    		JPanel emptyStringError = new JPanel(); 
+					
+					JOptionPane.showMessageDialog(emptyStringError,
+						    "Please fill out all fields",
+						    "Error Message",
+						    JOptionPane.ERROR_MESSAGE);
+					return getCourseNameAndNumberForAddAndRemoveCourse();
+		    	}
+		    	
 		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum + " " + insertedSectionNum;
 		    	return fullCourseString;
 		    }
-		    
+
 		return null;
 	}
 

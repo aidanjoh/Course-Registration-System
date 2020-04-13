@@ -70,13 +70,15 @@ public class GUIController
 				
 				startUpView.setVisible(false);
 				studentView.setVisible(true);
-				
-				System.out.println(studentUCID);
 			}
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForSearchCatalogue();
 				
+				//This is for if the cancel button was pressed
+				if(courseNameAndNum == null) {
+					return;
+				}
 				
 				String messageToBeSent = "1 " + studentUCID + " " + courseNameAndNum;
 	
@@ -89,15 +91,26 @@ public class GUIController
 			else if(e.getSource() == studentView.getAddCourseButton()) 
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
+				
+				//This is for if the cancel button was pressed
+				if(courseNameAndNum == null) {
+					return;
+				}
+				
 				String messageToBeSent = "2 " + studentUCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showAddCourseOptionPane(messageRecieved);
-				//System.out.println(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getRemoveCourseButton()) 
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
+				
+				//This is for if the cancel button was pressed
+				if(courseNameAndNum == null) {
+					return;
+				}
+				
 				String messageToBeSent = "3 " + studentUCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
