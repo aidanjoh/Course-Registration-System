@@ -6,14 +6,19 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 
@@ -215,7 +220,7 @@ public class StudentMenuGUI extends JFrame
 	public String getCourseNameAndNumberForSearchCatalogue()
 	{		
 		//Entering Information Panel For New Node
-		JPanel searchCourse = new JPanel(new GridLayout(2, 2));
+		JPanel searchCourse = new JPanel(new GridLayout(2, 2, 5, 0));
 				
 		JLabel enterCourseName = new JLabel("Enter the Course Name");
 		JTextField courseNameResponse = new JTextField();
@@ -228,7 +233,7 @@ public class StudentMenuGUI extends JFrame
 		searchCourse.add(enterCourseNum);
 		searchCourse.add(courseNumResponse);
 
-		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION);
+		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		    if (result == JOptionPane.OK_OPTION) 
 		    {
 		    	String insertedCourseName = courseNameResponse.getText();
@@ -240,10 +245,25 @@ public class StudentMenuGUI extends JFrame
 		return null;
 	}
 	
+	public void showSearchedCatalogue(String returnedCourses) {
+
+		JTextArea listOfCourseSections = new JTextArea(25, 40);
+		listOfCourseSections.setText(returnedCourses);
+		listOfCourseSections.setEditable(false);
+		//listOfCourseSections.setBackground(Color.LIGHT_GRAY);
+			
+		JScrollPane foundCoursesScrollPanel = new JScrollPane(listOfCourseSections);
+				
+		JOptionPane.showMessageDialog(null,
+				foundCoursesScrollPanel,
+			    "Searched Course",
+			    JOptionPane.PLAIN_MESSAGE);
+	}
+	
 	public String getCourseNameAndNumberForAddAndRemoveCourse()
 	{		
 		//Entering Information Panel For New Node
-		JPanel searchCourse = new JPanel(new GridLayout(3, 2));
+		JPanel searchCourse = new JPanel(new GridLayout(3, 2, 5, 0));
 				
 		JLabel enterCourseName = new JLabel("Enter the Course Name");
 		JTextField courseNameResponse = new JTextField();
@@ -261,7 +281,9 @@ public class StudentMenuGUI extends JFrame
 		searchCourse.add(enterSectionNum);
 		searchCourse.add(sectionNumResponse);
 
-		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION);
+
+		
+		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		    if (result == JOptionPane.OK_OPTION) {
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
@@ -271,5 +293,23 @@ public class StudentMenuGUI extends JFrame
 		    }
 		    
 		return null;
+	}
+
+	public void showAddCourseOptionPane(String message) {
+		JPanel addCourse = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(addCourse,
+				message,
+			    "Add course",
+			    JOptionPane.PLAIN_MESSAGE);	
+	}
+	
+	public void showRemoveCourseOptionPane(String message) {
+		JPanel removeCourse = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(removeCourse,
+				message,
+			    "Remove course",
+			    JOptionPane.PLAIN_MESSAGE);	
 	}
 }

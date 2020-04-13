@@ -84,6 +84,11 @@ public class ViewCatalogueCourses extends JDialog
 		return returnButton;
 	}
 	
+	public void setStudentRecords(String records)
+	{
+		listOfStudentsCourses.setText(records);
+	}
+	
 	/**
 	 * Adds the action listener for the return to main menu button.
 	 * 

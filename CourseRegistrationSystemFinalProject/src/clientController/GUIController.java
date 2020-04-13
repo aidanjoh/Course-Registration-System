@@ -32,21 +32,13 @@ public class GUIController
 	{
 		this.client = client;
 		
+		//Start Up Menu; Initially Visible, Initialize Login button listener
 		startUpView = new StartUpMenuGUI();
 		startUpView.setVisible(true);
-		
-		studentView = new StudentMenuGUI();
-		studentView.setVisible(false);
-		
-		viewCatalogue = new ViewCatalogueCourses(studentView);
-		viewCatalogue.setVisible(false);
-		
-		viewStudentsCourses = new ViewStudentsCourses(studentView);
-		viewStudentsCourses.setVisible(false);
-		
 		startUpView.addLoginButtonListener(new addButtonListener());
 		
-		
+		//Student Menu; Initially not visible, Initialize 6 button listener
+		studentView = new StudentMenuGUI();
 		studentView.addSearchCatalogueButtonListener(new addButtonListener());
 		studentView.addAddCourseButtonListener(new addButtonListener());
 		studentView.addRemoveCourseButtonListener(new addButtonListener());
@@ -54,7 +46,12 @@ public class GUIController
 		studentView.addViewMyCoursesButtonListener(new addButtonListener());
 		studentView.addQuitButtonListener(new addButtonListener());
 		
+		//View Catalogue Menu; Initially not visible, Initialize return button listener
+		viewCatalogue = new ViewCatalogueCourses(studentView);
 		viewCatalogue.addReturnButtonListener(new addButtonListener());
+		
+		//View Students Courses Menu; Initially not visible, Initialize return button listener
+		viewStudentsCourses = new ViewStudentsCourses(studentView);
 		viewStudentsCourses.addReturnButtonListener(new addButtonListener());
 	}
 	
@@ -79,12 +76,14 @@ public class GUIController
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForSearchCatalogue();
-				System.out.println(courseNameAndNum);
+				
+				
 				String messageToBeSent = "1 " + studentUCID + " " + courseNameAndNum;
-				System.out.println(messageToBeSent);
+	
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				System.out.println(messageRecieved);
+				
+				studentView.showSearchedCatalogue(messageRecieved);
 		
 			}
 			else if(e.getSource() == studentView.getAddCourseButton()) 
@@ -93,7 +92,8 @@ public class GUIController
 				String messageToBeSent = "2 " + studentUCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				System.out.println(messageRecieved);
+				studentView.showAddCourseOptionPane(messageRecieved);
+				//System.out.println(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getRemoveCourseButton()) 
 			{
@@ -101,7 +101,8 @@ public class GUIController
 				String messageToBeSent = "3 " + studentUCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				System.out.println(messageRecieved);
+				studentView.showRemoveCourseOptionPane(messageRecieved);
+				//System.out.println(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
@@ -109,6 +110,10 @@ public class GUIController
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.out.println(messageRecieved);
+				
+				//Set the Text Area
+				viewCatalogue.setStudentRecords(messageRecieved);
+				
 				viewCatalogue.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
@@ -117,6 +122,10 @@ public class GUIController
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				
 				System.out.println(messageRecieved);
+				
+				//Set the Text Area
+				viewStudentsCourses.setStudentRecords(messageRecieved);
+				
 				viewStudentsCourses.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getQuitButton()) 

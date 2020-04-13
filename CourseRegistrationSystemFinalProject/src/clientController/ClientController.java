@@ -66,7 +66,6 @@ public class ClientController
 			response = socketInput.readLine();
 			if(response.contains("\0"))
 			{
-				//response = response.replace("\0", "\n");
 				response = response.replaceAll("\0", "\n");
 			}
 			if(response.contentEquals("quit"))

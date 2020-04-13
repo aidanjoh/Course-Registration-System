@@ -80,7 +80,7 @@ public class ServerController
 		
 		while(running)
 		{
-			try
+			try 
 			{
 				input = socketInput.readLine();
 				if(input != null)
