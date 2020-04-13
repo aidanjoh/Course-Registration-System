@@ -57,7 +57,6 @@ public class ClientController
 	 */
 	public String communicateWithServer(String messageToBeSent)
 	{
-		//String line = "1 Dave";
 		String response = "";
 
 		try 
@@ -65,25 +64,29 @@ public class ClientController
 			System.out.println(messageToBeSent);
 			socketOutput.println(messageToBeSent);
 			response = socketInput.readLine();
-			response.replaceAll("\0", "\n");
-			System.out.println(response);
+			if(response.contains("\0"))
+			{
+				//response = response.replace("\0", "\n");
+				response = response.replaceAll("\0", "\n");
+			}
+			if(response.contentEquals("quit"))
+			{
+				try
+				{
+					socketInput.close();
+					socketOutput.close();
+					communicationSocket.close();
+				}
+				catch(IOException error)
+				{
+					System.out.println("Closing error: " + error.getMessage());
+				}
+			}
 		} 
 		catch (Exception error)
 		{
 			System.out.println("Sending error: " + error.getMessage());
-				
 		}
-		
-//		try
-//		{
-//			socketInput.close();
-//			socketOutput.close();
-//			communicationSocket.close();
-//		}
-//		catch(IOException error)
-//		{
-//			System.out.println("Closing error: " + error.getMessage());
-//		}
 		
 		return response;
 	}

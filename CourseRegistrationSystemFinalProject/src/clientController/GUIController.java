@@ -86,7 +86,7 @@ public class GUIController
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
 				String messageToBeSent = "2 " + studentUCID + " " + courseNameAndNum;
-				System.out.println(courseNameAndNum);
+				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.out.println(messageRecieved);
 			}
@@ -94,24 +94,23 @@ public class GUIController
 			{
 				String courseNameAndNum = studentView.getCourseNameAndNumberForAddAndRemoveCourse();
 				String messageToBeSent = "3 " + studentUCID + " " + courseNameAndNum;
-				System.out.println("Remove Course");
-				System.out.println(courseNameAndNum);
+				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.out.println(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
-				System.out.println("View Catalogue");
 				String messageToBeSent = "4 " + studentUCID;
+				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.out.println(messageRecieved);
 				viewCatalogue.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
 			{
-				System.out.println("View My Courses");
 				String messageToBeSent = "5 " + studentUCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
+				
 				System.out.println(messageRecieved);
 				viewStudentsCourses.setVisible(true);
 			}
@@ -119,8 +118,9 @@ public class GUIController
 			{
 				String messageToBeSent = "6 " + studentUCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
+				
 				System.out.println(messageRecieved);
-				System.out.println("Quit");
+				System.exit(1);
 			}
 			else if(e.getSource() == viewCatalogue.getReturnButton()) 
 			{

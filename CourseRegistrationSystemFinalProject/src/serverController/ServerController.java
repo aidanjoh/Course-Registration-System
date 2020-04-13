@@ -92,39 +92,40 @@ public class ServerController
 					String courseName;
 					int courseNumber;
 					int sectionNumber;
+					String messageToBeSent;
 					
 					switch(methodToRun)
 					{
 						case 1:
-							System.out.println("Searching the Catalogue for a Course.");
 							courseName = infoSent[2];
 							courseNumber = Integer.parseInt(infoSent[3]);
-							regApp.searchCatalogueCourses(courseName, courseNumber);
-							socketOutput.println("Course was Found");
+							messageToBeSent = regApp.searchCatalogueCourses(courseName, courseNumber);
+							socketOutput.println(messageToBeSent);
 							break;
 						case 2:
-							System.out.println("Adding a course to your course list!");
 							studentID = Integer.parseInt(infoSent[1]);
 							courseName = infoSent[2];
 							courseNumber = Integer.parseInt(infoSent[3]);
 							sectionNumber = Integer.parseInt(infoSent[4]);
-							regApp.addCourse(studentID, courseName, courseNumber, sectionNumber);
-							socketOutput.println("");
+							messageToBeSent = regApp.addCourse(studentID, courseName, courseNumber, sectionNumber);
+							socketOutput.println(messageToBeSent);
 							break;
 						case 3:
-							System.out.println("Removing a course from your course list!");
-							//regApp.removeCourse();
-							socketOutput.println("");
+							studentID = Integer.parseInt(infoSent[1]);
+							courseName = infoSent[2];
+							courseNumber = Integer.parseInt(infoSent[3]);
+							messageToBeSent = regApp.removeCourse(studentID, courseName, courseNumber);
+							socketOutput.println(messageToBeSent);
 							break;
 						case 4:
-							System.out.println("Viewing all courses in the course Catalogue!");
-							//regApp.viewAllCoursesInCatalogue();
-							socketOutput.println("");
+							messageToBeSent = regApp.viewAllCoursesInCatalogue();
+							socketOutput.println(messageToBeSent);
 							break;
 						case 5:
 							System.out.println("Viewing all of your courses in your course list!");
-							//regApp.viewAllStudentsCourses();
-							socketOutput.println("");
+							studentID = Integer.parseInt(infoSent[1]);
+							messageToBeSent = regApp.viewAllStudentsCourses(studentID);
+							socketOutput.println(messageToBeSent);
 							break;
 						case 6:
 							System.out.println("\nExiting Program, see you later!");

@@ -58,18 +58,18 @@ public class Student
 			{
 				registration.removeRegistration();
 				studentRegList.remove(registration);
-				System.out.printf("\n%s was removed.\n", course.getCourseName() + " " + course.getCourseNum());
+				//System.out.printf("\n%s was removed.\n", course.getCourseName() + " " + course.getCourseNum());
 				return;
 			}
 		}
-		System.out.printf("\n%s is not enrolled in %s\n", studentName , course.getCourseName() + " " + course.getCourseNum());
+		//System.out.printf("\n%s is not enrolled in %s\n", studentName , course.getCourseName() + " " + course.getCourseNum());
 	}
 	
 	public String printTheStudentsCourses()
 	{
 		if(studentRegList.size() == 0)
 		{
-			return "The student does not have any courses!\n";
+			return "The student does not have any courses! \0";
 		}
 		else
 		{
@@ -86,8 +86,8 @@ public class Student
 	@Override
 	public String toString () 
 	{
-		String st = "Student Name: " + getStudentName() + "\n" +
-				"Student Id: " + getStudentId() + "\n\n";
+		String st = "Student Name: " + getStudentName() + "\0" +
+				"Student Id: " + getStudentId() + "\0\0";
 		return st;
 	}
 

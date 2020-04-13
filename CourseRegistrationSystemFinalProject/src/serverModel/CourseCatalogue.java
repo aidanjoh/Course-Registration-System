@@ -45,7 +45,7 @@ public class CourseCatalogue
 				return c;
 			}	
 		}
-		displayCourseNotFoundError();
+		//displayCourseNotFoundError();
 		return null;
 	}
 	
@@ -71,11 +71,11 @@ public class CourseCatalogue
 	@Override
 	public String toString () 
 	{
-		String st = "All courses in the catalogue: \n";
+		String st = "All courses in the catalogue: \0";
 		for (Course c : courseList) 
 		{
 			st += c;  //This line invokes the toString() method of Course
-			st += "\n";
+			st += "\0";
 		}
 		return st;
 	}

@@ -69,22 +69,4 @@ public class DBManager
 	{
 		return readStudentsFromFile();
 	}
-	
-	public static void main (String Args[])
-	{
-		DBManager DB = new DBManager();
-		ArrayList<Course> courseList = DB.readCoursesFromDB();
-		ArrayList<Student> studentList = DB.readStudentsFromDB();
-		
-		for(Course course : courseList)
-		{
-			System.out.println(course.toString());
-		}
-		
-		for(Student student : studentList)
-		{
-			System.out.println(student.toString());
-		}
-	}
-
 }

@@ -61,12 +61,12 @@ public class Course
 	@Override
 	public String toString () 
 	{
-		String st = "\n";
-		st += getCourseName() + " " + getCourseNum ();
-		st += "\nAll course sections:\n";
+		String st = "\0";
+		st += getCourseName() + " " + getCourseNum();
+		st += "\0All course sections:\0";
 		for (CourseOffering c : offeringList)
 			st += c;
-		st += "\n-------\n";
+		st += "\0-------\0";
 		return st;
 	}
 

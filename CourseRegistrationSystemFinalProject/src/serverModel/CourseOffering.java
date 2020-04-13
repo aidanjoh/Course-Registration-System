@@ -52,9 +52,9 @@ public class CourseOffering
 	@Override
 	public String toString () 
 	{
-		String st = "\n";
-		st += getTheCourse().getCourseName() + " " + getTheCourse().getCourseNum() + "\n";
-		st += "Section Num: " + getSecNum() + ", section cap: "+ getSecCap() +"\n";
+		String st = "\0";
+		st += getTheCourse().getCourseName() + " " + getTheCourse().getCourseNum() + "\0";
+		st += "Section Num: " + getSecNum() + ", section cap: "+ getSecCap() +"\0";
 		//We also want to print the names of all students in the section
 		return st;
 	}
