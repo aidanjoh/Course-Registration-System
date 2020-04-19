@@ -12,7 +12,7 @@ program for milestone and simulate our applications database.
 
 1. First Run the java program called ServerController (this is our server class).
 2. Run the java program called ClientController (this is our client class). A GUI will pop allowing you
-to enter a UCID and select if you are a student or admin.
+to enter a UCID number.
 3. Enter a UCID number from the student.txt file (the UCID is the number after the name of each student on each line) into the 
 UCID text field and then press login. (The other GUI features on that panel will be implemented for milestone 3 for bonus).
 4. Once you have pressed login a new GUI frame will pop up which is the student menu allowing you to search for a catalogue
