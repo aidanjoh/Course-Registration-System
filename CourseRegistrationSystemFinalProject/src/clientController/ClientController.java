@@ -63,6 +63,7 @@ public class ClientController
 		{
 			socketOutput.println(messageToBeSent);
 			response = socketInput.readLine();
+			
 			if(response.contains("\0"))
 			{
 				response = response.replaceAll("\0", "\n");

@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import serverModel.RegistrationApp;
 
@@ -44,24 +46,22 @@ public class ServerController
 	 */
 	private RegistrationApp regApp;
 	
+	
+	private ExecutorService threadPool;
+	
 	/**
 	 * Constructs a ServerController object by assigning a port number to the server socket.
 	 * 
 	 * @param portNumber the port number of the Server.
 	 */
-	public ServerController(int portNumber, RegistrationApp regApp)
+	public ServerController(int portNumber)
 	{
 		System.out.println("Server is now running!");
-		
-		this.regApp = regApp;
 		
 		try
 		{
 			serverSocket = new ServerSocket(portNumber);
-			communicationSocket = serverSocket.accept();
-			socketInput = new BufferedReader(new InputStreamReader(communicationSocket.getInputStream()));
-			socketOutput = new PrintWriter((communicationSocket.getOutputStream()), true);
-			
+			threadPool = Executors.newCachedThreadPool();	
 		}
 		catch(IOException error)
 		{
@@ -75,81 +75,19 @@ public class ServerController
 	 */
 	public void communicateWithClient()
 	{
-		String input = null;
-		boolean running = true;
-		
-		while(running)
+		try
 		{
-			try 
+			while(true)
 			{
-				input = socketInput.readLine();
-				if(input != null)
-				{
-					String[] infoSent = input.split(" ");
-					int methodToRun = Integer.parseInt(infoSent[0]);
-					
-					int studentID;
-					String courseName;
-					int courseNumber;
-					int sectionNumber;
-					String messageToBeSent;
-					
-					switch(methodToRun)
-					{
-						case 1:
-							courseName = infoSent[2];
-							courseNumber = Integer.parseInt(infoSent[3]);
-							messageToBeSent = regApp.searchCatalogueCourses(courseName, courseNumber);
-							socketOutput.println(messageToBeSent);
-							break;
-						case 2:
-							studentID = Integer.parseInt(infoSent[1]);
-							courseName = infoSent[2];
-							courseNumber = Integer.parseInt(infoSent[3]);
-							sectionNumber = Integer.parseInt(infoSent[4]);
-							messageToBeSent = regApp.addCourse(studentID, courseName, courseNumber, sectionNumber);
-							socketOutput.println(messageToBeSent);
-							break;
-						case 3:
-							studentID = Integer.parseInt(infoSent[1]);
-							courseName = infoSent[2];
-							courseNumber = Integer.parseInt(infoSent[3]);
-							messageToBeSent = regApp.removeCourse(studentID, courseName, courseNumber);
-							socketOutput.println(messageToBeSent);
-							break;
-						case 4:
-							messageToBeSent = regApp.viewAllCoursesInCatalogue();
-							socketOutput.println(messageToBeSent);
-							break;
-						case 5:
-							studentID = Integer.parseInt(infoSent[1]);
-							messageToBeSent = regApp.viewAllStudentsCourses(studentID);
-							socketOutput.println(messageToBeSent);
-							break;
-						case 6:
-							System.out.println("\nExiting Program, see you later!");
-							socketOutput.println("quit");
-							
-							//Properly closing all of the sockets.
-							try
-							{
-								socketInput.close();
-								socketOutput.close();
-								serverSocket.close();
-								communicationSocket.close();
-							}
-							catch(IOException error)
-							{
-								System.err.println("Closing error: " + error.getMessage());
-							}
-							return;
-					}
-				}
+				RegistrationApp regApp = new RegistrationApp(serverSocket.accept());
+				System.out.println("Connected with a client!");
+				threadPool.execute(regApp);
 			}
-			catch(IOException error)
-			{
-				System.err.println("Sending error: " + error.getMessage());
-			}
+		}
+		catch(Exception error)
+		{
+			System.err.println("There was an error");
+			threadPool.shutdown();
 		}
 	}
 	
@@ -162,8 +100,7 @@ public class ServerController
 	 */
 	public static void main(String[] args) 
 	{
-		RegistrationApp regApp = new RegistrationApp();
-		ServerController server = new ServerController(8099, regApp);
+		ServerController server = new ServerController(8099);
 		server.communicateWithClient();
 	}
 }
