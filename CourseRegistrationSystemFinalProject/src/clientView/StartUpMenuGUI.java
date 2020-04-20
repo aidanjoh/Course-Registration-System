@@ -175,7 +175,12 @@ public class StartUpMenuGUI extends JFrame{
 		
 	}
 	
-	//----------------Button Listener Functions--------------------------//
+	public void resetTextFields() {
+	     ucidResponse.setText("");
+	     passwordResponse.setText("");
+	}
+	
+	//----------------Button Listener Methods--------------------------//
 	
 	
 	/**
@@ -187,5 +192,4 @@ public class StartUpMenuGUI extends JFrame{
 	{
 		loginButton.addActionListener(listenForLoginButton);
 	}
-
 }

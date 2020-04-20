@@ -15,6 +15,7 @@ public class GUIController
 
 	private StartUpMenuGUI startUpView;
 	private StudentMenuGUI studentView;
+	private AdminMenuGUI adminView;
 	private ViewCatalogueCourses viewCatalogue;
 	private ViewStudentsCourses viewStudentsCourses;
 	
@@ -37,7 +38,7 @@ public class GUIController
 		startUpView.setVisible(true);
 		startUpView.addLoginButtonListener(new addButtonListener());
 		
-		//Student Menu; Initially not visible, Initialize 6 button listener
+		//Student Menu; Initially not visible, Initialize 6 button listener + logout button
 		studentView = new StudentMenuGUI();
 		studentView.addSearchCatalogueButtonListener(new addButtonListener());
 		studentView.addAddCourseButtonListener(new addButtonListener());
@@ -45,6 +46,14 @@ public class GUIController
 		studentView.addViewCatalogueButtonListener(new addButtonListener());
 		studentView.addViewMyCoursesButtonListener(new addButtonListener());
 		studentView.addQuitButtonListener(new addButtonListener());
+		studentView.addLogoutButtonListener(new addButtonListener());
+		
+		//Admin Menu; Initially not visible, Initialize 3 button listener + logout button
+		adminView = new AdminMenuGUI();
+		adminView.addViewCatalogueButtonListener(new addButtonListener());
+		adminView.addAddCoursesToCatalogueButtonListener(new addButtonListener());
+		adminView.addQuitButtonListener(new addButtonListener());
+		adminView.addLogoutButtonListener(new addButtonListener());
 		
 		//View Catalogue Menu; Initially not visible, Initialize return button listener
 		viewCatalogue = new ViewCatalogueCourses(studentView);
@@ -65,13 +74,12 @@ public class GUIController
 				String readPassword = startUpView.getPassword();
 				
 				//This is for the error checking set up for the login
-				if(UCID == 0) {
+				if(UCID == 0 || readPassword.equals("")) {
 					return;
 				}
 				
 				//The if statement checks which radio button is selected
 				if(startUpView.getExistingStudent().isSelected()) {
-					System.out.println("Student");
 					
 					String messageToBeSent = "7 " + UCID + " " + readPassword;
 					String messageToBeRecieved = client.communicateWithServer(messageToBeSent);
@@ -87,15 +95,13 @@ public class GUIController
 					}
 				}
 				else if(startUpView.getAdmin().isSelected()) {
-					System.out.println("Admin");
-					
-					String messageToBeSent = "8 " + UCID + " " + readPassword;
-					System.out.println(messageToBeSent);
-					
+			
+					String messageToBeSent = "8 " + UCID + " " + readPassword;					
 					String messageRecieved = client.communicateWithServer(messageToBeSent);
+					
 					if(messageRecieved.equals("true")) { //valid ucid and password
 						startUpView.setVisible(false);
-						studentView.setVisible(true);
+						adminView.setVisible(true);
 					}
 					else {
 						startUpView.showInvalidPasswordAndUCID();
@@ -147,7 +153,7 @@ public class GUIController
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showRemoveCourseOptionPane(messageRecieved);
 			}
-			else if(e.getSource() == studentView.getViewCatalogueButton()) 
+			else if(e.getSource() == studentView.getViewCatalogueButton() || e.getSource() == adminView.getViewCatalogueButton()) 
 			{
 				String messageToBeSent = "4 " + UCID;
 				
@@ -168,11 +174,37 @@ public class GUIController
 				
 				viewStudentsCourses.setVisible(true);
 			}
-			else if(e.getSource() == studentView.getQuitButton()) 
+			else if(e.getSource() == studentView.getQuitButton() || e.getSource() == adminView.getQuitButton()) 
 			{
 				String messageToBeSent = "6 " + UCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.exit(1);
+			}
+			else if(e.getSource() == studentView.getLogoutButton()) 
+			{
+				startUpView.resetTextFields();
+				studentView.setVisible(false);
+				startUpView.setVisible(true);
+			}
+			else if(e.getSource() == adminView.getLogoutButton()) 
+			{
+				startUpView.resetTextFields();
+				adminView.setVisible(false);
+				startUpView.setVisible(true);
+			}
+			else if(e.getSource() == adminView.getAddCoursesToCatalogueButton()) 
+			{
+				String courseNameNumSectionsCap = adminView.getCourseNameNumberSecCapForSearchCatalogue();
+				
+				//This is for if the cancel button was pressed
+				if(courseNameNumSectionsCap == null) {
+					return;
+				}
+				
+				String messageToBeSent = "9 " + courseNameNumSectionsCap;
+	
+				String messageRecieved = client.communicateWithServer(messageToBeSent);
+				adminView.showAddCourseOptionPane(messageRecieved);
 			}
 			else if(e.getSource() == viewCatalogue.getReturnButton()) 
 			{

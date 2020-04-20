@@ -6,12 +6,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
 /**
  * 
@@ -29,9 +24,7 @@ import javax.swing.UIManager;
  */
 public class StudentMenuGUI extends JFrame
 {
-
 	private JLabel title = new JLabel("Student Menu");
-	
 	private JLabel optionsTitle = new JLabel("Please Select One of the Following Options");
 		
 	private JPanel buttonsPanel = new JPanel();
@@ -41,10 +34,11 @@ public class StudentMenuGUI extends JFrame
 	private JButton viewCatalogueButton = new JButton();
 	private JButton viewMyCoursesButton = new JButton();
 	private JButton quitButton = new JButton("Quit");
+	private JButton logoutButton = new JButton("Logout");
 	
 	public StudentMenuGUI()
 	{
-		super("Course Registration Start Menu");
+		super("Course Registration Student Menu");
 		
 		this.setFrameSizeAndLayout();
 		this.makeButtonPanel();
@@ -94,6 +88,7 @@ public class StudentMenuGUI extends JFrame
 	{
 	    title.setAlignmentX( Component.CENTER_ALIGNMENT );
 	    optionsTitle.setAlignmentX( Component.CENTER_ALIGNMENT );
+	    logoutButton.setAlignmentX( Component.CENTER_ALIGNMENT );
 	}
 	
 	private void setFontOptions() 
@@ -120,6 +115,7 @@ public class StudentMenuGUI extends JFrame
 		viewCatalogueButton.setBackground(lightBlue);
 		viewMyCoursesButton.setBackground(lightBlue);
 		quitButton.setBackground(lightBlue);
+		logoutButton.setBackground(lightBlue);
 	}
 	
 	private void addToFrame() 
@@ -130,6 +126,8 @@ public class StudentMenuGUI extends JFrame
 		this.add(Box.createRigidArea(new Dimension(0, 10)));
 		this.add(buttonsPanel);
 		this.add(Box.createRigidArea(new Dimension(0, 30)));
+		this.add(logoutButton);
+		this.add(Box.createRigidArea(new Dimension(0, 15)));
 	}
 	
 	//---------------- Getters for buttons --------------------------//
@@ -165,8 +163,11 @@ public class StudentMenuGUI extends JFrame
 		return quitButton;
 	}
 	
-	//----------------Button Listener Functions--------------------------//
+	public JButton getLogoutButton() {
+		return logoutButton;
+	}
 	
+	//----------------Button Listener Methods--------------------------//
 	
 	/**
 	 * 
@@ -222,9 +223,20 @@ public class StudentMenuGUI extends JFrame
 		quitButton.addActionListener(listenForQuitButton);
 	}
 	
+	/**
+	 * 
+	 * @param listenForQuitButton
+	 */
+	public void addLogoutButtonListener(ActionListener listenForLogoutButton)
+	{
+		logoutButton.addActionListener(listenForLogoutButton);
+	}
+	
+	//----------------Other Methods--------------------------//
+	
 	public String getCourseNameAndNumberForSearchCatalogue()
 	{		
-		//Entering Information Panel For New Node
+		//Entering Information Panel For New Course
 		JPanel searchCourse = new JPanel(new GridLayout(2, 2, 5, 0));
 				
 		JLabel enterCourseName = new JLabel("Enter the Course Name");
@@ -279,7 +291,7 @@ public class StudentMenuGUI extends JFrame
 	
 	public String getCourseNameAndNumberForAddAndRemoveCourse()
 	{		
-		//Entering Information Panel For New Node
+		//Entering Information Panel For New Course
 		JPanel searchCourse = new JPanel(new GridLayout(3, 2, 5, 0));
 				
 		JLabel enterCourseName = new JLabel("Enter the Course Name");
