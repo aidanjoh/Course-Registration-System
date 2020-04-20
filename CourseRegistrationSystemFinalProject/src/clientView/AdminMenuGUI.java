@@ -24,6 +24,7 @@ public class AdminMenuGUI extends JFrame{
 	private JButton addCoursesToCatalogueButton = new JButton();
 	private JButton quitButton = new JButton("Quit");
 	private JButton logoutButton = new JButton("Logout");
+	private JLabel currentLogin = new JLabel();
 	
 	public AdminMenuGUI()
 	{
@@ -68,6 +69,7 @@ public class AdminMenuGUI extends JFrame{
 	    title.setAlignmentX( Component.CENTER_ALIGNMENT );
 	    optionsTitle.setAlignmentX( Component.CENTER_ALIGNMENT );
 	    logoutButton.setAlignmentX( Component.CENTER_ALIGNMENT );
+	    currentLogin.setAlignmentX( Component.CENTER_ALIGNMENT );
 	}
 	
 	private void setFontOptions() 
@@ -100,10 +102,12 @@ public class AdminMenuGUI extends JFrame{
 		this.add(buttonsPanel);
 		this.add(Box.createRigidArea(new Dimension(0, 30)));
 		this.add(logoutButton);
+		this.add(Box.createRigidArea(new Dimension(0, 5)));
+		this.add(currentLogin);
 		this.add(Box.createRigidArea(new Dimension(0, 15)));
 	}
 	
-	//---------------- Getters for buttons --------------------------//
+	//---------------- Getters And Setters --------------------------//
 
 	public JButton getViewCatalogueButton() {
 		return viewCatalogueButton;
@@ -119,6 +123,10 @@ public class AdminMenuGUI extends JFrame{
 	
 	public JButton getLogoutButton() {
 		return logoutButton;
+	}
+	
+	public void setCurrentLogin(String nameAndID) {
+		currentLogin.setText(nameAndID);
 	}
 	
 	//----------------Button Listener Methods--------------------------//

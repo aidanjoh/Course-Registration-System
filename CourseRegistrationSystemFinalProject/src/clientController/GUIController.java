@@ -82,13 +82,12 @@ public class GUIController
 				if(startUpView.getExistingStudent().isSelected()) {
 					
 					String messageToBeSent = "7 " + UCID + " " + readPassword;
-					String messageToBeRecieved = client.communicateWithServer(messageToBeSent);
+					String messageRecieved = client.communicateWithServer(messageToBeSent);
 					
-					if(messageToBeRecieved.equals("true")) 
+					if(!messageRecieved.equals("false")) 
 					{ //valid ucid and password
 						startUpView.setVisible(false);
-						//String currentLogin = startUpView.getCurrentLoginInfo();
-						String currentLogin = "Current User: Katie ID #1";
+						String currentLogin = "Current User: " + messageRecieved + "    ID: " + UCID;
 						studentView.setCurrentLogin(currentLogin);
 						studentView.setVisible(true);
 					}
@@ -102,11 +101,15 @@ public class GUIController
 					String messageToBeSent = "8 " + UCID + " " + readPassword;					
 					String messageRecieved = client.communicateWithServer(messageToBeSent);
 					
-					if(messageRecieved.equals("true")) { //valid ucid and password
+					if(!messageRecieved.equals("false")) 
+					{ //valid ucid and password
 						startUpView.setVisible(false);
+						String currentLogin = "Current User: " + messageRecieved + "    ID: " + UCID;
+						adminView.setCurrentLogin(currentLogin);
 						adminView.setVisible(true);
 					}
-					else {
+					else 
+					{
 						startUpView.showInvalidPasswordAndUCID();
 					}
 				}
