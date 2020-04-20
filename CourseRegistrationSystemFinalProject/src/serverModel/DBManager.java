@@ -164,7 +164,7 @@ public class DBManager implements Credentials
 	{
 		String sql = "CREATE TABLE COURSE " + "(id INTEGER not NULL, " + " courseName VARCHAR(255), " + " PRIMARY KEY (id))";
 		
-		try
+		try 
 		{
 			stmt = conn.createStatement(); // construct a statement
 			stmt.executeUpdate(sql); // execute my query (i.e. sql)
