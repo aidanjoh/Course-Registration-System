@@ -276,15 +276,14 @@ public class DBManager implements Credentials
 			stmt = conn.createStatement();
 			String query = "SELECT * FROM STUDENT WHERE id = '" + id + "' and password ='" + password + "'";
 			rs = stmt.executeQuery(query);
+			
 			if(rs.next()) 
 			{
-				System.out.println("Student logged in");
 				String studentName = rs.getString("name");
 				return studentName;
 			}
 			else
 			{
-				System.out.println("Invalid id or password");
 				return "false";
 			}
 		}
@@ -312,13 +311,11 @@ public class DBManager implements Credentials
 			rs = stmt.executeQuery(query);
 			if(rs.next()) 
 			{
-				System.out.println("Admin logged in");
 				String adminName = rs.getString("name");
 				return adminName;
 			}
 			else
 			{
-				System.out.println("Invalid id or password");
 				return "false";
 			}
 		}

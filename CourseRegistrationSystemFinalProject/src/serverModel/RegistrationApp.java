@@ -136,7 +136,6 @@ public class RegistrationApp implements Runnable
 							socketOutput.flush();
 							break;
 						case 6:
-							System.out.println("\nExiting Program, see you later!");
 							socketOutput.println("quit");
 							socketOutput.flush();
 	
@@ -153,7 +152,6 @@ public class RegistrationApp implements Runnable
 							}
 							return;
 						case 7:
-							System.out.println("Checking for valid student login");
 							studentID = Integer.parseInt(infoSent[1]);
 							studentPassword = infoSent[2];
 							messageToBeSent = dbManager.validateStudentLogin(studentID, studentPassword);
@@ -161,7 +159,6 @@ public class RegistrationApp implements Runnable
 							socketOutput.flush();
 							break;
 						case 8:
-							System.out.println("Checking for valid admin login");
 							adminID = Integer.parseInt(infoSent[1]);
 							adminPassword = infoSent[2];
 							messageToBeSent = dbManager.validateAdminLogin(adminID, adminPassword);
@@ -169,7 +166,6 @@ public class RegistrationApp implements Runnable
 							socketOutput.flush();
 							break;
 						case 9:
-							System.out.println("Adding a course to the database");
 							courseName = infoSent[1];
 							courseNumber = Integer.parseInt(infoSent[2]);
 							int numOfCourseSection = Integer.parseInt(infoSent[3]);
