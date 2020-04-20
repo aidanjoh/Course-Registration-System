@@ -74,17 +74,17 @@ public class GUIController
 					System.out.println("Student");
 					
 					String messageToBeSent = "7 " + UCID + " " + readPassword;
+					String messageToBeRecieved = client.communicateWithServer(messageToBeSent);
 					
-					System.out.println(messageToBeSent);
-					
-//					String messageRecieved = client.communicateWithServer(messageToBeSent);
-//					if(messageRecieved.equals("true")) { //valid ucid and password
-//						startUpView.setVisible(false);
-//						studentView.setVisible(true);
-//					}
-//					else {
-//						startUpView.showInvalidPasswordAndUCID();
-//					}
+					if(messageToBeRecieved.equals("true")) 
+					{ //valid ucid and password
+						startUpView.setVisible(false);
+						studentView.setVisible(true);
+					}
+					else 
+					{
+						startUpView.showInvalidPasswordAndUCID();
+					}
 				}
 				else if(startUpView.getAdmin().isSelected()) {
 					System.out.println("Admin");
@@ -92,18 +92,15 @@ public class GUIController
 					String messageToBeSent = "8 " + UCID + " " + readPassword;
 					System.out.println(messageToBeSent);
 					
-//					String messageRecieved = client.communicateWithServer(messageToBeSent);
-//					if(messageRecieved.equals("true")) { //valid ucid and password
-//						startUpView.setVisible(false);
-//						studentView.setVisible(true);
-//					}
-//					else {
-//						startUpView.showInvalidPasswordAndUCID();
-//					}
+					String messageRecieved = client.communicateWithServer(messageToBeSent);
+					if(messageRecieved.equals("true")) { //valid ucid and password
+						startUpView.setVisible(false);
+						studentView.setVisible(true);
+					}
+					else {
+						startUpView.showInvalidPasswordAndUCID();
+					}
 				}
-				
-				startUpView.setVisible(false);
-				studentView.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getSearchCatalogueButton()) 
 			{

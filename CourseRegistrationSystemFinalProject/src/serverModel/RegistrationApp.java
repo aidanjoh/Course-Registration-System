@@ -28,9 +28,9 @@ public class RegistrationApp implements Runnable
 
 	public RegistrationApp(Socket regAppSocket)
 	{
-		courseCatalogue = new CourseCatalogue();
 		dbManager = new DBManager();
 		studentList = dbManager.readStudentsFromDB();
+		courseCatalogue = new CourseCatalogue();
 		this.regAppSocket = regAppSocket;
 		
 		try

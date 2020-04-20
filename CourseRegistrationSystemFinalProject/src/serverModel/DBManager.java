@@ -44,6 +44,7 @@ public class DBManager implements Credentials
 	{
 		courseList = new ArrayList<Course>();
 		studentList = new ArrayList<Student>();
+		initializeConnection();
 	}
 
 	/**
@@ -251,7 +252,7 @@ public class DBManager implements Credentials
 		return "false";
 	}
 	
-	public ArrayList<Student> readStudentsFromFile()
+	public void readStudentsFromFile()
 	{
 		try 
 		{
@@ -264,14 +265,12 @@ public class DBManager implements Credentials
 			{
 				String[] temp = line.split(" ");
 				insertStudentPreparedStatement(Integer.parseInt(temp[0]), temp[1], temp[2]);
-				studentList.add(new Student(temp[1], Integer.parseInt(temp[0])));
 			}
 		}
 		catch(Exception e)
 		{
 			System.err.println(e.getMessage());
 		}
-		return studentList;
 	}
 	
 	public void readAdminsFromFile()
@@ -295,7 +294,7 @@ public class DBManager implements Credentials
 		}
 	}
 	
-	public ArrayList<Course> readCoursesFromFile()
+	public void readCoursesFromFile()
 	{
 		try 
 		{
@@ -308,24 +307,62 @@ public class DBManager implements Credentials
 			{
 				String[] temp = line.split(" ");
 				insertCoursePreparedStatement(Integer.parseInt(temp[1]), temp[0]);
-				courseList.add(new Course(temp[0], Integer.parseInt(temp[1])));
 			}
 		}
 		catch(Exception e)
 		{
 			System.err.println(e.getMessage());
 		}
-		return courseList;
 	}
 	
 	public ArrayList<Course> readCoursesFromDB() 
 	{
-		return readCoursesFromFile();
+		String query = "SELECT * FROM course";
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next())
+			{
+				int courseID = rs.getInt("id");
+				String courseName = rs.getString("courseName");
+				courseList.add(new Course(courseName, courseID));
+			}
+		}
+		catch(SQLException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return courseList;
 	}
 	
 	public ArrayList<Student> readStudentsFromDB()
 	{
-		return readStudentsFromFile();
+		String query = "SELECT * FROM student";
+		ArrayList<Student> studentList = new ArrayList<Student>();
+		
+		try
+		{
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			while(rs.next())
+			{
+				int studentID = rs.getInt("id");
+				String studentName = rs.getString("name");
+				studentList.add(new Student(studentName, studentID));
+			}
+		}
+		catch(SQLException error)
+		{
+			error.printStackTrace();
+		}
+		
+		return studentList;
 	}
 
 	/**
@@ -335,7 +372,6 @@ public class DBManager implements Credentials
 	public static void main(String[] args)
 	{
 		DBManager myApp = new DBManager();
-		myApp.initializeConnection();
 		myApp.createStudentTable();
 		myApp.createCourseTable();
 		myApp.createAdminTable();
