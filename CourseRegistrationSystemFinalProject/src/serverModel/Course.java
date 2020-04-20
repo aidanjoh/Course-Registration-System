@@ -22,7 +22,7 @@ public class Course
 	private int courseNum;
 	
 	/**
-	 * ArrayList holding the pre requiste courses of a course.
+	 * ArrayList holding the pre-requisite courses of a course.
 	 */
 	private ArrayList<Course> preReq;
 	

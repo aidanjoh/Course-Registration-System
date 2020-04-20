@@ -279,7 +279,8 @@ public class DBManager implements Credentials
 			if(rs.next()) 
 			{
 				System.out.println("Student logged in");
-				return "true";
+				String studentName = rs.getString("name");
+				return studentName;
 			}
 			else
 			{
@@ -300,7 +301,7 @@ public class DBManager implements Credentials
 	 * 
 	 * @param id the id of the admin entered being checked to see if the login attempt is valid.
 	 * @param password the password of the admin entered being checked to see if the login attempt is valid.
-	 * @returns the message "true" if the login attempt was valid otherwise it returns "false".
+	 * @returns the admin name if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateAdminLogin(int id, String password)
 	{
@@ -312,7 +313,8 @@ public class DBManager implements Credentials
 			if(rs.next()) 
 			{
 				System.out.println("Admin logged in");
-				return "true";
+				String adminName = rs.getString("name");
+				return adminName;
 			}
 			else
 			{
