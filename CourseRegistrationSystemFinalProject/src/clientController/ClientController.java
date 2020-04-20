@@ -52,8 +52,11 @@ public class ClientController
 	}
 	
 	/**
+	 * Communicates with the server by sending and receiving String messages from the socketOutput and socketInput socket objects.
 	 * 
-	 * Reads words inputed by the user and communicates them to the server.
+	 * @param messageToBeSent the specified String message to be sent to the server to call a respective function
+	 * in the back end of the application.
+	 * @returns a String containing the message from the server.
 	 */
 	public String communicateWithServer(String messageToBeSent)
 	{

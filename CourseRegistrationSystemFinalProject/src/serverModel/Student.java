@@ -3,7 +3,7 @@ package serverModel;
 import java.util.ArrayList;
 
 /**
- * The class Student has attributes and methods to
+ * The class Student has attributes and methods to represent a student.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0

@@ -30,7 +30,18 @@ public class Registration
 		theOffering.removeRegistration(this);
 	}
 	
+	@Override
+	public String toString () 
+	{
+		String st = "\0";
+		st += "Student Name: " + getTheStudent() + "\0";
+		st += "The Offering: " + getTheOffering () + "\0";
+		st += "Grade: " + getGrade();
+		st += "\0-----------\0";
+		return st;
+	}
 	
+	//Getter and Setter Functions
 	public Student getTheStudent() 
 	{
 		return theStudent;
@@ -59,16 +70,5 @@ public class Registration
 	public void setGrade(char grade)
 	{
 		this.grade = grade;
-	}
-	
-	@Override
-	public String toString () 
-	{
-		String st = "\0";
-		st += "Student Name: " + getTheStudent() + "\0";
-		st += "The Offering: " + getTheOffering () + "\0";
-		st += "Grade: " + getGrade();
-		st += "\0-----------\0";
-		return st;
 	}
 }

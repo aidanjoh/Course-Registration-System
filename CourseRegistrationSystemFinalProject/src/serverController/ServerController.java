@@ -1,18 +1,15 @@
 package serverController;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import serverModel.RegistrationApp;
 
 /**
- * The Class ServerController is the implementation of a server for a course Registration client-server application.
+ * The Class ServerController is the implementation of a server for a course Registration client-server application. The server class
+ * uses a thread pool so multiple clients are able to use the application at a time.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
@@ -27,26 +24,13 @@ public class ServerController
 	private ServerSocket serverSocket;
 	
 	/**
-	 * The Socket object communicationSocket handles the communication for the server.
-	 */
-	private Socket communicationSocket;
-	
-	/**
-	 * The PrintWriter object socketOutput writes information back to the client.
-	 */
-	private PrintWriter socketOutput;
-	
-	/**
-	 * The BufferedReader object socketInput reads the information from the client.
-	 */
-	private BufferedReader socketInput;
-	
-	/**
-	 * The serverModel
+	 * The Registration object regApp is the server model holding the data and handling what functions should be run in the backend.
 	 */
 	private RegistrationApp regApp;
 	
-	
+	/**
+	 * The executorService object threadPool is the thread pool object to handle multiple clients.
+	 */
 	private ExecutorService threadPool;
 	
 	/**
@@ -57,7 +41,6 @@ public class ServerController
 	public ServerController(int portNumber)
 	{
 		System.out.println("Server is now running!");
-		
 		try
 		{
 			serverSocket = new ServerSocket(portNumber);
@@ -70,7 +53,7 @@ public class ServerController
 	}
 	
 	/**
-	 * Communicates with the client.
+	 * Communicates with the client and creates a new thread every time a client connects to the server.
 	 * 
 	 */
 	public void communicateWithClient()
@@ -79,15 +62,14 @@ public class ServerController
 		{
 			while(true)
 			{
-				RegistrationApp regApp = new RegistrationApp(serverSocket.accept());
+				regApp = new RegistrationApp(serverSocket.accept());
 				System.out.println("Connected with a client!");
 				threadPool.execute(regApp);
 			}
 		}
 		catch(Exception error)
 		{
-			error.printStackTrace();
-			System.err.println("There was an error!");
+			System.err.println("There was an error with communicating to the client!");
 			threadPool.shutdown();
 		}
 	}

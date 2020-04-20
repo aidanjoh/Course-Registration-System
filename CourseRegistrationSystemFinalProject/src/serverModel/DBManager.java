@@ -11,15 +11,22 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * This class is simulating a database for our program
+ * The class DBManager is simulating a database for our program through the use of a JDBC sql data base.
  * 
  * @author Aidan Johnson and Michele Piperni
- *
+ * @version 1.0
+ * @since April 15, 2020
  */
 public class DBManager implements Credentials
 {
-	
+	/**
+	 * The ArrayList of type Course holds all the course objects in the course registration application.
+	 */
 	private ArrayList<Course> courseList;
+	
+	/**
+	 * The ArrayList of type Student holds the student objects in the course registration application.
+	 */
 	private ArrayList<Student> studentList;
 	
 	/**
@@ -38,7 +45,8 @@ public class DBManager implements Credentials
 	private ResultSet rs;
 
 	/**
-	 * 
+	 * Constructs a DBManager object by creating a new array list of courses and students. It also initializes the connection
+	 * with the SQL database.
 	 */
 	public DBManager() 
 	{
@@ -83,6 +91,12 @@ public class DBManager implements Credentials
 		}
 	}
 
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param password
+	 */
 	public void insertStudentPreparedStatement(int id, String name, String password)
 	{
 		try
@@ -102,6 +116,12 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param password
+	 */
 	public void insertAdminPreparedStatement(int id, String name, String password)
 	{
 		try
@@ -121,6 +141,11 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 */
 	public void insertCoursePreparedStatement(int id, String name)
 	{
 		try
@@ -139,8 +164,29 @@ public class DBManager implements Credentials
 		}
 	}
 
+	public String insertCourse(int id, String name)
+	{
+		try
+		{
+			String query = "INSERT INTO COURSE (ID, courseName) values(?,?)";
+			PreparedStatement pStat = conn.prepareStatement(query);
+			pStat.setInt(1, id);
+			pStat.setString(2, name);
+			pStat.executeUpdate();
+			pStat.close();
+			return name + id + " was successfully added to the database.";
+		}
+		catch (SQLException e)
+		{
+			System.out.println("Problem inserting course!");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	/**
-	 * 
+	 * Creates the Student table in the SQL database. The student table has 
 	 */
 	public void createStudentTable()
 	{
@@ -161,6 +207,7 @@ public class DBManager implements Credentials
 	}
 	
 	/**
+	 * Creates the course table in the SQL database.
 	 * 
 	 */
 	public void createCourseTable()
@@ -182,7 +229,7 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * 
+	 * Creates the admin table in the SQL database.
 	 */
 	public void createAdminTable()
 	{
@@ -202,6 +249,13 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * Validates the student login.
+	 * 
+	 * @param id
+	 * @param password
+	 * @return
+	 */
 	public String validateStudentLogin(int id, String password)
 	{
 		try
@@ -227,6 +281,13 @@ public class DBManager implements Credentials
 		return "false";
 	}
 	
+	/**
+	 * Validates the admin login.
+	 * 
+	 * @param id
+	 * @param password
+	 * @return
+	 */
 	public String validateAdminLogin(int id, String password)
 	{
 		try
@@ -252,6 +313,9 @@ public class DBManager implements Credentials
 		return "false";
 	}
 	
+	/**
+	 * 
+	 */
 	public void readStudentsFromFile()
 	{
 		try 
@@ -273,6 +337,9 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void readAdminsFromFile()
 	{
 		try 
@@ -294,6 +361,9 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void readCoursesFromFile()
 	{
 		try 
@@ -315,6 +385,10 @@ public class DBManager implements Credentials
 		}
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Course> readCoursesFromDB() 
 	{
 		String query = "SELECT * FROM course";
@@ -340,6 +414,10 @@ public class DBManager implements Credentials
 		return courseList;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Student> readStudentsFromDB()
 	{
 		String query = "SELECT * FROM student";
@@ -366,22 +444,26 @@ public class DBManager implements Credentials
 	}
 
 	/**
+	 * Only run this function once before using the course registration application. The function called in this main generate
+	 * the SQL database with the student, course and admin tables as well as populates them from the text files.
 	 * 
 	 * @param args Default.
 	 */
 	public static void main(String[] args)
 	{
 		DBManager myApp = new DBManager();
+		
+		//Creating the three different database tables
 		myApp.createStudentTable();
 		myApp.createCourseTable();
 		myApp.createAdminTable();
 		
+		//Reading from three different text files to populate the tables
 		myApp.readStudentsFromFile();
 		myApp.readCoursesFromFile();
 		myApp.readAdminsFromFile();
 		
-		myApp.validateStudentLogin(1, "gxng");
-		myApp.validateAdminLogin(1, "ensf409");
+		//Properly closing the Database
 		myApp.close();
 	}
 }

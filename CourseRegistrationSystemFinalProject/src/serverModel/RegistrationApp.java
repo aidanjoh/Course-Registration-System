@@ -8,24 +8,49 @@ import java.net.Socket;
 import java.util.ArrayList;
 
 /**
+ * The class RegistartionApp is the main class of the back end controlling what back end functions run.
  * 
  * @author Aidan Johnson and Michele Piperni
- *
+ * @version 1.0
+ * @since April 15, 2020
  */
 public class RegistrationApp implements Runnable
 {
+	/**
+	 * The course catalogue object holding all the different courses and their respective offerings.
+	 */
 	private CourseCatalogue courseCatalogue;
 	
+	/**
+	 * The list of students in the course registration application.
+	 */
 	private ArrayList<Student> studentList;
 	
+	/**
+	 * The SQL database holding all the students, admins and courses.
+	 */
 	private DBManager dbManager;
 	
+	/**
+	 * The Socket object regAppSocket handles the communication between the client and server.
+	 */
 	private Socket regAppSocket;
 	
+	/**
+	 * The BufferedReader object socketInput reads the information from the client.
+	 */
 	private BufferedReader socketInput;
 	
+	/**
+	 * The PrintWriter object socketOutput writes information back to the client.
+	 */
 	private PrintWriter socketOutput;
 
+	/**
+	 * Constructs a RegistrationApp object by assigning a socket to the regApp socket and creating a new database object.
+	 * 
+	 * @param regAppSocket
+	 */
 	public RegistrationApp(Socket regAppSocket)
 	{
 		dbManager = new DBManager();
@@ -44,6 +69,9 @@ public class RegistrationApp implements Runnable
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void run()
 	{
@@ -139,6 +167,31 @@ public class RegistrationApp implements Runnable
 							messageToBeSent = dbManager.validateAdminLogin(adminID, adminPassword);
 							socketOutput.println(messageToBeSent);
 							socketOutput.flush();
+							break;
+						case 9:
+							System.out.println("Adding a course to the database");
+							courseName = infoSent[1];
+							courseNumber = Integer.parseInt(infoSent[2]);
+							int numOfCourseSection = Integer.parseInt(infoSent[3]);
+							int courseCapacity = Integer.parseInt(infoSent[4]);
+							messageToBeSent = dbManager.insertCourse(courseNumber, courseName);
+							if(messageToBeSent == null)
+							{
+								messageToBeSent = courseName + " " + courseNumber + " was not able to be added to the database.";
+								socketOutput.println(messageToBeSent);
+								socketOutput.flush();
+							}
+							else
+							{
+								Course newCourse = new Course(courseName, courseNumber);
+								courseCatalogue.getCourseList().add(newCourse);
+								for(int num = 1; num < (numOfCourseSection + 1); num++)
+								{
+									courseCatalogue.createCourseOffering(newCourse, num, courseCapacity);
+								}
+								socketOutput.println(messageToBeSent);
+								socketOutput.flush();
+							}
 							break;
 					}
 				}
