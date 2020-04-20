@@ -240,7 +240,7 @@ public class StudentMenuGUI extends JFrame
 		logoutButton.addActionListener(listenForLogoutButton);
 	}
 	
-	//----------------Other Methods--------------------------//
+	//---------------- JOptionPane --------------------------//
 	
 	public String getCourseNameAndNumberForSearchCatalogue()
 	{		
@@ -266,12 +266,14 @@ public class StudentMenuGUI extends JFrame
 		    	
 		    	//Making sure all the fields are filled out before returning
 		    	if(insertedCourseName.equals("") || insertedCourseNum.equals("")) {
-		    		JPanel emptyStringError = new JPanel(); 
-					
-					JOptionPane.showMessageDialog(emptyStringError,
-						    "Please fill out all fields",
-						    "Error Message",
-						    JOptionPane.ERROR_MESSAGE);
+		    		showEmptyStringError();
+					return getCourseNameAndNumberForSearchCatalogue();
+		    	}
+		    	
+		    	//Make sure all the required fields have integers
+		    	boolean isInteger = isStringInteger(insertedCourseNum);
+				if(!isInteger) {
+					showIntegerError();
 					return getCourseNameAndNumberForSearchCatalogue();
 		    	}
 		    	
@@ -287,8 +289,7 @@ public class StudentMenuGUI extends JFrame
 		JTextArea listOfCourseSections = new JTextArea(10, 20);
 		listOfCourseSections.setText(returnedCourses);
 		listOfCourseSections.setEditable(false);
-		//listOfCourseSections.setBackground(Color.LIGHT_GRAY);
-			
+		
 		JScrollPane foundCoursesScrollPanel = new JScrollPane(listOfCourseSections);
 				
 		JOptionPane.showMessageDialog(null,
@@ -318,7 +319,7 @@ public class StudentMenuGUI extends JFrame
 		searchCourse.add(enterSectionNum);
 		searchCourse.add(sectionNumResponse);
 		
-		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Search the Course Catalogue", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+		int result = JOptionPane.showConfirmDialog(null, searchCourse, "Student Course", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		    if (result == JOptionPane.OK_OPTION) {
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
@@ -326,12 +327,16 @@ public class StudentMenuGUI extends JFrame
 		    	
 		    	//Making sure all the fields are filled out before returning
 		    	if(insertedCourseName.equals("") || insertedCourseNum.equals("") || insertedSectionNum.equals("")) {
-		    		JPanel emptyStringError = new JPanel(); 
-					
-					JOptionPane.showMessageDialog(emptyStringError,
-						    "Please fill out all fields",
-						    "Error Message",
-						    JOptionPane.ERROR_MESSAGE);
+		    		showEmptyStringError();
+					return getCourseNameAndNumberForAddAndRemoveCourse();
+		    	}
+		    	
+		    	//Make sure all the required fields have integers
+		    	boolean isInteger = isStringInteger(insertedCourseNum);
+		    	boolean isInteger2 = isStringInteger(insertedSectionNum);
+				
+		    	if(!isInteger || !isInteger2) {
+					showIntegerError();
 					return getCourseNameAndNumberForAddAndRemoveCourse();
 		    	}
 		    	
@@ -347,7 +352,7 @@ public class StudentMenuGUI extends JFrame
 		
 		JOptionPane.showMessageDialog(addCourse,
 				message,
-			    "Add course",
+			    "Add Course",
 			    JOptionPane.PLAIN_MESSAGE);	
 	}
 	
@@ -356,7 +361,37 @@ public class StudentMenuGUI extends JFrame
 		
 		JOptionPane.showMessageDialog(removeCourse,
 				message,
-			    "Remove course",
+			    "Remove Course",
 			    JOptionPane.PLAIN_MESSAGE);	
 	}
+		
+	public void showIntegerError() {
+		JPanel numberError = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(numberError,
+			    "Please enter an Integer for Required Fields!",
+			    "Error Message",
+			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void showEmptyStringError() {
+		JPanel emptyStringError = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(emptyStringError,
+			    "Please fill out all fields",
+			    "Error Message",
+			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	//---------------- Helper Methods --------------------------//
+	
+	public static boolean isStringInteger(String number){
+	    try{
+	        Integer.parseInt(number);
+	    }catch(Exception e ){
+	        return false;
+	    }
+	    return true;
+	}
+	
 }

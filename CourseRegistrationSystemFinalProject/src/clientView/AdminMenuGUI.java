@@ -214,6 +214,16 @@ public class AdminMenuGUI extends JFrame{
 					return getCourseNameNumberSecCapForSearchCatalogue();
 		    	}
 		    	
+		    	//Make sure all the required fields have integers
+		    	boolean isInteger = isStringInteger(insertedCourseNum);
+		    	boolean isInteger2 = isStringInteger(insertedCourseSectionsNum);
+		    	boolean isInteger3 = isStringInteger(insertedCourseCapacityNum);
+				
+		    	if(!isInteger || !isInteger2 || !isInteger3) {
+					showIntegerError();
+					return getCourseNameNumberSecCapForSearchCatalogue();
+		    	}
+		    	
 		    	String fullCourseString = insertedCourseName + " " + insertedCourseNum + " " + insertedCourseSectionsNum + " " + insertedCourseCapacityNum;
 		    	return fullCourseString;
 		    }
@@ -228,5 +238,26 @@ public class AdminMenuGUI extends JFrame{
 				message,
 			    "Add Course",
 			    JOptionPane.PLAIN_MESSAGE);	
+	}
+	
+	public void showIntegerError() {
+		JPanel numberError = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(numberError,
+			    "Please enter an Integer for Required Fields!",
+			    "Error Message",
+			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	
+	//---------------- Helper Methods --------------------------//
+	
+	public static boolean isStringInteger(String number){
+	    try{
+	        Integer.parseInt(number);
+	    }catch(Exception e ){
+	        return false;
+	    }
+	    return true;
 	}
 }

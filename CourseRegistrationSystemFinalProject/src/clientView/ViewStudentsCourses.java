@@ -54,7 +54,6 @@ public class ViewStudentsCourses extends JDialog
 		titlePanel.add(title);
 		
 		listOfStudentsCourses = new JTextArea();
-		listOfStudentsCourses.setBackground(Color.LIGHT_GRAY);
 		
 		//Making it so the user can not edit the courses displayed
 		listOfStudentsCourses.setEditable(false);
