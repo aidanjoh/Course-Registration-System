@@ -2,6 +2,7 @@
 Aidan Johnson's and Michele Piperni's ENSF 409 Final Project.
 
 Authors:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 Name: Aidan Johnson 
 Email: aidan.johnson1@ucalgary.ca
 
@@ -9,6 +10,7 @@ Name: Michele Piperni
 Email: michele.piperni@ucalgary.ca
 
 Instructions on how to use the Milestone 3 Course Registration System:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Note: We have attached three text files in the project folder called courses.txt, Admins.txt and StudentList.txt. These will be loaded into the SQL database once
       at the start of the program.
@@ -22,6 +24,7 @@ Note: We have attached three text files in the project folder called courses.txt
    corresponding UCID and password for the student or admin (based upon which button you select that you are logging in as).
 
 For Student Features:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. Enter a student's UCID number and their respective password from the StudentList.txt file (the UCID is the first number on each line and it's respective 
    password is the last piece of text on eachline) into the UCID and password text field and then press login. 
 7. If the correct UCID and it's respective password was entered a new GUI frame will pop up which is the student menu allowing you to search for a catalogue
@@ -29,6 +32,7 @@ For Student Features:
    logout of the student's account or just exit the program.
 
 For Admin Features:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 6. Enter an admin's UCID number and their respective password from the Admins.txt file (the UCID is the first number on each line and it's respective 
    password is the last piece of text on eachline) into the UCID and password text field and then press login. 
 7. If the correct UCID and it's respective password was entered a new GUI frame will pop up which is the admin menu allowing you to add a new course 
@@ -38,6 +42,7 @@ Note: Logging out takes you back to the main menu where you are able to login as
       the program.
 
 Bonus Features Implemented:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
 1. Login and logout feature for both the admins and students by having a student and admin list.
 2. Admin GUI with the functionality of creating new courses for the Database.
 3. Deploying the project on two different machines (running the server and client on seperate machines).
