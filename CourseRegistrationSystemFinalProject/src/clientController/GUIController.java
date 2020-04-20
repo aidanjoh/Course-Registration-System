@@ -87,6 +87,9 @@ public class GUIController
 					if(messageToBeRecieved.equals("true")) 
 					{ //valid ucid and password
 						startUpView.setVisible(false);
+						//String currentLogin = startUpView.getCurrentLoginInfo();
+						String currentLogin = "Current User: Katie ID #1";
+						studentView.setCurrentLogin(currentLogin);
 						studentView.setVisible(true);
 					}
 					else 

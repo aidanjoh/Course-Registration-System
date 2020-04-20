@@ -180,6 +180,11 @@ public class StartUpMenuGUI extends JFrame{
 	     passwordResponse.setText("");
 	}
 	
+	public String getCurrentLoginInfo() {
+		
+		return "Current User: Katie ID #1";
+	}
+	
 	//----------------Button Listener Methods--------------------------//
 	
 	

@@ -13,8 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 public class AdminMenuGUI extends JFrame{
@@ -168,16 +166,16 @@ public class AdminMenuGUI extends JFrame{
 		//Entering Information Panel For New Course
 		JPanel addCourse = new JPanel(new GridLayout(4, 2, 5, 0));
 				
-		JLabel enterCourseName = new JLabel("Enter the new course name");
+		JLabel enterCourseName = new JLabel("Enter the New Course Name");
 		JTextField courseNameResponse = new JTextField();
 	
-		JLabel enterCourseNum = new JLabel("Enter the new course number");
+		JLabel enterCourseNum = new JLabel("Enter the New Course Number");
 		JTextField courseNumResponse = new JTextField();
 		
-		JLabel enterCourseSecNum = new JLabel("Enter the number of course sections");
+		JLabel enterCourseSecNum = new JLabel("Enter the Number of Course Sections");
 		JTextField enterCourseSecNumResponse = new JTextField();
 	
-		JLabel enterCourseSectionCapNum = new JLabel("Enter the max capacity of each section");
+		JLabel enterCourseSectionCapNum = new JLabel("Enter the Max Capacity of each Section");
 		JTextField enterCourseSectionCapNumResponse = new JTextField();
 		
 		addCourse.add(enterCourseName);
