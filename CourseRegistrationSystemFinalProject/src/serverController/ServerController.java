@@ -84,7 +84,7 @@ public class ServerController
 	public static void main(String[] args) 
 	{
 		//ServerController server = new ServerController(8099);
-		ServerController server = new ServerController(9090);
+		ServerController server = new ServerController(9091);
 		server.communicateWithClient();
 	}
 }
