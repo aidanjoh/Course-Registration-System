@@ -14,16 +14,19 @@ public class DBManager
 	
 	private ArrayList<Course> courseList;
 	private ArrayList<Student> studentList;
+	
+	private DataBase DB;
 
-	public DBManager () 
+	public DBManager() 
 	{
 		courseList = new ArrayList<Course>();
 		studentList = new ArrayList<Student>();
+		DB = new DataBase();
 	}
 
 	public ArrayList<Course> readCoursesFromDB() 
 	{
-		return readCoursesFromFile();
+		return db.readCoursesFromFile();
 	}
 	
 	public ArrayList<Course> readCoursesFromFile()
@@ -48,6 +51,12 @@ public class DBManager
 		return courseList;
 	}
 	
+	
+	public ArrayList<Student> readStudentsFromDB()
+	{
+		return readStudentsFromFile();
+	}
+	
 	public ArrayList<Student> readStudentsFromFile()
 	{
 		try 
@@ -69,9 +78,5 @@ public class DBManager
 		}
 		return studentList;
 	}
-	
-	public ArrayList<Student> readStudentsFromDB()
-	{
-		return readStudentsFromFile();
-	}
+
 }

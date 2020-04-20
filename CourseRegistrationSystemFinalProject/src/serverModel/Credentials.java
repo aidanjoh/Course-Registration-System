@@ -1,6 +1,8 @@
 package serverModel;
 
 /**
+ * The interface Credentials holds the data base credentials and the driver and URL name for the required mySQL server
+ * that this application is connecting to.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
