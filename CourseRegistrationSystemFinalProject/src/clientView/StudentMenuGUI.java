@@ -41,6 +41,8 @@ public class StudentMenuGUI extends JFrame
 	{
 		super("Course Registration Student Menu");
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		this.setFrameSizeAndLayout();
 		this.makeButtonPanel();
 		this.setAlignments();

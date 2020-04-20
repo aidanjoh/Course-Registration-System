@@ -101,7 +101,8 @@ public class ClientController
 	 */
 	public static void main(String[] args) 
 	{
-		ClientController client = new ClientController("localhost", 8099);
+		//ClientController client = new ClientController("localhost", 8099);
+		ClientController client = new ClientController("127.0.0.1", 9090);
 		GUIController courseRegMainGUI = new GUIController(client);
 	}
 }

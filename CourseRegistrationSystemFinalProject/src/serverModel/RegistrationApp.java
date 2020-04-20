@@ -194,7 +194,7 @@ public class RegistrationApp implements Runnable
 			}
 			catch(IOException error)
 			{
-				System.err.println("Sending error: " + error.getMessage());
+				break;
 			}
 		}
 	}

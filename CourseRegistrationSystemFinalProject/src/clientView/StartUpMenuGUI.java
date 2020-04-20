@@ -44,6 +44,8 @@ public class StartUpMenuGUI extends JFrame{
 	{
 		super("Course Registration Start Menu");
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		this.setFrameSizeAndLayout();
 		this.setFontOptions();
 	    this.makeButtonPanel();

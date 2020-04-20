@@ -30,6 +30,8 @@ public class AdminMenuGUI extends JFrame{
 	{
 		super("Course Registration Admin Menu");
 		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		this.setFrameSizeAndLayout();
 		this.makeButtonPanel();
 		this.setAlignments();
