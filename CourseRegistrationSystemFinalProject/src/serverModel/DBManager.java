@@ -28,7 +28,7 @@ public class DBManager implements Credentials
 	private Connection conn;
 	
 	/**
-	 * The Statement object stmt enables the creation of Query statements
+	 * The Statement object stmt enables the creation of Query statements.
 	 */
 	private Statement stmt;
 	
@@ -37,7 +37,9 @@ public class DBManager implements Credentials
 	 */
 	private ResultSet rs;
 
-	
+	/**
+	 * 
+	 */
 	public DBManager() 
 	{
 		courseList = new ArrayList<Course>();
@@ -199,7 +201,7 @@ public class DBManager implements Credentials
 		}
 	}
 	
-	public boolean validateStudentLogin(int id, String password)
+	public String validateStudentLogin(int id, String password)
 	{
 		try
 		{
@@ -209,22 +211,22 @@ public class DBManager implements Credentials
 			if(rs.next()) 
 			{
 				System.out.println("Student logged in");
-				return true;
+				return "true";
 			}
 			else
 			{
 				System.out.println("Invalid id or password");
-				return false;
+				return "false";
 			}
 		}
 		catch(SQLException error)
 		{
 			System.err.println("Error in validating login.");
 		}
-		return false;
+		return "false";
 	}
 	
-	public boolean validateAdminLogin(int id, String password)
+	public String validateAdminLogin(int id, String password)
 	{
 		try
 		{
@@ -234,19 +236,19 @@ public class DBManager implements Credentials
 			if(rs.next()) 
 			{
 				System.out.println("Admin logged in");
-				return true;
+				return "true";
 			}
 			else
 			{
 				System.out.println("Invalid id or password");
-				return false;
+				return "false";
 			}
 		}
 		catch(SQLException error)
 		{
 			System.err.println("Error in validating login.");
 		}
-		return false;
+		return "false";
 	}
 	
 	public ArrayList<Student> readStudentsFromFile()

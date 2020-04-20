@@ -62,10 +62,13 @@ public class RegistrationApp implements Runnable
 					int methodToRun = Integer.parseInt(infoSent[0]);
 					
 					int studentID;
+					int adminID;
 					String courseName;
 					int courseNumber;
 					int sectionNumber;
 					String messageToBeSent;
+					String studentPassword;
+					String adminPassword;
 					
 					switch(methodToRun)
 					{
@@ -108,7 +111,7 @@ public class RegistrationApp implements Runnable
 							System.out.println("\nExiting Program, see you later!");
 							socketOutput.println("quit");
 							socketOutput.flush();
-							
+	
 							//Properly closing all of the sockets.
 							try
 							{
@@ -121,6 +124,22 @@ public class RegistrationApp implements Runnable
 								System.err.println("Closing error: " + error.getMessage());
 							}
 							return;
+						case 7:
+							System.out.println("Checking for valid student login");
+							studentID = Integer.parseInt(infoSent[1]);
+							studentPassword = infoSent[2];
+							messageToBeSent = dbManager.validateStudentLogin(studentID, studentPassword);
+							socketOutput.println(messageToBeSent);
+							socketOutput.flush();
+							break;
+						case 8:
+							System.out.println("Checking for valid admin login");
+							adminID = Integer.parseInt(infoSent[1]);
+							adminPassword = infoSent[2];
+							messageToBeSent = dbManager.validateAdminLogin(adminID, adminPassword);
+							socketOutput.println(messageToBeSent);
+							socketOutput.flush();
+							break;
 					}
 				}
 			}

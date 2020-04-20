@@ -3,53 +3,50 @@ package serverModel;
 import java.util.ArrayList;
 
 /**
+ * The class Student has attributes and methods to
  * 
  * @author Aidan Johnson and Michele Piperni
+ * @version 1.0
+ * @since April 15, 2020
  *
  */
 public class Student 
 {
-	
+	/**
+	 * The student's name represented as a string.
+	 */
 	private String studentName;
 	
+	/**
+	 * The students ID represented as an integer.
+	 */
 	private int studentId;
 	
 	//private ArrayList<CourseOffering> offeringList;
 	private ArrayList<Registration> studentRegList;
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Registration> getStudentRegList() 
 	{
 		return studentRegList;
 	}
 
+	/**
+	 * Constructs a Student object by assigning a name and id. Also creates a new registration list.
+	 * 
+	 * @param studentName the name of the student.
+	 * @param studentId the id of the student.
+	 */
 	public Student (String studentName, int studentId) 
 	{
 		this.setStudentName(studentName);
 		this.setStudentId(studentId);
 		studentRegList = new ArrayList<Registration>();
 	}
-
-	public String getStudentName()
-	{
-		return studentName;
-	}
-
-	public void setStudentName(String studentName)
-	{
-		this.studentName = studentName;
-	}
-
-	public int getStudentId()
-{
-		return studentId;
-	}
-
-	public void setStudentId(int studentId) 
-	{
-		this.studentId = studentId;
-	}
 	
-
 	public void addRegistration(Registration registration) 
 	{
 		studentRegList.add(registration);
@@ -88,7 +85,9 @@ public class Student
 		}
 	}
 
-	
+	/**
+	 * Generates a String representation of a Student object.
+	 */
 	@Override
 	public String toString () 
 	{
@@ -97,4 +96,24 @@ public class Student
 		return st;
 	}
 
+	//Getters and Setters
+	public String getStudentName()
+	{
+		return studentName;
+	}
+
+	public void setStudentName(String studentName)
+	{
+		this.studentName = studentName;
+	}
+
+	public int getStudentId()
+	{
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) 
+	{
+		this.studentId = studentId;
+	}
 }
