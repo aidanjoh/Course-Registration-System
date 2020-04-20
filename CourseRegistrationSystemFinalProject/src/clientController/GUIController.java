@@ -23,7 +23,7 @@ public class GUIController
 	 */
 	private ClientController client;
 	
-	private int studentUCID; //this is so the client knows which student it is
+	private int UCID; //this is so the client knows which student it is
 	
 	/**
 	 * 
@@ -61,11 +61,45 @@ public class GUIController
 		{
 			if(e.getSource() == startUpView.getLoginButton()) 
 			{
-				studentUCID = startUpView.getUCID();
+				UCID = startUpView.getUCID();
+				String readPassword = startUpView.getPassword();
 				
 				//This is for the error checking set up for the login
-				if(studentUCID == 0) {
+				if(UCID == 0) {
 					return;
+				}
+				
+				//The if statement checks which radio button is selected
+				if(startUpView.getExistingStudent().isSelected()) {
+					System.out.println("Student");
+					
+					String messageToBeSent = "7 " + UCID + " " + readPassword;
+					
+					System.out.println(messageToBeSent);
+					
+//					String messageRecieved = client.communicateWithServer(messageToBeSent);
+//					if(messageRecieved.equals("true")) { //valid ucid and password
+//						startUpView.setVisible(false);
+//						studentView.setVisible(true);
+//					}
+//					else {
+//						startUpView.showInvalidPasswordAndUCID();
+//					}
+				}
+				else if(startUpView.getAdmin().isSelected()) {
+					System.out.println("Admin");
+					
+					String messageToBeSent = "8 " + UCID + " " + readPassword;
+					System.out.println(messageToBeSent);
+					
+//					String messageRecieved = client.communicateWithServer(messageToBeSent);
+//					if(messageRecieved.equals("true")) { //valid ucid and password
+//						startUpView.setVisible(false);
+//						studentView.setVisible(true);
+//					}
+//					else {
+//						startUpView.showInvalidPasswordAndUCID();
+//					}
 				}
 				
 				startUpView.setVisible(false);
@@ -80,7 +114,7 @@ public class GUIController
 					return;
 				}
 				
-				String messageToBeSent = "1 " + studentUCID + " " + courseNameAndNum;
+				String messageToBeSent = "1 " + UCID + " " + courseNameAndNum;
 	
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
@@ -97,7 +131,7 @@ public class GUIController
 					return;
 				}
 				
-				String messageToBeSent = "2 " + studentUCID + " " + courseNameAndNum;
+				String messageToBeSent = "2 " + UCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showAddCourseOptionPane(messageRecieved);
@@ -111,14 +145,14 @@ public class GUIController
 					return;
 				}
 				
-				String messageToBeSent = "3 " + studentUCID + " " + courseNameAndNum;
+				String messageToBeSent = "3 " + UCID + " " + courseNameAndNum;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showRemoveCourseOptionPane(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton()) 
 			{
-				String messageToBeSent = "4 " + studentUCID;
+				String messageToBeSent = "4 " + UCID;
 				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				
@@ -129,7 +163,7 @@ public class GUIController
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
 			{
-				String messageToBeSent = "5 " + studentUCID;
+				String messageToBeSent = "5 " + UCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				
 				//Set the Text Area
@@ -139,7 +173,7 @@ public class GUIController
 			}
 			else if(e.getSource() == studentView.getQuitButton()) 
 			{
-				String messageToBeSent = "6 " + studentUCID;
+				String messageToBeSent = "6 " + UCID;
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				System.exit(1);
 			}

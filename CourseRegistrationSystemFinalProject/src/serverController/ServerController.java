@@ -86,7 +86,7 @@ public class ServerController
 		}
 		catch(Exception error)
 		{
-			System.err.println("There was an error");
+			System.err.println("There was an error!");
 			threadPool.shutdown();
 		}
 	}

@@ -31,7 +31,7 @@ public class StartUpMenuGUI extends JFrame{
 	
 	private JPanel radioButtonsPanel = new JPanel();
 	private ButtonGroup loginChoies = new ButtonGroup();
-	private JRadioButton existingStudent = new JRadioButton("Student                  ");
+	private JRadioButton existingStudent = new JRadioButton("Student                  ", true); //The true is to make it the default selction
 	private JRadioButton admin = new JRadioButton("Admin                    ");
 
 	private JLabel ucid = new JLabel("UCID");
@@ -124,6 +124,14 @@ public class StartUpMenuGUI extends JFrame{
 		return loginButton;
 	}
 	
+	public JRadioButton getExistingStudent() {
+		return existingStudent;
+	}
+
+	public JRadioButton getAdmin() {
+		return admin;
+	}
+	
 	public int getUCID() {
 	
 		String stringUCID = ucidResponse.getText();
@@ -150,6 +158,21 @@ public class StartUpMenuGUI extends JFrame{
 		}
 		
 		return ucidParsed;
+	}
+	
+	public String getPassword() {
+		String password = passwordResponse.getText();		
+		return password;
+	}
+	
+	public void showInvalidPasswordAndUCID() {
+		JPanel passwordError = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(passwordError,
+			    "Incorrect UCID or Password",
+			    "Error Message",
+			    JOptionPane.ERROR_MESSAGE);
+		
 	}
 	
 	//----------------Button Listener Functions--------------------------//
