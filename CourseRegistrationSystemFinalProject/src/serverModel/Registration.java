@@ -20,7 +20,7 @@ public class Registration
 	
 	private void addRegistration() 
 	{
-		//System.out.printf("Course was succesfully added for the student: %s.\n", theStudent.getStudentName());
+		//System.out.printf("Course was successfully added for the student: %s.\n", theStudent.getStudentName());
 		theStudent.addRegistration(this);
 		theOffering.addRegistration(this);
 	}

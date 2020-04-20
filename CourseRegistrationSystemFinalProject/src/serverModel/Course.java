@@ -3,19 +3,44 @@ package serverModel;
 import java.util.ArrayList;
 
 /**
+ * The class Course is the 
  * 
  * @author Aidan Johnson and Michele Piperni
- *
+ * @version 1.0
+ * @since April 15, 2020
  */
 public class Course 
 {
-
+	/**
+	 * The name of the course.
+	 */
 	private String courseName;
+	
+	/**
+	 * The number of the course.
+	 */
 	private int courseNum;
+	
+	/**
+	 * ArrayList holding the pre requiste courses of a course.
+	 */
 	private ArrayList<Course> preReq;
+	
+	/**
+	 * ArrayList holding the offerings for the course.
+	 */
 	private ArrayList<CourseOffering> offeringList;
+	
+	/**
+	 * 
+	 */
 	private boolean isValid;
 
+	/**
+	 * 
+	 * @param courseName
+	 * @param courseNum
+	 */
 	public Course(String courseName, int courseNum) 
 	{
 		this.setCourseName(courseName);
@@ -27,6 +52,10 @@ public class Course
 		setValid(false);
 	}
 
+	/**
+	 * 
+	 * @param offering
+	 */
 	public void addOffering(CourseOffering offering) 
 	{
 		if (offering != null && offering.getTheCourse() == null) 
@@ -42,7 +71,20 @@ public class Course
 			offeringList.add(offering);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param i
+	 * @return
+	 */
+	public CourseOffering getCourseOfferingAt(int i) 
+	{
+		if (i < 0 || i >= offeringList.size())
+			return null;
+		else
+			return offeringList.get(i);
+	}
+	
 	public String getCourseName() 
 	{
 		return courseName;
@@ -73,14 +115,6 @@ public class Course
 			st += c;
 		st += "\0-------\0";
 		return st;
-	}
-
-	public CourseOffering getCourseOfferingAt(int i) 
-	{
-		if (i < 0 || i >= offeringList.size())
-			return null;
-		else
-			return offeringList.get(i);
 	}
 
 	public boolean isValid() {
