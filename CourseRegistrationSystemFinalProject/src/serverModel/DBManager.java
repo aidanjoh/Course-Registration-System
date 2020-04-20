@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * The class DBManager is simulating a database for our program through the use of a JDBC sql data base.
+ * The class DBManager is simulating a database for our program. The data base is a SQL database.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
@@ -92,10 +92,11 @@ public class DBManager implements Credentials
 	}
 
 	/**
+	 * Inserts a student using a prepared statement into the Student table in the database.
 	 * 
-	 * @param id
-	 * @param name
-	 * @param password
+	 * @param id the id of the student being added.
+	 * @param name the name of the student being added.
+	 * @param password the password of the student being added.
 	 */
 	public void insertStudentPreparedStatement(int id, String name, String password)
 	{
@@ -117,10 +118,11 @@ public class DBManager implements Credentials
 	}
 	
 	/**
+	 * Inserts an admin using a prepared statement into the Admin table in the database.
 	 * 
-	 * @param id
-	 * @param name
-	 * @param password
+	 * @param id the id of the admin being added.
+	 * @param name the name of the admin being added.
+	 * @param password the password of the admin being added.
 	 */
 	public void insertAdminPreparedStatement(int id, String name, String password)
 	{
@@ -142,9 +144,10 @@ public class DBManager implements Credentials
 	}
 	
 	/**
+	 * Inserts a course using a prepared statement into the Course table in the database.
 	 * 
-	 * @param id
-	 * @param name
+	 * @param id the id of the course being added.
+	 * @param name the name of the course being added.
 	 */
 	public void insertCoursePreparedStatement(int id, String name)
 	{
@@ -164,6 +167,14 @@ public class DBManager implements Credentials
 		}
 	}
 
+	/**
+	 * Inserts a course using a prepared statement into the Course table in the database. This function is for the admin
+	 * inserting a course and it returns a string displaying if the course was added successfully or not in the application.
+	 * 
+	 * @param id the id of the course being added.
+	 * @param name the name of the course being added.
+	 * @returns a String displaying if the course was added to the application successfully or not.
+	 */
 	public String insertCourse(int id, String name)
 	{
 		try
@@ -182,6 +193,7 @@ public class DBManager implements Credentials
 			e.printStackTrace();
 		}
 		
+		//Returns null if the course was unable to be added to the course table in the SQL database
 		return null;
 	}
 	
@@ -250,11 +262,12 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Validates the student login.
+	 * Validates the student login by checking if the id and password entered by the student matches what is in the database.
+	 * If the id is valid and a matching password was entered it returns a string holding "true" otherwise it returns "false".
 	 * 
-	 * @param id
-	 * @param password
-	 * @return
+	 * @param id the id of the student entered being checked to see if the login attempt is valid.
+	 * @param password the password of the student entered being checked to see if the login attempt is valid.
+	 * @returns the message "true" if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateStudentLogin(int id, String password)
 	{
@@ -282,11 +295,12 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Validates the admin login.
+	 * Validates the admin login by checking if the id and password entered by the admin matches what is in the database.
+	 * If the id is valid and a matching password was entered it returns a string holding "true" otherwise it returns "false".
 	 * 
-	 * @param id
-	 * @param password
-	 * @return
+	 * @param id the id of the admin entered being checked to see if the login attempt is valid.
+	 * @param password the password of the admin entered being checked to see if the login attempt is valid.
+	 * @returns the message "true" if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateAdminLogin(int id, String password)
 	{
@@ -392,7 +406,7 @@ public class DBManager implements Credentials
 	public ArrayList<Course> readCoursesFromDB() 
 	{
 		String query = "SELECT * FROM course";
-		ArrayList<Course> courseList = new ArrayList<Course>();
+		courseList = new ArrayList<Course>();
 		
 		try
 		{
@@ -421,7 +435,7 @@ public class DBManager implements Credentials
 	public ArrayList<Student> readStudentsFromDB()
 	{
 		String query = "SELECT * FROM student";
-		ArrayList<Student> studentList = new ArrayList<Student>();
+		studentList = new ArrayList<Student>();
 		
 		try
 		{
