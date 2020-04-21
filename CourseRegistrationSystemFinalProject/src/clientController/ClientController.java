@@ -8,32 +8,32 @@ import java.net.Socket;
 
 /**
  * The class ClientController is the implementation of a client for a course registration client-server application.
- * 
+ *
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
  * @since April 9, 2020
  *
  */
-public class ClientController 
+public class ClientController
 {
 	/**
 	 * The PrintWriter object socketOutput is for writing to the server.
 	 */
 	private PrintWriter socketOutput;
-	
+
 	/**
 	 * The object BufferedReader socketInput reads the information from the server.
 	 */
 	private BufferedReader socketInput;
-	
+
 	/**
 	 * The object Socket communicationSocket will hold the host name and port number and handles the input to and output of the server.
 	 */
 	private Socket communicationSocket;
-	
+
 	/**
 	 * Constructs a ClientController object as well instantiates the socket object for communication.
-	 * 
+	 *
 	 * @param serverName the name of the server.
 	 * @param portNumber the port number that the server is using for its communication.
 	 */
@@ -50,10 +50,10 @@ public class ClientController
 			System.err.println(error.getStackTrace());
 		}
 	}
-	
+
 	/**
 	 * Communicates with the server by sending and receiving String messages from the socketOutput and socketInput socket objects.
-	 * 
+	 *
 	 * @param messageToBeSent the specified String message to be sent to the server to call a respective function
 	 * in the back end of the application.
 	 * @returns a String containing the message from the server.
@@ -62,18 +62,18 @@ public class ClientController
 	{
 		String response = "";
 
-		try 
+		try
 		{
 			socketOutput.println(messageToBeSent);
 			response = socketInput.readLine();
-			
+
 			//The "\0" character was used to represent a new line character in the message recieved
 			if(response.contains("\0"))
 			{
 				//Changing the "\0" character back to a new line character so the message can be displayed proper
 				response = response.replaceAll("\0", "\n");
 			}
-			
+
 			if(response.contentEquals("quit"))
 			{
 				//Properly closing the sockets.
@@ -88,28 +88,28 @@ public class ClientController
 					System.out.println("Closing error: " + error.getMessage());
 				}
 			}
-		} 
+		}
 		catch (Exception error)
 		{
 			System.out.println("Sending error: " + error.getMessage());
 		}
-		
+
 		return response;
 	}
-	
+
 	/**
-	 * Creates the ClientController object and calls the client's method communicateWithServer to run a course registration 
+	 * Creates the ClientController object and calls the client's method communicateWithServer to run a course registration
 	 * client-server application.
-	 * 
+	 *
 	 * @param args Default.
 	 */
 	public static void main(String[] args)
 	{
 		//ClientController client = new ClientController("localhost", 8099);
-		
-		
+
+
 		ClientController client = new ClientController("96.51.158.129", 9091);
-		
+
 		//ClientController client = new ClientController("127.0.0.1", 9091;
 		
 		GUIController courseRegMainGUI = new GUIController(client);

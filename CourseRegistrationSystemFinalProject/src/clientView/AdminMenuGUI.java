@@ -15,23 +15,60 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * JFrame for the Admin menu. Contains 4 different JButtons, view catalogue,
+ * add a course to the catalogue, quit, and logout.
+ * 
+ * @author Aidan Johnson and Michele Piperni
+ * @version 1.0
+ * @since April 15, 2020
+ */
 public class AdminMenuGUI extends JFrame{
+	
+	/**
+	 * Serial UID.
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Title of the frame.
+	 */
 	private JLabel title = new JLabel("Admin Menu");
+	/**
+	 * Label for the Different Options.
+	 */
 	private JLabel optionsTitle = new JLabel("Please Select One of the Following Options");
-		
+	/**
+	 * Panel that contains all the buttons.
+	 */
 	private JPanel buttonsPanel = new JPanel();
+	/**
+	 * View catalogue button.
+	 */
 	private JButton viewCatalogueButton = new JButton();
+	/**
+	 * Add course button.
+	 */
 	private JButton addCoursesToCatalogueButton = new JButton();
+	/**
+	 * Quit button.
+	 */
 	private JButton quitButton = new JButton("Quit");
+	/**
+	 * Logout button.
+	 */
 	private JButton logoutButton = new JButton("Logout");
+	/**
+	 * Current Login Label. Contains the current user logged in.
+	 */
 	private JLabel currentLogin = new JLabel();
 	
+	/**
+	 * Constructor for the AdminMenuGUI Class. Calls several function to 
+	 * customize and initialize the frame.
+	 */
 	public AdminMenuGUI()
 	{
 		super("Course Registration Admin Menu");
-		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		this.setFrameSizeAndLayout();
 		this.makeButtonPanel();
 		this.setAlignments();
@@ -40,14 +77,20 @@ public class AdminMenuGUI extends JFrame{
 		this.addToFrame();
 	}
 	
+	/**
+	 * Sets size, layout and default close operation.
+	 */
 	private void setFrameSizeAndLayout()
 	{
 		this.setSize(600, 300);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BoxLayout boxLayout = new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS); // top to bottom
 	    this.setLayout(boxLayout);
 	}
 	
+	/**
+	 * Initializes the button panel.
+	 */
 	private void makeButtonPanel() 
 	{
 		buttonsPanel.setLayout(new GridLayout(1, 5, 10, 20)); //the second two arguments are the horizontal and vertical gaps
@@ -56,6 +99,7 @@ public class AdminMenuGUI extends JFrame{
 		viewCatalogueButton.setText("<html><center>"+"View Courses in"+"<br>"+"the Catalogue"+"</center></html>");
 		addCoursesToCatalogueButton.setText("<html><center>"+"Add a Courses to"+"<br>"+"the Catalogue"+"</center></html>");
 	
+		//Whitespace added to center the buttons
 		JLabel whiteSpace = new JLabel("  ");
 		JLabel whiteSpace1 = new JLabel("  ");
 		
@@ -66,6 +110,9 @@ public class AdminMenuGUI extends JFrame{
 		buttonsPanel.add(whiteSpace1);
 	}
 	
+	/**
+	 * Aligns the panels and labels. All center justified.
+	 */
 	private void setAlignments() 
 	{
 	    title.setAlignmentX( Component.CENTER_ALIGNMENT );
@@ -74,27 +121,35 @@ public class AdminMenuGUI extends JFrame{
 	    currentLogin.setAlignmentX( Component.CENTER_ALIGNMENT );
 	}
 	
+	/**
+	 * Sets font options.
+	 */
 	private void setFontOptions() 
 	{
 		title.setFont(new Font("Dialog", Font.BOLD, 24)); 
 		optionsTitle.setForeground(Color.darkGray);
 		optionsTitle.setFont(new Font("Dialog", Font.BOLD, 20));
-		
 		viewCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		addCoursesToCatalogueButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 		quitButton.setFont(new Font("Dialog", Font.PLAIN, 12));
 	}
 	
+	/**
+	 * Sets the button colors.
+	 */
 	private void setButtonColors() 
 	{
 		Color lightBlue = new Color(51,194,255);
-		
 		viewCatalogueButton.setBackground(lightBlue);
 		addCoursesToCatalogueButton.setBackground(lightBlue);
 		quitButton.setBackground(lightBlue);
 		logoutButton.setBackground(lightBlue);
 	}
 	
+	/**
+	 * Adds all the components to the frame. Rigid text area is for
+	 * whitespace.
+	 */
 	private void addToFrame() 
 	{
 		this.add(title);
@@ -111,22 +166,47 @@ public class AdminMenuGUI extends JFrame{
 	
 	//---------------- Getters And Setters --------------------------//
 
+	/**
+	 * Returns the viewCatalogueButton.
+	 * 
+	 * @return viewCatalogueButton
+	 */
 	public JButton getViewCatalogueButton() {
 		return viewCatalogueButton;
 	}
 
+	/**
+	 * Returns the addCoursesToCatalogueButton.
+	 * 
+	 * @return addCoursesToCatalogueButton
+	 */
 	public JButton getAddCoursesToCatalogueButton() {
 		return addCoursesToCatalogueButton;
 	}
 
+	/**
+	 * Returns the quitButton.
+	 * 
+	 * @return quitButton
+	 */
 	public JButton getQuitButton() {
 		return quitButton;
 	}
 	
+	/**
+	 * Returns the logoutButton.
+	 * 
+	 * @return logoutButton
+	 */
 	public JButton getLogoutButton() {
 		return logoutButton;
 	}
 	
+	/**
+	 * Sets the current user JLabel.
+	 * 
+	 * @param nameAndID The name and id of the current user.
+	 */
 	public void setCurrentLogin(String nameAndID) {
 		currentLogin.setText(nameAndID);
 	}
@@ -134,6 +214,7 @@ public class AdminMenuGUI extends JFrame{
 	//----------------Button Listener Methods--------------------------//
 	
 	/**
+	 * Adds the button listener for the viewCatalogueButton.
 	 * 
 	 * @param listenForViewCatalogueButton
 	 */
@@ -143,6 +224,7 @@ public class AdminMenuGUI extends JFrame{
 	}
 	
 	/**
+	 * Adds the button listener for the addCoursesToCatalogueButton.
 	 * 
 	 * @param listenForAddCoursesToCatalogueButton
 	 */
@@ -152,6 +234,7 @@ public class AdminMenuGUI extends JFrame{
 	}
 	
 	/**
+	 * Adds the button listener for the quitButton.
 	 * 
 	 * @param listenForQuitButton
 	 */
@@ -161,16 +244,23 @@ public class AdminMenuGUI extends JFrame{
 	}
 	
 	/**
+	 * Adds the button listener for the logoutButton.
 	 * 
-	 * @param listenForQuitButton
+	 * @param listenForLogoutButton
 	 */
 	public void addLogoutButtonListener(ActionListener listenForLogoutButton)
 	{
 		logoutButton.addActionListener(listenForLogoutButton);
 	}
 	
-	//----------------Other Methods--------------------------//
+	//----------------  JOPtionPane  --------------------------//
 	
+	/**
+	 * Options Panel for adding a course to the course catalogue. Has text fields for
+	 * name, number, number of sections and max section size.
+	 * 
+	 * @return A string containing the name, number of sections and max section size.
+	 */
 	public String getCourseNameNumberSecCapForSearchCatalogue() {
 		
 		//Entering Information Panel For New Course
@@ -178,13 +268,10 @@ public class AdminMenuGUI extends JFrame{
 				
 		JLabel enterCourseName = new JLabel("Enter the New Course Name");
 		JTextField courseNameResponse = new JTextField();
-	
 		JLabel enterCourseNum = new JLabel("Enter the New Course Number");
 		JTextField courseNumResponse = new JTextField();
-		
 		JLabel enterCourseSecNum = new JLabel("Enter the Number of Course Sections");
 		JTextField enterCourseSecNumResponse = new JTextField();
-	
 		JLabel enterCourseSectionCapNum = new JLabel("Enter the Max Capacity of each Section");
 		JTextField enterCourseSectionCapNumResponse = new JTextField();
 		
@@ -200,6 +287,7 @@ public class AdminMenuGUI extends JFrame{
 		int result = JOptionPane.showConfirmDialog(null, addCourse, "Add to Course Catalogue", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 		    if (result == JOptionPane.OK_OPTION) 
 		    {
+		    	//Checks the text fields
 		    	String insertedCourseName = courseNameResponse.getText();
 		    	String insertedCourseNum = courseNumResponse.getText();
 		    	String insertedCourseSectionsNum = enterCourseSecNumResponse.getText();
@@ -207,13 +295,8 @@ public class AdminMenuGUI extends JFrame{
 		    	
 		    	//Making sure all the fields are filled out before returning
 		    	if(insertedCourseName.equals("") || insertedCourseNum.equals("") || insertedCourseSectionsNum.equals("") || insertedCourseCapacityNum.equals("")) {
-		    		JPanel emptyStringError = new JPanel(); 
-					
-					JOptionPane.showMessageDialog(emptyStringError,
-						    "Please fill out all fields",
-						    "Error Message",
-						    JOptionPane.ERROR_MESSAGE);
-					return getCourseNameNumberSecCapForSearchCatalogue();
+		    		showEmptyStringError();
+					return getCourseNameNumberSecCapForSearchCatalogue(); 
 		    	}
 		    	
 		    	//Make sure all the required fields have integers
@@ -230,9 +313,14 @@ public class AdminMenuGUI extends JFrame{
 		    	return fullCourseString;
 		    }
 		    
-		return null;
+		return null; //Returns null if cancel is pressed
 	}
 	
+	/**
+	 * Message panel containing the message after adding a course.
+	 * 
+	 * @param message
+	 */
 	public void showAddCourseOptionPane(String message) {
 		JPanel addCourse = new JPanel(); 
 		
@@ -242,6 +330,22 @@ public class AdminMenuGUI extends JFrame{
 			    JOptionPane.PLAIN_MESSAGE);	
 	}
 	
+	/**
+	 * Option Panel showing an error message for a empty string.
+	 */
+	public void showEmptyStringError() {
+		JPanel emptyStringError = new JPanel(); 
+		
+		JOptionPane.showMessageDialog(emptyStringError,
+			    "Please fill out all fields",
+			    "Error Message",
+			    JOptionPane.ERROR_MESSAGE);
+	}
+	
+	
+	/**
+	 * Option Panel showing an error message for non integer string.
+	 */
 	public void showIntegerError() {
 		JPanel numberError = new JPanel(); 
 		
@@ -254,6 +358,12 @@ public class AdminMenuGUI extends JFrame{
 	
 	//---------------- Helper Methods --------------------------//
 	
+	/**
+	 * Checks if the string is an integer.
+	 * 
+	 * @param number The string to be checked.
+	 * @return true if the string is an integer.
+	 */
 	public static boolean isStringInteger(String number){
 	    try{
 	        Integer.parseInt(number);
