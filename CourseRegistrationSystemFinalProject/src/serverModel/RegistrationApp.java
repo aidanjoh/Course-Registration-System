@@ -229,7 +229,7 @@ public class RegistrationApp implements Runnable
 	 * 
 	 * @param courseName the name of the course being searched for.
 	 * @param courseNum the number of the course being searched for.
-	 * @returns a String message saying that the course was found with the String representing the course if the course was found,
+	 * @return a String message saying that the course was found with the String representing the course if the course was found,
 	 * otherwise it returns a String message saying that the course was not found.
 	 */
 	public String searchCatalogueCourses(String courseName, int courseNum) 
@@ -260,7 +260,7 @@ public class RegistrationApp implements Runnable
 	 * @param courseName the name of the course being added.
 	 * @param courseNum the number of the course being added.
 	 * @param sectionNumber the section number of the course being added.
-	 * @returns a String displaying if the course was successfully added or not. If a course
+	 * @return a String displaying if the course was successfully added or not. If a course
 	 * was not successfully added different messages are returned for specifics reasons,
 	 * like the course does not exist or that the student is already registered in 6 courses.
 	 */
@@ -318,7 +318,7 @@ public class RegistrationApp implements Runnable
 	 * by searching by the students id then the Student object is returned. If the student is not found then null is returned.
 	 * 
 	 * @param studentID the ID of the student being searched for.
-	 * @returns the Student object if the student is in the list, otherwise it returns null.
+	 * @return the Student object if the student is in the list, otherwise it returns null.
 	 */
 	public Student searchForStudent(int studentID)
 	{
@@ -340,7 +340,7 @@ public class RegistrationApp implements Runnable
 	 * @param studentID the ID of the student removing a course.
 	 * @param courseName the name of the course being removed.
 	 * @param courseNum the number of the course being removed.
-	 * @returns a String displaying if the course was successfully removed or not. If a course
+	 * @return a String displaying if the course was successfully removed or not. If a course
 	 * was not successfully removed different messages are returned for specifics reasons,
 	 * like the course does not exist or the student is not registered in the course.
 	 */
@@ -370,7 +370,7 @@ public class RegistrationApp implements Runnable
 	/**
 	 * Displays all the courses in the course catalogue.
 	 * 
-	 * @returns a String that has all of the courses in the course catalogue.
+	 * @return a String that has all of the courses in the course catalogue.
 	 */
 	public String viewAllCoursesInCatalogue() 
 	{
@@ -382,7 +382,7 @@ public class RegistrationApp implements Runnable
 	 * Displays all the courses that a specific student is enrolled in.
 	 * 
 	 * @param studentID the ID of the student thats courses are being displayed.
-	 * @returns the String displaying all of a specific student's courses.
+	 * @return the String displaying all of a specific student's courses.
 	 */
 	public String viewAllStudentsCourses(int studentID) 
 	{

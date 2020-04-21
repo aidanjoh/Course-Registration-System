@@ -53,7 +53,7 @@ public class Student
 	 * Removes a registration of a course from a student's registration list.
 	 * 
 	 * @param course the course to be removed from the student's registration list.
-	 * @returns a String displaying if the course was removed successfully or not.
+	 * @return a String displaying if the course was removed successfully or not.
 	 */
 	public String removeRegistration(Course course)
 	{
@@ -75,7 +75,7 @@ public class Student
 	 * Prints all the student's courses into one string. If the student has no courses a message is returned
 	 * saying that the student does not have any courses.
 	 * 
-	 * @returns a string holding all the student's courses in a String format.
+	 * @return a string holding all the student's courses in a String format.
 	 */
 	public String printTheStudentsCourses()
 	{
@@ -97,7 +97,7 @@ public class Student
 	/**
 	 * Generates a String representation of a Student object.
 	 * 
-	 * @returns a string representation of the student object.
+	 * @return a string representation of the student object.
 	 */
 	@Override
 	public String toString () 

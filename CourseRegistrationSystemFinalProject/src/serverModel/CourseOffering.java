@@ -48,7 +48,7 @@ public class CourseOffering
 	/**
 	 * Creates a String representation of the course registration.
 	 * 
-	 * @returns a string representing the course registration.
+	 * @return a string representing the course registration.
 	 */
 	@Override
 	public String toString () 

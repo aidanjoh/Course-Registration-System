@@ -78,7 +78,7 @@ public class Course
 	 * Gets the course offering at a specific index in the course's offering list.
 	 * 
 	 * @param i the index of the course offering that
-	 * @returns the course offering at a given index i.
+	 * @return the course offering at a given index i.
 	 */
 	public CourseOffering getCourseOfferingAt(int i) 
 	{
@@ -91,7 +91,7 @@ public class Course
 	/**
 	 * Creates a String representation of the course object.
 	 * 
-	 * @returns a String representing the Course's information.
+	 * @return a String representing the Course's information.
 	 */
 	@Override
 	public String toString () 

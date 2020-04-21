@@ -178,7 +178,7 @@ public class DBManager implements Credentials
 	 * 
 	 * @param id the id of the course being added.
 	 * @param name the name of the course being added.
-	 * @returns a String displaying if the course was added to the application successfully or not.
+	 * @return a String displaying if the course was added to the application successfully or not.
 	 */
 	public String insertCourse(int id, String name)
 	{
@@ -275,7 +275,7 @@ public class DBManager implements Credentials
 	 * 
 	 * @param id the id of the student entered being checked to see if the login attempt is valid.
 	 * @param password the password of the student entered being checked to see if the login attempt is valid.
-	 * @returns the student's name if the login attempt was valid otherwise it returns "false".
+	 * @return the student's name if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateStudentLogin(int id, String password)
 	{
@@ -309,7 +309,7 @@ public class DBManager implements Credentials
 	 * 
 	 * @param id the id of the admin entered being checked to see if the login attempt is valid.
 	 * @param password the password of the admin entered being checked to see if the login attempt is valid.
-	 * @returns the admin name if the login attempt was valid otherwise it returns "false".
+	 * @return the admin name if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateAdminLogin(int id, String password)
 	{
@@ -414,7 +414,7 @@ public class DBManager implements Credentials
 	 * Reads the courses from the course table in the SQL database and places each of them as a Course object into an array list 
 	 * holding all of the courses.
 	 * 
-	 * @returns an arrayList of all the course objects from the SQL database.
+	 * @return an arrayList of all the course objects from the SQL database.
 	 */
 	public ArrayList<Course> readCoursesFromDB() 
 	{
@@ -445,7 +445,7 @@ public class DBManager implements Credentials
 	 * Reads the students from the student table in the SQL database and places each of them as a Student object into an array list 
 	 * holding all of the students.
 	 * 
-	 * @returns an arrayList of all the student objects from the SQL database.
+	 * @return an arrayList of all the student objects from the SQL database.
 	 */
 	public ArrayList<Student> readStudentsFromDB()
 	{

@@ -66,7 +66,7 @@ public class CourseCatalogue
 	 * 
 	 * @param courseName the name of the course being searched for.
 	 * @param courseNum the number of the course being searched for.
-	 * @returns the Course if found in the course catalogue, otherwise null is returned.
+	 * @return the Course if found in the course catalogue, otherwise null is returned.
 	 */
 	public Course searchCat (String courseName, int courseNum) 
 	{
@@ -83,7 +83,7 @@ public class CourseCatalogue
 	/**
 	 * Creates a String representing the course catalogue information.
 	 * 
-	 * @returns a String representation of the course catalogue.
+	 * @return a String representation of the course catalogue.
 	 */
 	@Override
 	public String toString () 

@@ -56,7 +56,7 @@ public class ClientController
 	 *
 	 * @param messageToBeSent the specified String message to be sent to the server to call a respective function
 	 * in the back end of the application.
-	 * @returns a String containing the message from the server.
+	 * @return a String containing the message from the server.
 	 */
 	public String communicateWithServer(String messageToBeSent)
 	{

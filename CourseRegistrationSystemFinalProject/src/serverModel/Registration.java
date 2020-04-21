@@ -59,7 +59,7 @@ public class Registration
 	/**
 	 * Creates a String representing the Registration object,
 	 * 
-	 * @returns a String representation of the registration object.
+	 * @return a String representation of the registration object.
 	 */
 	@Override
 	public String toString () 
