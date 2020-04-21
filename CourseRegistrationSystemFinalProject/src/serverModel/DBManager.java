@@ -78,17 +78,17 @@ public class DBManager implements Credentials
 	}
 
 	/**
-	 * Closes the connection and the resultSet object.
+	 * Closes the connection object.
 	 */
 	public void close()
 	{
 		try
 		{
-			rs.close();
 			conn.close();
 		}
 		catch (SQLException e)
 		{
+			e.printStackTrace();
 		}
 	}
 
