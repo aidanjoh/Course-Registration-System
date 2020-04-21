@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
  * @since April 15, 2020
- *
  */
 public class Student 
 {
@@ -22,18 +21,11 @@ public class Student
 	 */
 	private int studentId;
 	
-	//private ArrayList<CourseOffering> offeringList;
+	/**
+	 * The student's registration of courses list.
+	 */
 	private ArrayList<Registration> studentRegList;
 	
-	/**
-	 * 
-	 * @return
-	 */
-	public ArrayList<Registration> getStudentRegList() 
-	{
-		return studentRegList;
-	}
-
 	/**
 	 * Constructs a Student object by assigning a name and id. Also creates a new registration list.
 	 * 
@@ -47,11 +39,22 @@ public class Student
 		studentRegList = new ArrayList<Registration>();
 	}
 	
+	/**
+	 * Adds a registration object for a course to a student's registration list.
+	 * 
+	 * @param registration the registration object to be added to the student's registration list.
+	 */
 	public void addRegistration(Registration registration) 
 	{
 		studentRegList.add(registration);
 	}
 	
+	/**
+	 * Removes a registration of a course from a student's registration list.
+	 * 
+	 * @param course the course to be removed from the student's registration list.
+	 * @returns a String displaying if the course was removed successfully or not.
+	 */
 	public String removeRegistration(Course course)
 	{
 		for (Registration registration : studentRegList)
@@ -68,6 +71,12 @@ public class Student
 		return "\0" + studentName +" is not enrolled in " + course.getCourseName() + " " + course.getCourseNum() + "\0";
 	}
 	
+	/**
+	 * Prints all the student's courses into one string. If the student has no courses a message is returned
+	 * saying that the student does not have any courses.
+	 * 
+	 * @returns a string holding all the student's courses in a String format.
+	 */
 	public String printTheStudentsCourses()
 	{
 		if(studentRegList.size() == 0)
@@ -87,6 +96,8 @@ public class Student
 
 	/**
 	 * Generates a String representation of a Student object.
+	 * 
+	 * @returns a string representation of the student object.
 	 */
 	@Override
 	public String toString () 
@@ -96,7 +107,12 @@ public class Student
 		return st;
 	}
 
-	//Getters and Setters
+	//----------------Getters and Setters--------------------------//
+	public ArrayList<Registration> getStudentRegList() 
+	{
+		return studentRegList;
+	}
+	
 	public String getStudentName()
 	{
 		return studentName;

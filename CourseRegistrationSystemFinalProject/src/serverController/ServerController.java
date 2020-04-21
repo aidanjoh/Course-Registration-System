@@ -84,6 +84,8 @@ public class ServerController
 	public static void main(String[] args) 
 	{
 		//ServerController server = new ServerController(8099);
+		
+		//This commented code was used to run the server and client on separate machine using a specific port.
 		ServerController server = new ServerController(9091);
 		server.communicateWithClient();
 	}

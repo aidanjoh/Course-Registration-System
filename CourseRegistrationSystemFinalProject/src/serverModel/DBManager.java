@@ -11,7 +11,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
- * The class DBManager is simulating a database for our program. The data base is a SQL database.
+ * The class DBManager is simulating a database for our program. The data base is an SQL database holding a student, admin and 
+ * course table. Run this class first before running the server and client to create and populate the student, admin and course
+ * table in your database.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
@@ -92,7 +94,8 @@ public class DBManager implements Credentials
 	}
 
 	/**
-	 * Inserts a student using a prepared statement into the Student table in the database.
+	 * Inserts a student using a prepared statement into the Student table in the database. The student table has a column for an
+	 * integer id, a String name and a String password.
 	 * 
 	 * @param id the id of the student being added.
 	 * @param name the name of the student being added.
@@ -118,7 +121,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Inserts an admin using a prepared statement into the Admin table in the database.
+	 * Inserts an admin using a prepared statement into the Admin table in the database. The admin table has a column for an
+	 * integer id, a String name and a String password.
 	 * 
 	 * @param id the id of the admin being added.
 	 * @param name the name of the admin being added.
@@ -144,7 +148,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Inserts a course using a prepared statement into the Course table in the database.
+	 * Inserts a course using a prepared statement into the Course table in the database. The course table has a column for an
+	 * integer id and a String name.
 	 * 
 	 * @param id the id of the course being added.
 	 * @param name the name of the course being added.
@@ -198,7 +203,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Creates the Student table in the SQL database. The student table has 
+	 * Creates the Student table in the SQL database. The student table has a column for an integer id, a String name 
+	 * and a String password.
 	 */
 	public void createStudentTable()
 	{
@@ -219,7 +225,7 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Creates the course table in the SQL database.
+	 * Creates the course table in the SQL database. The course table has a column for an integer id and a String name.
 	 * 
 	 */
 	public void createCourseTable()
@@ -241,7 +247,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * Creates the admin table in the SQL database.
+	 * Creates the admin table in the SQL database. The admin table has a column for an integer id, a String name 
+	 * and a String password.
 	 */
 	public void createAdminTable()
 	{
@@ -263,11 +270,12 @@ public class DBManager implements Credentials
 	
 	/**
 	 * Validates the student login by checking if the id and password entered by the student matches what is in the database.
-	 * If the id is valid and a matching password was entered it returns a string holding "true" otherwise it returns "false".
+	 * If the id is valid and a matching password was entered it returns a string holding the student's name otherwise it 
+	 * returns "false".
 	 * 
 	 * @param id the id of the student entered being checked to see if the login attempt is valid.
 	 * @param password the password of the student entered being checked to see if the login attempt is valid.
-	 * @returns the message "true" if the login attempt was valid otherwise it returns "false".
+	 * @returns the student's name if the login attempt was valid otherwise it returns "false".
 	 */
 	public String validateStudentLogin(int id, String password)
 	{
@@ -296,7 +304,8 @@ public class DBManager implements Credentials
 	
 	/**
 	 * Validates the admin login by checking if the id and password entered by the admin matches what is in the database.
-	 * If the id is valid and a matching password was entered it returns a string holding "true" otherwise it returns "false".
+	 * If the id is valid and a matching password was entered it returns a string holding the admin's name otherwise it 
+	 * returns "false".
 	 * 
 	 * @param id the id of the admin entered being checked to see if the login attempt is valid.
 	 * @param password the password of the admin entered being checked to see if the login attempt is valid.
@@ -327,7 +336,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * 
+	 * Reads the student's information from the inputed text file called SutdentList.txt and insert each of the student's
+	 * information into the SQL database, specifically the student table.
 	 */
 	public void readStudentsFromFile()
 	{
@@ -351,7 +361,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * 
+	 * Reads the admin's information from the inputed text file called Admins.txt and insert each of the admin's
+	 * information into the SQL database, specifically the admin table.
 	 */
 	public void readAdminsFromFile()
 	{
@@ -375,7 +386,8 @@ public class DBManager implements Credentials
 	}
 	
 	/**
-	 * 
+	 * Reads the course's information from the inputed text file called courses.txt and insert each of the course's
+	 * information into the SQL database, specifically the course table.
 	 */
 	public void readCoursesFromFile()
 	{
@@ -399,8 +411,10 @@ public class DBManager implements Credentials
 	}
 	
 	/**
+	 * Reads the courses from the course table in the SQL database and places each of them as a Course object into an array list 
+	 * holding all of the courses.
 	 * 
-	 * @return
+	 * @returns an arrayList of all the course objects from the SQL database.
 	 */
 	public ArrayList<Course> readCoursesFromDB() 
 	{
@@ -428,8 +442,10 @@ public class DBManager implements Credentials
 	}
 	
 	/**
+	 * Reads the students from the student table in the SQL database and places each of them as a Student object into an array list 
+	 * holding all of the students.
 	 * 
-	 * @return
+	 * @returns an arrayList of all the student objects from the SQL database.
 	 */
 	public ArrayList<Student> readStudentsFromDB()
 	{
@@ -457,7 +473,7 @@ public class DBManager implements Credentials
 	}
 
 	/**
-	 * Only run this function once before using the course registration application. The function called in this main generate
+	 * Only run this function once before using the course registration application. The functions called in this main generate
 	 * the SQL database with the student, course and admin tables as well as populates them from the text files.
 	 * 
 	 * @param args Default.

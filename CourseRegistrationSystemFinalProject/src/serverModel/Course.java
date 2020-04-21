@@ -3,7 +3,7 @@ package serverModel;
 import java.util.ArrayList;
 
 /**
- * The class Course is the 
+ * The class Course has data and attributes to represent a course.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
@@ -22,7 +22,7 @@ public class Course
 	private int courseNum;
 	
 	/**
-	 * ArrayList holding the pre-requisite courses of a course.
+	 * ArrayList holding the pre-requisite courses of the course.
 	 */
 	private ArrayList<Course> preReq;
 	
@@ -32,14 +32,15 @@ public class Course
 	private ArrayList<CourseOffering> offeringList;
 	
 	/**
-	 * 
+	 * A boolean representing if the course can run or not based upon the number of students registered for the course.
 	 */
 	private boolean isValid;
 
 	/**
+	 * Constructs a course object by assigning a course name and number and creating a offering list for the course.
 	 * 
-	 * @param courseName
-	 * @param courseNum
+	 * @param courseName the name of the course.
+	 * @param courseNum the number of the course.
 	 */
 	public Course(String courseName, int courseNum) 
 	{
@@ -53,16 +54,17 @@ public class Course
 	}
 
 	/**
+	 * Adds a course offering object to the courses offering list.
 	 * 
-	 * @param offering
+	 * @param offering the offering object to be added.
 	 */
 	public void addOffering(CourseOffering offering) 
 	{
 		if (offering != null && offering.getTheCourse() == null) 
 		{
 			offering.setTheCourse(this);
-			if (!offering.getTheCourse().getCourseName().equals(courseName)
-					|| offering.getTheCourse().getCourseNum() != courseNum) 
+			
+			if (!offering.getTheCourse().getCourseName().equals(courseName) || offering.getTheCourse().getCourseNum() != courseNum) 
 			{
 				System.err.println("Error! This section belongs to another course!");
 				return;
@@ -73,9 +75,10 @@ public class Course
 	}
 	
 	/**
+	 * Gets the course offering at a specific index in the course's offering list.
 	 * 
-	 * @param i
-	 * @return
+	 * @param i the index of the course offering that
+	 * @returns the course offering at a given index i.
 	 */
 	public CourseOffering getCourseOfferingAt(int i) 
 	{
@@ -85,6 +88,24 @@ public class Course
 			return offeringList.get(i);
 	}
 	
+	/**
+	 * Creates a String representation of the course object.
+	 * 
+	 * @returns a String representing the Course's information.
+	 */
+	@Override
+	public String toString () 
+	{
+		String st = "\0";
+		st += getCourseName() + " " + getCourseNum();
+		st += "\0All course sections:\0";
+		for (CourseOffering c : offeringList)
+			st += c;
+		st += "\0-------\0";
+		return st;
+	}
+	
+	//----------------Getters and Setters------------------------//
 	public String getCourseName() 
 	{
 		return courseName;
@@ -104,25 +125,14 @@ public class Course
 	{
 		this.courseNum = courseNum;
 	}
-	
-	@Override
-	public String toString () 
-	{
-		String st = "\0";
-		st += getCourseName() + " " + getCourseNum();
-		st += "\0All course sections:\0";
-		for (CourseOffering c : offeringList)
-			st += c;
-		st += "\0-------\0";
-		return st;
-	}
 
-	public boolean isValid() {
+	public boolean isValid() 
+	{
 		return isValid;
 	}
 
-	public void setValid(boolean isValid) {
+	public void setValid(boolean isValid) 
+	{
 		this.isValid = isValid;
 	}
-
 }
