@@ -6,28 +6,47 @@ import java.awt.event.ActionListener;
 import clientView.*;
 
 /**
+ * GUI Controller class. Contains all the functionality of all action events from
+ * buttons within an inner class.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
+ * @since April 15, 2020
  */
 public class GUIController 
 {
-
-	private StartUpMenuGUI startUpView;
-	private StudentMenuGUI studentView;
-	private AdminMenuGUI adminView;
-	private ViewCatalogueCourses viewCatalogue;
-	private ViewStudentsCourses viewStudentsCourses;
-	
 	/**
-	 * 
+	 * JFrame for start up menu.
+	 */
+	private StartUpMenuGUI startUpView;
+	/**
+	 * JFrame for student menu.
+	 */
+	private StudentMenuGUI studentView;
+	/**
+	 * JFrame for admin menu.
+	 */
+	private AdminMenuGUI adminView;
+	/**
+	 * View catalogue JFrame.
+	 */
+	private ViewCatalogueCourses viewCatalogue;
+	/**
+	 * View student courses JFrame.
+	 */
+	private ViewStudentsCourses viewStudentsCourses;
+	/**
+	 * Client object.
 	 */
 	private ClientController client;
-	
-	private int UCID; //this is so the client knows which student it is
+	/**
+	 * UCID of the student. This is so the client knows which student it is.
+	 */
+	private int UCID;
 	
 	/**
-	 * 
+	 * Constructor for the GUI controller class. Initializes the clients, builds 
+	 * the different frames and adds button listeners.
 	 */
 	public GUIController(ClientController client) 
 	{
@@ -64,6 +83,16 @@ public class GUIController
 		viewStudentsCourses.addReturnButtonListener(new addButtonListener());
 	}
 	
+	/**
+	 * Add button listener class. Contains all the action events of the 
+	 * buttons and does different action depending on the action event.
+	 * Action events form a string which is sent through the client and 
+	 * server.
+	 * 
+	 * @author Aidan Johnson and Michele Piperni
+	 * @version 1.0
+	 * @since April 15, 2020
+	 */
 	public class addButtonListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -84,11 +113,14 @@ public class GUIController
 					String messageToBeSent = "7 " + UCID + " " + readPassword;
 					String messageRecieved = client.communicateWithServer(messageToBeSent);
 					
-					if(!messageRecieved.equals("false")) 
-					{ //valid ucid and password
+					if(!messageRecieved.equals("false")) //valid ucid and password
+					{ 
 						startUpView.setVisible(false);
+						
+						//Set the current user based on the login information
 						String currentLogin = "Current User: " + messageRecieved + "    ID: " + UCID;
 						studentView.setCurrentLogin(currentLogin);
+						
 						studentView.setVisible(true);
 					}
 					else 
@@ -101,11 +133,14 @@ public class GUIController
 					String messageToBeSent = "8 " + UCID + " " + readPassword;					
 					String messageRecieved = client.communicateWithServer(messageToBeSent);
 					
-					if(!messageRecieved.equals("false")) 
-					{ //valid ucid and password
+					if(!messageRecieved.equals("false")) //valid ucid and password
+					{
 						startUpView.setVisible(false);
+						
+						//Set the current user based on the login information
 						String currentLogin = "Current User: " + messageRecieved + "    ID: " + UCID;
 						adminView.setCurrentLogin(currentLogin);
+						
 						adminView.setVisible(true);
 					}
 					else 
@@ -124,12 +159,8 @@ public class GUIController
 				}
 				
 				String messageToBeSent = "1 " + UCID + " " + courseNameAndNum;
-	
-				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
-				
 				studentView.showSearchedCatalogue(messageRecieved);
-		
 			}
 			else if(e.getSource() == studentView.getAddCourseButton()) 
 			{
@@ -141,7 +172,6 @@ public class GUIController
 				}
 				
 				String messageToBeSent = "2 " + UCID + " " + courseNameAndNum;
-				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showAddCourseOptionPane(messageRecieved);
 			}
@@ -155,19 +185,16 @@ public class GUIController
 				}
 				
 				String messageToBeSent = "3 " + UCID + " " + courseNameAndNum;
-				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				studentView.showRemoveCourseOptionPane(messageRecieved);
 			}
 			else if(e.getSource() == studentView.getViewCatalogueButton() || e.getSource() == adminView.getViewCatalogueButton()) 
 			{
 				String messageToBeSent = "4 " + UCID;
-				
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				
 				//Set the Text Area
 				viewCatalogue.setStudentRecords(messageRecieved);
-				
 				viewCatalogue.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getViewMyCoursesButton()) 
@@ -177,13 +204,12 @@ public class GUIController
 				
 				//Set the Text Area
 				viewStudentsCourses.setStudentRecords(messageRecieved);
-				
 				viewStudentsCourses.setVisible(true);
 			}
 			else if(e.getSource() == studentView.getQuitButton() || e.getSource() == adminView.getQuitButton()) 
 			{
 				String messageToBeSent = "6 " + UCID;
-				String messageRecieved = client.communicateWithServer(messageToBeSent);
+				client.communicateWithServer(messageToBeSent);
 				System.exit(1);
 			}
 			else if(e.getSource() == studentView.getLogoutButton()) 
@@ -208,7 +234,6 @@ public class GUIController
 				}
 				
 				String messageToBeSent = "9 " + courseNameNumSectionsCap;
-	
 				String messageRecieved = client.communicateWithServer(messageToBeSent);
 				adminView.showAddCourseOptionPane(messageRecieved);
 			}

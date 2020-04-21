@@ -2,9 +2,7 @@ package clientView;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Dialog.ModalityType;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -13,30 +11,35 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
+ * JDialog panel to show the courses in the catalogue. Has a scroll panel with a 
+ * text area containing the courses in the list.
  * 
  * @author Aidan Johnson and Michele Piperni
  * @version 1.0
- * @since April 10, 2020
+ * @since April 15, 2020
  */
 public class ViewCatalogueCourses extends JDialog
 {
 	/**
-	 * 
+	 * Serial UID.
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * Label for the title of the frame.
 	 */
 	private JLabel title;
-	
 	/**
-	 * 
+	 * Text area for the courses.
 	 */
 	private JTextArea listOfStudentsCourses;
-	
 	/**
-	 * 
+	 * Return to main menu button.
 	 */
 	private JButton returnButton;
 	
 	/**
-	 * 
+	 * Constructor for the view catalogue menu. Calls several function to 
+	 * customize and initialize the frame.
 	 */
 	public ViewCatalogueCourses(StudentMenuGUI mainFrame)
 	{
@@ -79,14 +82,28 @@ public class ViewCatalogueCourses extends JDialog
 		this.add("North", titlePanel);
 	}
 	
+	//---------------- Getters And Setters --------------------------//
+	
+	/**
+	 * Returns the returnButton.
+	 * 
+	 * @return returnButton
+	 */
 	public JButton getReturnButton() {
 		return returnButton;
 	}
 	
+	/**
+	 * Sets the text area for the catalogue of courses.
+	 * 
+	 * @param records String containing the courses in the catalogue.
+	 */
 	public void setStudentRecords(String records)
 	{
 		listOfStudentsCourses.setText(records);
 	}
+	
+	//----------------Button Listener Methods--------------------------//
 	
 	/**
 	 * Adds the action listener for the return to main menu button.
