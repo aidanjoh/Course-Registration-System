@@ -89,7 +89,6 @@ public class DBManager implements Credentials
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
 		}
 	}
 
