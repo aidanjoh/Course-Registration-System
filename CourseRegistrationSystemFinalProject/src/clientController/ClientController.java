@@ -99,14 +99,10 @@ public class ClientController
 	 * 
 	 * @param args Default.
 	 */
-	public static void main(String[] args) s
+	public static void main(String[] args)
 	{
 		//ClientController client = new ClientController("localhost", 8099);
-<<<<<<< Updated upstream
-		ClientController client = new ClientController("127.0.0.1", 9091);
-=======
 		ClientController client = new ClientController("96.51.158.129", 9091);
->>>>>>> Stashed changes
 		GUIController courseRegMainGUI = new GUIController(client);
 	}
 }
